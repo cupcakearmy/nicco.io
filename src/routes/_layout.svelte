@@ -8,12 +8,10 @@
   div {
     display: flex;
     flex-direction: row;
-    overflow: hidden;
   }
 
   main {
     position: relative;
-    background-color: white;
     padding: 3em;
     margin: 0 auto;
     box-sizing: border-box;
