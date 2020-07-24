@@ -1,50 +1,66 @@
+<script>
+  import SpacedLetters from '../components/SpacedLetters.svelte'
+</script>
+
 <style>
-  h1,
-  figure,
   p {
-    text-align: center;
-    margin: 0 auto;
+    font-size: 4vw;
   }
 
-  h1 {
-    font-size: 2.8em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin: 0 0 0.5em 0;
+  section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  figure {
-    margin: 0 0 1em 0;
+  section.left {
+    align-items: flex-start;
+    padding-left: 1em;
+  }
+
+  section.right {
+    align-items: flex-end;
   }
 
   img {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 0 1em 0;
+    object-fit: contain;
+    height: 65vh;
+    width: 33vw;
+    /* margin-top: 16vh; */
+    transform: translateY(16vh);
   }
 
-  p {
-    margin: 1em auto;
-  }
+  @media (max-width: 30em) {
+    img {
+      transform: translateY(6em);
+      height: 69vh;
+      width: 69vw;
+    }
 
-  @media (min-width: 480px) {
-    h1 {
-      font-size: 4em;
+    section.left {
+      transform: translateY(-11em);
     }
   }
 </style>
 
 <svelte:head>
-  <title>Sapper project template</title>
+  <title>Niccolo Borgioli</title>
 </svelte:head>
 
-<h1>Letse go</h1>
+<section class="left" style="z-index: 3;">
+  <h1>
+    <SpacedLetters letters="Niccolò" />
+    <SpacedLetters letters="Borgioli" />
+  </h1>
 
-<figure>
-  <img alt="Success Kid" src="successkid.jpg" />
-  <figcaption>Have fun with Sapper!</figcaption>
-</figure>
+  <p>Design & Development</p>
+</section>
 
-<p>
-  <strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong>
-</p>
+<section class="right" style="z-index: 2;">
+  <img src="/images/decoration.jpg" />
+</section>

@@ -1,60 +1,61 @@
 <script>
-	export let segment;
+  export let segment
+
+  const routes = [
+    { name: 'About', href: '/about' },
+    { name: 'Works', href: '/works' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Blog', href: 'https://blog.nicco.io' },
+    { name: 'Contact', href: '/contact' },
+  ]
 </script>
 
 <style>
-	nav {
-		border-bottom: 1px solid rgba(255,62,0,0.1);
-		font-weight: 300;
-		padding: 0 1em;
-	}
+  nav {
+    height: 100vh;
+    background-color: var(--clr-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-	ul {
-		margin: 0;
-		padding: 0;
-	}
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-	/* clearfix */
-	ul::after {
-		content: '';
-		display: block;
-		clear: both;
-	}
+  a {
+    writing-mode: vertical-rl;
+    padding: 1em;
+    text-decoration: none;
+  }
 
-	li {
-		display: block;
-		float: left;
-	}
+  h1 {
+    margin: 0;
+    writing-mode: horizontal-tb;
+    letter-spacing: -0.15em;
+    width: 1.15em;
+    font-size: 1.5em;
+  }
 
-	[aria-current] {
-		position: relative;
-		display: inline-block;
-	}
-
-	[aria-current]::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		background-color: rgb(255,62,0);
-		display: block;
-		bottom: -1px;
-	}
-
-	a {
-		text-decoration: none;
-		padding: 1em 0.5em;
-		display: block;
-	}
+  @media (max-width: 30em) {
+    a {
+      padding: 0.5em;
+    }
+  }
 </style>
 
 <nav>
-	<ul>
-		<li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">home</a></li>
-		<li><a aria-current="{segment === 'about' ? 'page' : undefined}" href="about">about</a></li>
-
-		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<li><a rel=prefetch aria-current="{segment === 'blog' ? 'page' : undefined}" href="blog">blog</a></li>
-	</ul>
+  <a href="/">
+    <h1>NB</h1>
+  </a>
+  <ul>
+    {#each routes as { name, href }}
+      <li>
+        <a {href}>{name}</a>
+      </li>
+    {/each}
+  </ul>
 </nav>
