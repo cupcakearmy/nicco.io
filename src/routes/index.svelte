@@ -31,19 +31,18 @@
     object-fit: contain;
     height: 65vh;
     width: 33vw;
-    /* margin-top: 16vh; */
-    transform: translateY(16vh);
+    transform: translateY(5vh);
   }
 
-  @media (max-width: 30em) {
+  @media (max-width: 50em) {
     img {
-      transform: translateY(6em);
-      height: 69vh;
+      transform: translateY(15vh);
+      height: 60vh;
       width: 69vw;
     }
 
     section.left {
-      transform: translateY(-11em);
+      transform: translateY(-25vh);
     }
   }
 </style>
