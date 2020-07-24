@@ -12,7 +12,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: baseline;
+  }
+
+  .date {
+    align-self: flex-end;
   }
 
   section {
@@ -22,16 +25,20 @@
   ion-icon {
     transform: translateY(0.25em);
   }
+
+  @media (max-width: 30em) {
+    div {
+      flex-direction: column;
+    }
+  }
 </style>
 
 <section>
-  <div>
-    <h2>{project.name}</h2>
-  </div>
+  <h2>{project.name}</h2>
 
   <div>
     <b>{project.title}</b>
-    <b>{project.date}</b>
+    <b class="date">{project.date}</b>
   </div>
 
   <p>{project.body}</p>
