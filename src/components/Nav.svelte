@@ -32,6 +32,11 @@
     text-decoration: none;
   }
 
+  li a {
+    line-height: 1em;
+    width: 1em;
+  }
+
   h1 {
     margin: 0;
     writing-mode: horizontal-tb;
