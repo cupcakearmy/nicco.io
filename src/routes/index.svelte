@@ -61,5 +61,5 @@
 </section>
 
 <section class="right" style="z-index: 2;">
-  <img src="/images/decoration.jpg" />
+  <img src="/images/decoration.jpg" alt="decoration" />
 </section>
