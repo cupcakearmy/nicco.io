@@ -5,6 +5,7 @@
 <style>
   p {
     font-size: 4vw;
+    margin-top: 0;
   }
 
   section {
@@ -21,6 +22,7 @@
   section.left {
     align-items: flex-start;
     padding-left: 1em;
+    width: initial;
   }
 
   section.right {
@@ -53,8 +55,8 @@
 
 <section class="left" style="z-index: 3;">
   <h1>
-    <SpacedLetters letters="Niccolò" />
-    <SpacedLetters letters="Borgioli" />
+    <SpacedLetters letters="Niccolò" even />
+    <SpacedLetters letters="Borgioli" even />
   </h1>
 
   <p>Design & Development</p>

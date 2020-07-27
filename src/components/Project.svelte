@@ -44,6 +44,6 @@
   <p>{project.body}</p>
 
   <ion-icon name="link-outline" />
-  <a href={project.link}>{project.link.replace(/https?:\/\//, '')}</a>
+  <a rel="noopener noreferrer" target="_blank" href={project.link}>{project.link.replace(/https?:\/\//, '')}</a>
 
 </section>

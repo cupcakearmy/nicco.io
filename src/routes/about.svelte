@@ -11,6 +11,7 @@
     height: 30vw;
     left: 35em;
     top: 12em;
+    max-width: 25em;
   }
 
   @media (max-width: 55em) {
