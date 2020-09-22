@@ -8,11 +8,16 @@
     { name: 'Blog', href: 'https://blog.nicco.io' },
     { name: 'Contact', href: '/contact' },
   ]
+
+  let nav
 </script>
 
 <style>
   nav {
-    height: 100vh;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    width: 3.5em;
+    height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
     background-color: var(--clr-primary);
     display: flex;
     flex-direction: column;
@@ -35,6 +40,24 @@
   li a {
     line-height: 1em;
     width: 1em;
+    position: relative;
+  }
+
+  li a span {
+    z-index: 5;
+    position: relative;
+  }
+
+  li a div {
+    z-index: 4;
+    width: 0.125em;
+    height: 100%;
+    top: 0;
+    left: 1.12em;
+    position: absolute;
+  }
+  li a div.active {
+    background-color: var(--clr-secondary);
   }
 
   h1 {
@@ -45,21 +68,36 @@
     font-size: 1.5em;
   }
 
+  h1.active {
+    box-shadow: 0 0.1em var(--clr-secondary);
+  }
+
   @media (max-width: 30em) {
+    nav {
+      width: 2.5em;
+    }
+
     a {
       padding: 0.5em;
+    }
+
+    li a div {
+      transform: translateX(-0.5em);
     }
   }
 </style>
 
-<nav>
+<nav bind:this={nav}>
   <a href="/">
-    <h1>NB</h1>
+    <h1 class:active={segment === undefined}>NB</h1>
   </a>
   <ul>
     {#each routes as { name, href }}
       <li>
-        <a {href}>{name}</a>
+        <a {href}>
+          <span>{name}</span>
+          <div class:active={href.slice(1) === segment} />
+        </a>
       </li>
     {/each}
   </ul>

@@ -6,3 +6,5 @@
 /__sapper__/
 
 .vercel
+data
+backups

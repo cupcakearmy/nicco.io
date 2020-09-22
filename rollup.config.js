@@ -10,7 +10,9 @@ const mode = process.env.NODE_ENV
 const dev = mode === 'development'
 
 const onwarn = (warning, onwarn) =>
-  (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning)
+  (warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
+  (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) ||
+  onwarn(warning)
 
 export default {
   client: {
@@ -31,6 +33,7 @@ export default {
         dedupe: ['svelte'],
       }),
       commonjs(),
+
       !dev &&
         terser({
           module: true,
@@ -51,6 +54,7 @@ export default {
       }),
       svelte({
         generate: 'ssr',
+        hydratable: true,
         dev,
       }),
       resolve({
@@ -58,28 +62,9 @@ export default {
       }),
       commonjs(),
     ],
-    external: Object.keys(pkg.dependencies).concat(
-      require('module').builtinModules || Object.keys(process.binding('natives'))
-    ),
+    external: Object.keys(pkg.dependencies).concat(require('module').builtinModules),
 
     preserveEntrySignatures: 'strict',
     onwarn,
   },
-
-  // serviceworker: {
-  //   input: config.serviceworker.input(),
-  //   output: config.serviceworker.output(),
-  //   plugins: [
-  //     resolve(),
-  //     replace({
-  //       'process.browser': true,
-  //       'process.env.NODE_ENV': JSON.stringify(mode),
-  //     }),
-  //     commonjs(),
-  //     !dev && terser(),
-  //   ],
-
-  //   preserveEntrySignatures: false,
-  //   onwarn,
-  // },
 }

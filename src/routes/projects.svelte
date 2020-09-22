@@ -1,13 +1,13 @@
 <script context="module">
-  export async function preload({ params }) {
-    const res = await this.fetch('projects.json')
-    const data = await res.json()
-    if (res.status === 200) return { data }
-    else this.error(res.status, 'Not found')
+  import { getAll } from '../lib/wp'
+
+  export async function preload() {
+    const data = await getAll('projects')
+    return { data }
   }
 </script>
 
-<script>
+<script lang="ts">
   import SimplePage from '../components/SimplePage.svelte'
   import Project from '../components/Project.svelte'
 

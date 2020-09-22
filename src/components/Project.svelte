@@ -34,16 +34,14 @@
 </style>
 
 <section>
-  <h2>{project.name}</h2>
+  <h2>{project.title}</h2>
 
-  <div>
-    <b>{project.title}</b>
-    <b class="date">{project.date}</b>
-  </div>
+  <div><b>{project.description}</b> <b class="date">{project.date}</b></div>
 
-  <p>{project.body}</p>
+  <p>
+    {@html project.content}
+  </p>
 
   <ion-icon name="link-outline" />
   <a rel="noopener noreferrer" target="_blank" href={project.link}>{project.link.replace(/https?:\/\//, '')}</a>
-
 </section>
