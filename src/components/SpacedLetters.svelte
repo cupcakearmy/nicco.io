@@ -1,6 +1,7 @@
 <script>
   export let letters = []
   export let even = false
+  export let readable = false
 </script>
 
 <style>
@@ -20,12 +21,15 @@
   div.even {
     font-size: 8vw;
   }
+
+  div.readable {
+    letter-spacing: initial;
+    font-size: 4rem;
+  }
 </style>
 
-<div class:even>
+<div class:even class:readable>
   {#if even}
-    {#each letters as letter}
-      <span>{letter}</span>
-    {/each}
+    {#each letters as letter}<span>{letter}</span>{/each}
   {:else}{letters}{/if}
 </div>

@@ -41,7 +41,7 @@
   <title>About</title>
 </svelte:head>
 
-<SimplePage title="About">
+<SimplePage title="About" expanded={false}>
   {@html data.content}
   <img src="/images/about.jpg" alt="decoration" />
 </SimplePage>

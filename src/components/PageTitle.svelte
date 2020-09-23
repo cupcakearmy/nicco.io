@@ -2,6 +2,7 @@
   import SpacedLetters from './SpacedLetters.svelte'
 
   export let title = ''
+  export let readable = false
 </script>
 
 <style>
@@ -13,6 +14,6 @@
 
 <div>
   <h1>
-    <SpacedLetters letters={title} />
+    <SpacedLetters letters={title} {readable} />
   </h1>
 </div>

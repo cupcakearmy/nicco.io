@@ -1,12 +1,10 @@
 <script>
+  import ImageFrame from '../components/ImageFrame.svelte'
+
   export let work
 </script>
 
 <style>
-  img {
-    width: 100%;
-  }
-
   .title {
     font-size: 2em;
     line-height: 1;
@@ -25,9 +23,13 @@
 
 <div class="horizontal">
   <div class="title regular">{work.title}</div>
-  <div><a href={work.link} target="_blank">{work.link.replace(/https?:\/\//, '')}</a></div>
+  <div>
+    <ion-icon name="link-outline" />
+    <a href={work.link} target="_blank">{work.link.replace(/https?:\/\//, '')}</a>
+  </div>
 </div>
-<img src={work.image.url} alt={work.image.description} />
+
+<ImageFrame src={work.image.sizes.medium_large} alt={work.image.description} />
 <div class="horizontal regular">
   <div>{work.role}</div>
   <div>{work.date}</div>
