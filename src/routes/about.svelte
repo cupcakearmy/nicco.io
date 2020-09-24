@@ -1,5 +1,4 @@
 <script context="module">
-  import WPAdapter from '../components/WPAdapter.svelte'
   import { getOne } from '../lib/wp'
 
   export async function preload() {
@@ -9,6 +8,7 @@
 </script>
 
 <script>
+  import WPAdapter from '../components/WPAdapter.svelte'
   import SimplePage from '../components/SimplePage.svelte'
 
   export let data
