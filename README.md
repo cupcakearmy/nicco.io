@@ -1,4 +1,4 @@
-# nicco.io
+# [nicco.io](https://nicco.io)
 
 My personal space on the interwebs
 
