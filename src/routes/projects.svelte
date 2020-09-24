@@ -1,9 +1,9 @@
 <script context="module">
-  import { getAll } from '../lib/wp'
+  import { getAll, sortByAndMapDate } from '../lib/wp'
 
   export async function preload() {
     const data = await getAll('projects')
-    return { data }
+    return { data: sortByAndMapDate(data) }
   }
 </script>
 

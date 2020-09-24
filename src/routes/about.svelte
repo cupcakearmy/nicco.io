@@ -1,4 +1,5 @@
 <script context="module">
+  import WPAdapter from '../components/WPAdapter.svelte'
   import { getOne } from '../lib/wp'
 
   export async function preload() {
@@ -42,6 +43,7 @@
 </svelte:head>
 
 <SimplePage title="About" expanded={false}>
-  {@html data.content}
+  <WPAdapter content={data.content} />
+  <!-- {@html data.content} -->
   <img src="/images/about.jpg" alt="decoration" />
 </SimplePage>

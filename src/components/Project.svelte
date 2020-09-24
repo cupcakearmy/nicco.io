@@ -5,7 +5,7 @@
 <style>
   h2 {
     font-size: 2em;
-    margin-bottom: 0.75em;
+    margin-bottom: 0.25em;
   }
 
   div {
@@ -19,11 +19,11 @@
   }
 
   section {
-    margin-bottom: 4em;
+    margin-bottom: 6em;
   }
 
-  ion-icon {
-    transform: translateY(0.25em);
+  a {
+    font-family: monospace;
   }
 
   @media (max-width: 30em) {
@@ -34,8 +34,9 @@
 </style>
 
 <section>
-  <h2>{project.title}</h2>
-
+  <a href={project.link} target="_blank" rel="noopener">
+    <h2>{project.title}</h2>
+  </a>
   <div><b>{project.description}</b> <b class="date">{project.date}</b></div>
 
   <p>

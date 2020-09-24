@@ -19,17 +19,27 @@
   .regular {
     font-weight: 400;
   }
+
+  p {
+    margin-bottom: 6em;
+  }
+
+  a {
+    font-family: monospace;
+  }
 </style>
 
-<div class="horizontal">
-  <div class="title regular">{work.title}</div>
-  <div>
-    <ion-icon name="link-outline" />
-    <a href={work.link} target="_blank">{work.link.replace(/https?:\/\//, '')}</a>
+<a href={work.link} target="_blank" rel="noopener">
+  <div class="horizontal">
+    <div class="title regular">{work.title}</div>
+    <div>
+      <ion-icon name="link-outline" />
+      <span>{work.link.replace(/https?:\/\//, '')}</span>
+    </div>
   </div>
-</div>
 
-<ImageFrame src={work.image.sizes.medium_large} alt={work.image.description} />
+  <ImageFrame src={work.image.sizes.medium_large} alt={work.image.description} />
+</a>
 <div class="horizontal regular">
   <div>{work.role}</div>
   <div>{work.date}</div>
