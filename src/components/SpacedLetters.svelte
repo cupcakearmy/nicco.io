@@ -24,7 +24,8 @@
 
   div.readable {
     letter-spacing: initial;
-    font-size: 4rem;
+    text-transform: initial;
+    font-size: 2.25rem;
   }
 </style>
 

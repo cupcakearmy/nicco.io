@@ -27,6 +27,13 @@
   a {
     font-family: monospace;
   }
+
+  @media (max-width: 30em) {
+    .horizontal {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 </style>
 
 <a href={work.link} target="_blank" rel="noopener">

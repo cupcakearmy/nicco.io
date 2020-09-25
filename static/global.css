@@ -56,6 +56,14 @@ ion-icon {
   transform: translateY(0.2rem);
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  padding-left: 0px;
+  padding-left: 1em;
+  list-style: square;
+}
+
 .progress {
   box-sizing: border-box;
   width: 100%;
