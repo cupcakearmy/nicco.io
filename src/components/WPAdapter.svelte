@@ -28,7 +28,11 @@
   }
 
   div :global(figure) {
-    margin: 0;
+    margin: 2em 0;
+  }
+  div :global(figure figcaption) {
+    opacity: 0.75;
+    font-style: italic;
   }
 
   div :global(a) {
