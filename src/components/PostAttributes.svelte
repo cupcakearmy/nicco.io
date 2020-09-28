@@ -9,6 +9,8 @@
     return dj(date).format('MMM D, YYYY')
   }
 
+  $: console.log(post)
+
   $: created = format(post.date)
   $: modified = format(post.modified)
 </script>

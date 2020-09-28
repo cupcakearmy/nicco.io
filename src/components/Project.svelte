@@ -1,4 +1,6 @@
 <script>
+  import dj from 'dayjs'
+
   export let project
 </script>
 
@@ -37,7 +39,7 @@
   <a href={project.link} target="_blank" rel="noopener">
     <h2>{project.title}</h2>
   </a>
-  <div><b>{project.description}</b> <b class="date">{project.date}</b></div>
+  <div><b>{project.description}</b> <b class="date">{dj(project.date * 1000).format('MMM YY')}</b></div>
 
   <p>
     {@html project.content}

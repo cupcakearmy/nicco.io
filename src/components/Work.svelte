@@ -1,4 +1,5 @@
 <script>
+  import dj from 'dayjs'
   import ImageFrame from '../components/ImageFrame.svelte'
 
   export let work
@@ -49,7 +50,7 @@
 </a>
 <div class="horizontal regular">
   <div>{work.role}</div>
-  <div>{work.date}</div>
+  <div>{dj(work.date * 1000).format('MMM YY')}</div>
 </div>
 <p>
   {@html work.content}

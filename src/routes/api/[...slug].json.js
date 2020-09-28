@@ -1,4 +1,4 @@
-import { respond, getAll, getOne, sortByAndMapDate } from '../../lib/wp'
+import { respond, getAll, getOne, sortByDate } from '../../lib/wp'
 
 export async function get(req, res) {
   const [type, slug] = req.params.slug
@@ -8,6 +8,6 @@ export async function get(req, res) {
     respond(res, { data })
   } else {
     const data = await getAll(type)
-    respond(res, { data: sortByAndMapDate(data) })
+    respond(res, { data: sortByDate(data) })
   }
 }

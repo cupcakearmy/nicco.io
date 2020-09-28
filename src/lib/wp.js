@@ -1,5 +1,4 @@
 import axios from 'axios'
-import dj from 'dayjs'
 
 const isDev = process.env.NODE_ENV !== 'production' && false
 axios.defaults.baseURL = `${isDev ? 'http://localhost' : 'https://api.nicco.io'}/wp-json/wp/v2`
@@ -41,13 +40,8 @@ export async function getAll(url, params = {}) {
   return results.map(normalize)
 }
 
-export function sortByAndMapDate(data, format = 'MMM YY') {
-  return data
-    .sort((a, b) => parseInt(b.date) - parseInt(a.date))
-    .map((work) => ({
-      ...work,
-      date: dj(work.date * 1000).format(format),
-    }))
+export function sortByDate(data) {
+  return data.sort((a, b) => parseInt(b.date) - parseInt(a.date))
 }
 
 export function respond(res, body) {
