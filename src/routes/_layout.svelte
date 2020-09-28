@@ -1,13 +1,21 @@
 <script>
+  import { onMount } from 'svelte'
+
   import Nav from '../components/Nav.svelte'
 
   export let segment
+  let wrapper
+
+  onMount(() => {
+    wrapper.style.height = `${window.innerHeight}px`
+  })
 </script>
 
 <style>
   div {
     display: flex;
     flex-direction: row;
+    height: 100vh;
   }
 
   main {
@@ -18,7 +26,7 @@
     flex: 1 0 auto;
     overflow: auto;
     max-width: calc(100% - 4em);
-    max-height: 100vh;
+    height: 100%;
   }
 
   @media (max-width: 30em) {
@@ -28,7 +36,7 @@
   }
 </style>
 
-<div>
+<div bind:this={wrapper}>
   <Nav {segment} />
   <main>
     <slot />

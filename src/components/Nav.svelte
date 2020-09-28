@@ -21,7 +21,7 @@
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
     width: 3em;
-    height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    height: 100%;
     background-color: var(--clr-primary);
     display: flex;
     flex-direction: column;
