@@ -11,6 +11,16 @@
     width: calc(100% + 4em);
     margin-left: -2em;
   }
+  @media (max-width: 30em) {
+    div :global(.alignfull) {
+      width: calc(100vw - 4em);
+      margin-left: -1em;
+    }
+    div :global(.alignwide) {
+      width: calc(100% + 2em);
+      margin-left: -1em;
+    }
+  }
 
   div :global(figure img) {
     width: 100%;

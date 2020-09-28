@@ -13,16 +13,21 @@
 </script>
 
 <style>
+  nav :global(*) {
+    box-sizing: initial;
+  }
+
   nav {
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
-    width: 3.5em;
+    width: 3em;
     height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
     background-color: var(--clr-primary);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    border-right: 0.1em solid var(--clr-secondary);
   }
 
   ul {

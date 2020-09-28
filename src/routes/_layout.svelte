@@ -23,13 +23,12 @@
 
   @media (max-width: 30em) {
     main {
-      padding: 2em;
+      padding: 1em;
     }
   }
 </style>
 
 <div>
-
   <Nav {segment} />
   <main>
     <slot />
