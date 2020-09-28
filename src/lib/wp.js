@@ -49,3 +49,8 @@ export function sortByAndMapDate(data, format = 'MMM YY') {
       date: dj(work.date * 1000).format(format),
     }))
 }
+
+export function respond(res, body) {
+  res.setHeader('Content-Type', 'application/json')
+  res.end(JSON.stringify(body))
+}

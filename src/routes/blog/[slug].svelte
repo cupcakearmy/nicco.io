@@ -1,9 +1,6 @@
 <script context="module">
-  import { getOne } from '../../lib/wp'
   export async function preload({ params }) {
-    const { slug } = params
-    const post = await getOne('posts', { slug })
-    return { post }
+    return this.fetch(`/api/posts/${params.slug}.json`).then((res) => res.json())
   }
 </script>
 
@@ -12,10 +9,10 @@
   import WPAdapter from '../../components/WPAdapter.svelte'
   import PostAttributes from '../../components/PostAttributes.svelte'
 
-  export let post
+  export let data
 </script>
 
-<SimplePage title={post.title} expanded={false} readable>
-  <PostAttributes {post} full />
-  <WPAdapter content={post.content} />
+<SimplePage title={data.title} expanded={false} readable>
+  <PostAttributes post={data} full />
+  <WPAdapter content={data.content} />
 </SimplePage>

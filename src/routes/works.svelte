@@ -1,9 +1,6 @@
 <script context="module">
-  import { getAll, sortByAndMapDate } from '../lib/wp'
-
   export async function preload() {
-    const data = await getAll('works')
-    return { data: sortByAndMapDate(data) }
+    return this.fetch('/api/works.json').then((res) => res.json())
   }
 </script>
 

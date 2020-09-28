@@ -1,9 +1,6 @@
 <script context="module">
-  import { getOne } from '../lib/wp'
-
   export async function preload() {
-    const data = await getOne('pages', { slug: 'privacy' })
-    return { data }
+    return this.fetch('/api/pages/privacy.json').then((res) => res.json())
   }
 </script>
 

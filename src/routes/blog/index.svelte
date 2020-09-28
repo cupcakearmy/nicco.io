@@ -1,9 +1,6 @@
 <script context="module">
-  import { getAll } from '../../lib/wp'
-
   export async function preload() {
-    const data = await getAll('posts')
-    return { data }
+    return this.fetch('/api/posts.json').then((res) => res.json())
   }
 </script>
 
