@@ -6,8 +6,14 @@
   export let segment
   let wrapper
 
-  onMount(() => {
+  function resize() {
     wrapper.style.height = `${window.innerHeight}px`
+  }
+
+  onMount(() => {
+    const listener = window.addEventListener('resize', resize)
+    resize()
+    return () => window.removeEventListener(listener)
   })
 </script>
 
