@@ -25,7 +25,7 @@
 <div class="attributes">
   <div>
     {created}
-    {#if full && created !== modified}<br /> <small>Last update:{modified}</small>{/if}
+    {#if full && created !== modified}<br /> <small>Last update: {modified}</small>{/if}
   </div>
   <div>~ {readingTimeInMinutes(post.content)} min</div>
 </div>
