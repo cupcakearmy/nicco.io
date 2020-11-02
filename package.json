@@ -6,8 +6,10 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "cloudinary-core": "^2.11.3",
     "compression": "^1.7.1",
     "dayjs": "^1.8.36",
+    "lodash": "^4.17.20",
     "polka": "next",
     "sirv": "^1.0.0"
   },

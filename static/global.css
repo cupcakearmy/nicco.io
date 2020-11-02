@@ -11,6 +11,7 @@
   --ff-alt: 'Playfair Display', serif;
   --clr-primary: hsl(219, 90%, 80%);
   --clr-secondary: hsl(64, 93%, 51%);
+  --clr-error: hsl(0, 73.9%, 65.5%);
   --animation: all 250ms ease;
 }
 

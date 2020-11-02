@@ -37,7 +37,7 @@
 
 <a href={`blog/${post.slug}`}>
   {#if post.featured}
-    <ImageFrame src={post.featured.sizes.medium_large} alt={post.featured.description} />
+    <ImageFrame src={post.featured.url} alt={post.featured.description} />
   {/if}
   <PostAttributes {post} />
   <h2>

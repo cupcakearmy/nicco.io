@@ -1,10 +1,12 @@
 <script>
+  import Image from './Image.svelte'
+
   export let src
   export let alt
 </script>
 
 <style>
-  img {
+  :global(img.cdn) {
     width: calc(100% - 0.25em);
     object-fit: cover;
     object-position: center;
@@ -14,10 +16,10 @@
     margin: 0;
   }
 
-  img:hover {
+  :global(img.cdn:hover) {
     transform: scale(1.1);
     margin: 1em 0;
   }
 </style>
 
-<img {src} {alt} />
+<Image crop class="cdn" {src} {alt} />
