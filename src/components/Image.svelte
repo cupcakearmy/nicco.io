@@ -27,9 +27,7 @@
     const cl = Cloudinary.new({ cloud_name: 'cupcakearmy' })
     const cleaned = src.replace('https://api.nicco.io', '/nicco')
     const all = { ...defaultOptions, ...options }
-    console.log(all)
     attrs = cl.imageTag(cleaned, all).attributes()
-    console.log(attrs)
   })
 </script>
 

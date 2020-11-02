@@ -1,18 +1,20 @@
 <script context="module">
   export async function preload(page) {
-    return {
-      ...(await this.fetch('/api/posts.json').then((res) => res.json())),
-      redirected: page.query.old !== undefined,
-    }
+    return this.fetch('/api/posts.json').then((res) => res.json())
   }
 </script>
 
 <script>
+  import { onMount } from 'svelte'
   import SimplePage from '../../components/SimplePage.svelte'
   import PostPreview from '../../components/PostPreview.svelte'
 
   export let data
-  export let redirected
+  export let redirected = false
+
+  onMount(() => {
+    redirected = new URL(location.href).searchParams.has('old')
+  })
 </script>
 
 <style>
