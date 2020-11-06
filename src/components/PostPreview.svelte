@@ -19,7 +19,7 @@
     position: relative;
     top: 0;
     transition: var(--animation);
-    background-color: #fff;
+    background-color: var(--clr-light);
   }
   a:hover h2 {
     top: -1em;

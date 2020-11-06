@@ -9,6 +9,8 @@
   --ff: 'Jost', Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
   --ff-alt: 'Playfair Display', serif;
+  --clr-light: #ffffff;
+  --clr-dark: #010101;
   --clr-primary: hsl(219, 90%, 80%);
   --clr-secondary: hsl(64, 93%, 51%);
   --clr-error: hsl(0, 73.9%, 65.5%);
@@ -19,12 +21,12 @@ body {
   margin: 0;
   overflow: hidden;
 
-  background-color: #ffffff;
+  background-color: var(--clr-light);
 
   font-family: var(--ff);
   font-size: 1em;
   font-weight: lighter;
-  color: #000;
+  color: var(--clr-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -73,10 +75,10 @@ ul {
   box-sizing: border-box;
   width: 100%;
   position: relative;
-  background: #fff;
+  background: var(--clr-light);
   margin: 0.5em 0;
   padding: 0.1em 0.5em;
-  border: 1px solid black;
+  border: 1px solid var(--clr-dark);
 }
 
 .progress > span {

@@ -60,9 +60,13 @@
     top: 0;
     left: 1.12em;
     position: absolute;
+    transition: all 500ms ease;
   }
   li a div.active {
     background-color: var(--clr-secondary);
+  }
+  li:hover a div:not(.active) {
+    background-color: var(--clr-light);
   }
 
   h1 {
