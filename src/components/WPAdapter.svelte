@@ -1,5 +1,34 @@
 <script>
+  import 'highlight.js/styles/github.css'
+  import hljs from 'highlight.js/lib/core'
+  import javascript from 'highlight.js/lib/languages/javascript'
+  import python from 'highlight.js/lib/languages/python'
+  import yaml from 'highlight.js/lib/languages/yaml'
+  import json from 'highlight.js/lib/languages/json'
+  import bash from 'highlight.js/lib/languages/bash'
+  import docker from 'highlight.js/lib/languages/dockerfile'
+  import rust from 'highlight.js/lib/languages/rust'
+  import css from 'highlight.js/lib/languages/css'
+  import typescript from 'highlight.js/lib/languages/typescript'
+
+  hljs.registerLanguage('javascript', javascript)
+  hljs.registerLanguage('python', python)
+  hljs.registerLanguage('yaml', yaml)
+  hljs.registerLanguage('json', json)
+  hljs.registerLanguage('bash', bash)
+  hljs.registerLanguage('docker', docker)
+  hljs.registerLanguage('rust', rust)
+  hljs.registerLanguage('css', css)
+  hljs.registerLanguage('typescript', typescript)
+
+  import { onMount } from 'svelte'
+
   export let content
+
+  onMount(() => {
+    console.log('Highlight')
+    hljs.initHighlighting()
+  })
 </script>
 
 <style>
@@ -52,6 +81,8 @@
   div :global(pre code) {
     background: initial;
     padding: initial;
+    -moz-tab-size: 2;
+    tab-size: 2;
   }
 
   div :global(h1),

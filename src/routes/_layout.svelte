@@ -33,6 +33,7 @@
     overflow: auto;
     max-width: calc(100% - 4em);
     height: 100%;
+    scroll-behavior: smooth;
   }
 
   @media (max-width: 30em) {

@@ -3,7 +3,7 @@
   import { readingTimeInMinutes } from '../lib/readingTime'
 
   export let post
-  export let full
+  export let full = false
 
   function format(date) {
     return dj(date).format('MMM D, YYYY')
