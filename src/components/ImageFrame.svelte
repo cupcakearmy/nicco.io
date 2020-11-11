@@ -30,4 +30,4 @@
   }
 </style>
 
-<img use:image={{ src: cleaned, bind: { width: true } }} {alt} />
+<img use:image={{ src: cleaned, bind: { width: true }, lazy: true }} {alt} />

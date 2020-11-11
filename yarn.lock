@@ -975,10 +975,10 @@ supports-color@^7.0.0:
   dependencies:
     has-flag "^4.0.0"
 
-svelte-cloudinary@^0.1.3:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/svelte-cloudinary/-/svelte-cloudinary-0.1.4.tgz#5ccd1ed8fed835db035f4b6c75055f0fa98af4b1"
-  integrity sha512-ezkRic7OkkcAnKFdJ55KbqGGBwbDniEUQv54XC9hmLRjmkuq6n06m8WzluCIATOGSKgJ3iiNlUfBBXG8x4xHew==
+svelte-cloudinary@^0.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/svelte-cloudinary/-/svelte-cloudinary-0.2.2.tgz#14d8593d80557930b8d6fcd27c6a5e5e3082afc9"
+  integrity sha512-w47GxbzTY/xV9KgeUAQVsTHUIr1xx98B/MsxpVW88ADsZX2gCQZNAzLjF2GLtEnIsDXKVCro8icMl83UYdOlmg==
   dependencies:
     cloudinary-core "^2.11.3"
     lodash "^4.17.20"
