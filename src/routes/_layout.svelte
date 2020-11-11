@@ -1,13 +1,27 @@
 <script>
   import { onMount } from 'svelte'
+  import { stores } from '@sapper/app'
 
   import Nav from '../components/Nav.svelte'
 
   export let segment
   let wrapper
+  let main
 
   function resize() {
     wrapper.style.height = `${window.innerHeight}px`
+  }
+
+  const { page } = stores()
+  let last = ''
+
+  $: {
+    const { host, path } = $page
+    const full = host + path
+    if (last !== full) {
+      last = full
+      if (main) setTimeout(() => (main.scrollTop = 0), 150)
+    }
   }
 
   onMount(() => {
@@ -45,7 +59,7 @@
 
 <div bind:this={wrapper}>
   <Nav {segment} />
-  <main>
+  <main bind:this={main}>
     <slot />
   </main>
 </div>
