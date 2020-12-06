@@ -101,6 +101,11 @@
     <h1 class:active={segment === undefined}>NB</h1>
   </a>
   <ul>
+    <li>
+      <a href="/search">
+        <ion-icon name="search-outline" />
+      </a>
+    </li>
     {#each routes as { name, href }}
       <li>
         <a {href}>
