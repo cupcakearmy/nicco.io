@@ -1,4 +1,5 @@
 {
+  "private": true,
   "scripts": {
     "dev": "sapper dev",
     "export": "sapper export",
