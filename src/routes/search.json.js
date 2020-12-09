@@ -27,9 +27,7 @@ export async function get(req, res) {
     this.ref('url')
     this.field('data')
 
-    all.flat().forEach((doc) => {
-      this.add(doc)
-    })
+    all.flat().forEach((doc) => this.add(doc))
   })
   res.setHeader('Content-Type', 'application/json')
   res.end(JSON.stringify(idx))

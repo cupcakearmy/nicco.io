@@ -18,6 +18,9 @@
     <!-- This contains the contents of the <svelte:head> component, if
 	     the current page has one -->
     %sapper.head%
+
+    <script defer type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
+    <script defer nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>
   </head>
   <body>
     <!-- The application will be rendered inside this element,
@@ -29,9 +32,11 @@
         initialise the router -->
     %sapper.scripts%
 
-    <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
-
-    <script async src="https://stats.nicco.io/unicorns.js" data-ackee-server="https://stats.nicco.io" data-ackee-domain-id="f800b5af-b80b-4089-94b2-7b5c96a8f308"></script>
+    <script
+      async
+      src="https://stats.nicco.io/unicorns.js"
+      data-ackee-server="https://stats.nicco.io"
+      data-ackee-domain-id="f800b5af-b80b-4089-94b2-7b5c96a8f308"
+    ></script>
   </body>
 </html>
