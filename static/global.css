@@ -6,8 +6,8 @@
 }
 
 :root {
-  --ff: 'Jost', Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
+  --ff: 'Jost', Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   --ff-alt: 'Playfair Display', serif;
   --clr-light: #ffffff;
   --clr-dark: #010101;
@@ -24,13 +24,19 @@ body {
   background-color: var(--clr-light);
 
   font-family: var(--ff);
-  font-size: 1em;
+  font-size: 16px;
   font-weight: lighter;
   color: var(--clr-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+}
+
+@media (min-width: 30em) {
+  body {
+    font-size: 18px;
+  }
 }
 
 h1,

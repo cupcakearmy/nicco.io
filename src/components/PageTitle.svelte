@@ -7,7 +7,7 @@
 
 <style>
   div {
-    margin-top: 8em;
+    margin-top: calc(28vh - 3em);
     margin-bottom: 3em;
   }
 </style>

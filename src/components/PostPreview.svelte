@@ -8,7 +8,7 @@
 <style>
   a {
     display: block;
-    margin-bottom: 8em;
+    margin-bottom: 6em;
   }
   a > :global(img) {
     height: 12em;

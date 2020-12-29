@@ -76,6 +76,7 @@
   div :global(code) {
     background: #00000012;
     padding: 0.25em;
+    font-size: 0.8em;
   }
   div :global(pre code) {
     background: initial;
