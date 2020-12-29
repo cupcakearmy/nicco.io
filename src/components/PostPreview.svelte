@@ -8,7 +8,7 @@
 <style>
   a {
     display: block;
-    margin-bottom: 6em;
+    margin-bottom: 5em;
   }
   a > :global(img) {
     height: 12em;
@@ -33,9 +33,16 @@
   a:hover > :global(div) {
     opacity: 0;
   }
+
+  a.without {
+    border: 2px solid var(--clr-primary);
+    padding: 5%;
+    width: calc(100% + 10%);
+    transform: translateX(-5%);
+  }
 </style>
 
-<a href={`blog/${post.slug}`}>
+<a href={`blog/${post.slug}`} class:without={!post.featured}>
   {#if post.featured}
     <ImageFrame src={post.featured.url} alt={post.featured.description} />
   {/if}
