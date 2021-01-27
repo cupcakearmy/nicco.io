@@ -30,6 +30,10 @@
   })
 </script>
 
+<div>
+  {@html content}
+</div>
+
 <style>
   div :global(.alignfull) {
     width: calc(100vw - 6em);
@@ -97,8 +101,8 @@
     padding-left: 0.5rem;
     margin-left: -0.7rem;
   }
-</style>
 
-<div>
-  {@html content}
-</div>
+  div :global(p.has-background) {
+    padding: 0.5em;
+  }
+</style>
