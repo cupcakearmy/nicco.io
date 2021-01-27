@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,viewport-fit=cover"
+    />
     <meta name="theme-color" content="#333333" />
 
     %sapper.base%
@@ -18,9 +21,6 @@
     <!-- This contains the contents of the <svelte:head> component, if
 	     the current page has one -->
     %sapper.head%
-
-    <script defer type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
-    <script defer nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>
   </head>
   <body>
     <!-- The application will be rendered inside this element,
@@ -37,6 +37,14 @@
       src="https://stats.nicco.io/unicorns.js"
       data-ackee-server="https://stats.nicco.io"
       data-ackee-domain-id="f800b5af-b80b-4089-94b2-7b5c96a8f308"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"
     ></script>
   </body>
 </html>
