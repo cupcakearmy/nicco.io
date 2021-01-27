@@ -8,10 +8,10 @@ function removeHTML(s) {
 
 async function convertForIdx(type, fields = []) {
   const items = await getAll(type)
-  const defaults = ['title', 'content', 'slug']
+  const keys = ['title', 'content', 'slug', ...fields]
   return items.map((item) => ({
     url: `${item.type}/${item.slug}`,
-    data: [...defaults, ...fields].map((field) => removeHTML(item[field])).join(' '),
+    data: keys.map((field) => removeHTML(item[field])).join(' '),
   }))
 }
 

@@ -1,21 +1,22 @@
 <script context="module">
-  import lunr from 'lunr'
-
   export async function preload({ query }) {
     const prebuilt = await this.fetch(`/search.json`).then((res) => res.json())
-    return { idx: lunr.Index.load(prebuilt) }
+    return { prebuilt }
   }
 </script>
 
 <script>
+  import lunr from 'lunr'
   import { onMount } from 'svelte'
 
   import SearchResult from '../components/SearchResult.svelte'
   import SimplePage from '../components/SimplePage.svelte'
 
-  export let idx
+  export let prebuilt
   let needle
   let results = []
+
+  const idx = lunr.Index.load(prebuilt)
 
   async function search(needle) {
     if (!needle || !idx) {
