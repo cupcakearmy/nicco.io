@@ -1,18 +1,19 @@
 <script context="module">
-  export async function preload() {
+  import lunr from 'lunr'
+
+  export async function preload({ query }) {
     const prebuilt = await this.fetch(`/search.json`).then((res) => res.json())
-    return { prebuilt }
+    return { idx: lunr.Index.load(prebuilt) }
   }
 </script>
 
 <script>
-  import lunr from 'lunr'
+  import { onMount } from 'svelte'
 
   import SearchResult from '../components/SearchResult.svelte'
   import SimplePage from '../components/SimplePage.svelte'
 
-  export let prebuilt
-
+  export let idx
   let needle
   let results = []
 
@@ -26,27 +27,17 @@
     }
   }
 
-  $: idx = lunr.Index.load(prebuilt)
-  $: search(needle)
+  $: if (needle) {
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, null, `/search?q=${needle || ''}`)
+    }
+    search(needle)
+  }
+
+  onMount(() => {
+    needle = new URLSearchParams(window.location.search).get('q')
+  })
 </script>
-
-<style>
-  input {
-    appearance: none;
-    margin: 0;
-    padding: 0.5rem;
-    font-size: 1em;
-    width: 100%;
-    outline: none;
-    border: 1px solid var(--clr-dark);
-  }
-
-  ul {
-    margin-top: 2em;
-    list-style: none;
-    padding: 0;
-  }
-</style>
 
 <SimplePage title="Search" expanded={false}>
   <input bind:value={needle} placeholder="needle" />
@@ -56,3 +47,21 @@
     {/each}
   </ul>
 </SimplePage>
+
+<style>
+  input {
+    appearance: none;
+    margin: 0;
+    padding: 0.5rem;
+    font-size: 1em;
+    width: 100%;
+    outline: none;
+    border: 2px solid var(--clr-primary);
+  }
+
+  ul {
+    margin-top: 2em;
+    list-style: none;
+    padding: 0;
+  }
+</style>

@@ -5,7 +5,6 @@
   let href = '/'
 
   $: {
-    console.log(type, slug)
     switch (type) {
       case 'works':
       case 'projects':
@@ -20,6 +19,14 @@
     }
   }
 </script>
+
+<li>
+  <a {href}>
+    <h3>{slug.replace(/-/g, ' ')}</h3>
+    <span>{type}</span>
+    <code>Score: {result.score.toFixed(1)}</code>
+  </a>
+</li>
 
 <style>
   h3 {
@@ -40,11 +47,3 @@
     margin-left: 1em;
   }
 </style>
-
-<li>
-  <a {href}>
-    <h3>{slug.replace(/-/g, ' ')}</h3>
-    <span>{type}</span>
-    <code>Score: {result.score.toFixed(1)}</code>
-  </a>
-</li>
