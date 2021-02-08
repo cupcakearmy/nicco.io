@@ -2,7 +2,9 @@
   import { onMount } from 'svelte'
   import { stores } from '@sapper/app'
 
+  import { scroll } from '../lib/scroll'
   import Nav from '../components/Nav.svelte'
+  import Loading from '../components/Loading.svelte'
 
   export let segment
   let wrapper
@@ -24,12 +26,30 @@
     }
   }
 
+  function updateScroll(e) {
+    const el = e.target
+    const percentage = el.scrollTop / (el.scrollHeight - el.offsetHeight)
+    scroll.set(percentage)
+  }
+
   onMount(() => {
-    const listener = window.addEventListener('resize', resize)
+    const resizeFN = window.addEventListener('resize', resize, false)
+    const scrollFN = main.addEventListener('scroll', updateScroll, false)
     resize()
-    return () => window.removeEventListener(listener)
+    return () => {
+      window.removeEventListener(resizeFN)
+      main.removeEventListener(scrollFN)
+    }
   })
 </script>
+
+<div bind:this={wrapper}>
+  <Nav {segment} />
+  <main bind:this={main}>
+    <slot />
+  </main>
+  <Loading />
+</div>
 
 <style>
   div {
@@ -56,10 +76,3 @@
     }
   }
 </style>
-
-<div bind:this={wrapper}>
-  <Nav {segment} />
-  <main bind:this={main}>
-    <slot />
-  </main>
-</div>
