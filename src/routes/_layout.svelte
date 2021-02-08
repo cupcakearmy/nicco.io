@@ -29,7 +29,7 @@
   function updateScroll(e) {
     const el = e.target
     const percentage = el.scrollTop / (el.scrollHeight - el.offsetHeight)
-    scroll.set(percentage)
+    scroll.set(isNaN(percentage) ? 0 : percentage)
   }
 
   onMount(() => {
