@@ -48,7 +48,9 @@
   <main bind:this={main}>
     <slot />
   </main>
-  <Loading />
+  {#if $page.path !== '/'}
+    <Loading />
+  {/if}
 </div>
 
 <style>
