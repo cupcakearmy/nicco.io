@@ -7,8 +7,8 @@
   const springed = spring(
     { scroll: 0 },
     {
-      stiffness: 0.02,
-      damping: 0.75,
+      stiffness: 0.05,
+      damping: 0.7,
     }
   )
 
@@ -31,18 +31,33 @@
   $: updateState($springed.scroll)
 </script>
 
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <path bind:this={el} fill="var(--clr-secondary)" d="" />
-</svg>
+<div>
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path bind:this={el} fill="var(--clr-secondary)" d="" />
+  </svg>
+  <span>{$scroll.toFixed(2)}</span>
+</div>
 
 <style>
-  svg {
+  div {
     position: fixed;
     bottom: 1em;
     right: 1em;
+    pointer-events: none;
+    text-align: center;
+  }
+
+  span {
+    display: block;
+    font-size: 0.5em;
+    background-color: var(--clr-primary);
+    height: 1.5em;
+  }
+  svg {
     border: 0.125em solid var(--clr-primary);
     width: 2em;
     height: 2em;
-    pointer-events: none;
+    position: relative;
+    top: 0.45em;
   }
 </style>
