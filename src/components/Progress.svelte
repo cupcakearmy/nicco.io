@@ -13,9 +13,10 @@
   )
 
   function updateState(value) {
+    const max = 359.99999
     const R = 50
     let alpha = (360 / 1) * value
-    if (alpha === 360) alpha = 359.99999
+    alpha = Math.min(alpha, max)
     const a = ((90 - alpha) * Math.PI) / 180
     const x = R + R * Math.cos(a) * 2
     const y = R - R * Math.sin(a) * 2

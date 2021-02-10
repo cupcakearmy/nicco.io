@@ -4,7 +4,7 @@
 
   import { scroll } from '../lib/scroll'
   import Nav from '../components/Nav.svelte'
-  import Loading from '../components/Loading.svelte'
+  import Progress from '../components/Progress.svelte'
 
   export let segment
   let wrapper
@@ -49,7 +49,7 @@
     <slot />
   </main>
   {#if $page.path !== '/'}
-    <Loading />
+    <Progress />
   {/if}
 </div>
 
@@ -69,7 +69,6 @@
     overflow: auto;
     max-width: calc(100% - 4em);
     height: 100%;
-    scroll-behavior: smooth;
   }
 
   @media (max-width: 30em) {
