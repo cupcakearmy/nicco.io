@@ -31,7 +31,8 @@
 <style>
   h3 {
     margin: 0;
-    margin-top: 2em;
+    margin-top: 2.5em;
+    margin-bottom: 0.2em;
     text-transform: capitalize;
   }
   span {

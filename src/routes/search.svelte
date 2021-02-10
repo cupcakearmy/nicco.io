@@ -52,12 +52,14 @@
 <style>
   input {
     appearance: none;
+    -webkit-appearance: none;
     margin: 0;
     padding: 0.5rem;
     font-size: 1em;
     width: 100%;
     outline: none;
     border: 2px solid var(--clr-primary);
+    border-radius: 0;
   }
 
   ul {
