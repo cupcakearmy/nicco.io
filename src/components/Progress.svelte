@@ -41,7 +41,7 @@
 
 <style>
   div {
-    position: fixed;
+    position: absolute;
     bottom: 1em;
     right: 1em;
     pointer-events: none;
