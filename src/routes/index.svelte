@@ -2,6 +2,28 @@
   import SpacedLetters from '../components/SpacedLetters.svelte'
 </script>
 
+<svelte:head>
+  <title>Niccolo Borgioli</title>
+</svelte:head>
+
+<section class="left" style="z-index: 3;">
+  <h1>
+    <SpacedLetters letters="Niccolò" even />
+    <SpacedLetters letters="Borgioli" even />
+  </h1>
+
+  <p>Design & Development</p>
+</section>
+
+<section class="right" style="z-index: 2;">
+  <picture>
+    <source media="(min-width: 60em)" srcset="/images/home@1500.webp" />
+    <source media="(min-width: 45em)" srcset="/images/home@1000.webp" />
+    <source srcset="/images/home@500.webp" />
+    <img src="/images/decoration.jpg" alt="decoration" />
+  </picture>
+</section>
+
 <style>
   p {
     font-size: 4vw;
@@ -48,20 +70,3 @@
     }
   }
 </style>
-
-<svelte:head>
-  <title>Niccolo Borgioli</title>
-</svelte:head>
-
-<section class="left" style="z-index: 3;">
-  <h1>
-    <SpacedLetters letters="Niccolò" even />
-    <SpacedLetters letters="Borgioli" even />
-  </h1>
-
-  <p>Design & Development</p>
-</section>
-
-<section class="right" style="z-index: 2;">
-  <img src="/images/decoration.jpg" alt="decoration" />
-</section>

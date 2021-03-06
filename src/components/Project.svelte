@@ -1,6 +1,8 @@
 <script>
   import dj from 'dayjs'
 
+  import Icon from '../components/Icon.svelte'
+
   export let project
 </script>
 
@@ -8,7 +10,7 @@
   <a href={project.link} target="_blank" rel="noopener">
     <h2>{project.title}</h2>
   </a>
-  <div>
+  <div class="subtitle">
     <b>{project.description}</b>
     <b class="date">{dj(project.date * 1000).format('MMM YY')}</b>
   </div>
@@ -17,10 +19,12 @@
     {@html project.content}
   </p>
 
-  <ion-icon name="link-outline" />
-  <a class="link" rel="noopener noreferrer" target="_blank" href={project.link}
-    >{project.link.replace(/https?:\/\//, '')}</a
-  >
+  <div class="link">
+    <Icon icon="link-outline" />
+    <a rel="noopener noreferrer" target="_blank" href={project.link}
+      >{project.link.replace(/https?:\/\//, '')}</a
+    >
+  </div>
 </section>
 
 <style>
@@ -29,7 +33,7 @@
     margin-bottom: 0.25em;
   }
 
-  div {
+  div.subtitle {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -37,6 +41,16 @@
 
   .date {
     align-self: flex-end;
+  }
+
+  .link {
+    display: flex;
+    overflow: auto;
+  }
+
+  .link a {
+    margin-left: 0.5rem;
+    display: block;
   }
 
   section {
@@ -47,13 +61,8 @@
     font-family: monospace;
   }
 
-  a.link {
-    display: block;
-    overflow: auto;
-  }
-
   @media (max-width: 30em) {
-    div {
+    div.subtitle {
       flex-direction: column;
     }
   }

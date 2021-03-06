@@ -1,4 +1,6 @@
 <script>
+  import Icon from './Icon.svelte'
+
   export let segment
 
   const routes = [
@@ -11,6 +13,27 @@
 
   let nav
 </script>
+
+<nav bind:this={nav}>
+  <a href="/">
+    <h1 class:active={segment === undefined}>NB</h1>
+  </a>
+  <ul>
+    <li>
+      <a href="/search">
+        <Icon icon="search-outline" />
+      </a>
+    </li>
+    {#each routes as { name, href }}
+      <li>
+        <a {href}>
+          <span>{name}</span>
+          <div class:active={href.slice(1) === segment} />
+        </a>
+      </li>
+    {/each}
+  </ul>
+</nav>
 
 <style>
   nav :global(*) {
@@ -97,24 +120,3 @@
     }
   }
 </style>
-
-<nav bind:this={nav}>
-  <a href="/">
-    <h1 class:active={segment === undefined}>NB</h1>
-  </a>
-  <ul>
-    <li>
-      <a href="/search">
-        <ion-icon name="search-outline" />
-      </a>
-    </li>
-    {#each routes as { name, href }}
-      <li>
-        <a {href}>
-          <span>{name}</span>
-          <div class:active={href.slice(1) === segment} />
-        </a>
-      </li>
-    {/each}
-  </ul>
-</nav>

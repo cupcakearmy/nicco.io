@@ -66,10 +66,6 @@ a {
   text-decoration: none;
 }
 
-ion-icon {
-  transform: translateY(0.2rem);
-}
-
 ul {
   margin: 0;
   padding: 0;

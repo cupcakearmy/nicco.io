@@ -1,12 +1,39 @@
 <script>
+  import Icon from '../components/Icon.svelte'
+
   import SimplePage from '../components/SimplePage.svelte'
 
   const links = [
-    { href: 'mailto:hi@nicco.io', name: 'Say hi@nicco.io', icon: 'chatbubble-outline' },
-    { href: 'https://github.com/cupcakearmy', name: 'Github', icon: 'logo-github' },
+    {
+      href: 'mailto:hi@nicco.io',
+      name: 'Say hi@nicco.io',
+      icon: 'chatbubbles-outline',
+    },
+    {
+      href: 'https://github.com/cupcakearmy',
+      name: 'Github',
+      icon: 'logo-github',
+    },
     { href: '/privacy', name: 'Privacy Policy', icon: 'finger-print-outline' },
   ]
 </script>
+
+<svelte:head>
+  <title>Contact</title>
+</svelte:head>
+
+<SimplePage title="Contact">
+  <ul>
+    {#each links as { href, name, icon }}
+      <li>
+        <a rel="noopener noreferrer" {href}>
+          <Icon class="icon" {icon} />
+          {name}
+        </a>
+      </li>
+    {/each}
+  </ul>
+</SimplePage>
 
 <style>
   ul {
@@ -27,24 +54,9 @@
     transform: translateY(0.25em) translateX(0.15em) scale(1.05);
   }
 
-  ion-icon {
+  li :global(.icon) {
     transform: translateY(0.3em);
+    font-size: 2em;
+    margin-right: 0.5rem;
   }
 </style>
-
-<svelte:head>
-  <title>Contact</title>
-</svelte:head>
-
-<SimplePage title="Contact">
-  <ul>
-    {#each links as { href, name, icon }}
-      <li>
-        <a rel="noopener noreferrer" {href}>
-          <ion-icon name={icon} size="large" />
-          {name}
-        </a>
-      </li>
-    {/each}
-  </ul>
-</SimplePage>
