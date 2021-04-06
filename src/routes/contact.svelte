@@ -15,6 +15,7 @@
       icon: 'logo-github',
     },
     { href: '/privacy', name: 'Privacy Policy', icon: 'finger-print-outline' },
+    { href: '/support', name: 'Support', icon: 'heart-sharp' },
   ]
 </script>
 

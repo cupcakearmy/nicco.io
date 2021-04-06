@@ -2,16 +2,29 @@
   import Icon from './Icon.svelte'
 
   export let links = []
+
+  function isExternal(link) {
+    return /^https?\:\/\//.test(link)
+  }
+
+  $: list = links.map((link) => ({
+    ...link,
+    external: isExternal(link.href),
+  }))
 </script>
 
 <ul>
-  {#each links as { href, name, icon }}
-    <li>
-      <a rel="noopener noreferrer" {href} target="_blank">
+  {#each list as { href, name, icon, external }}
+    <a
+      rel={external ? 'noopener noreferrer' : ''}
+      {href}
+      target={external ? '_blank' : ''}
+    >
+      <li>
         <Icon class="icon" {icon} />
         {name}
-      </a>
-    </li>
+      </li>
+    </a>
   {/each}
 </ul>
 
@@ -22,19 +35,20 @@
     padding: 0;
   }
 
-  li {
+  a {
     transition: transform 200ms ease;
     padding: 0.75em 0.5em;
     cursor: pointer;
     border-radius: 0.5em;
+    display: block;
   }
 
-  li:hover {
+  a:hover {
     box-shadow: 0px 6px 6px -3px #00000012;
     transform: translateY(0.25em) translateX(0.15em) scale(1.05);
   }
 
-  li :global(.icon) {
+  a :global(.icon) {
     transform: translateY(0.3em);
     font-size: 2em;
     margin-right: 0.5rem;
