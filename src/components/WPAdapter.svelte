@@ -26,7 +26,7 @@
   export let content
 
   onMount(() => {
-    hljs.initHighlighting()
+    hljs.highlightAll()
   })
 </script>
 
