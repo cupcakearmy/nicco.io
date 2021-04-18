@@ -25,12 +25,28 @@
 
   export let content
 
+  function encodeTextToUrl(text) {
+    return text
+      .replace(/[^A-Za-z ]/, '')
+      .replace('/ +/', ' ')
+      .replace(' ', '-')
+  }
+
   onMount(() => {
     hljs.highlightAll()
+
+    const selector = [1, 2, 3, 4, 5, 6]
+      .map((i) => `div.adapter h${i}`)
+      .join(', ')
+    const elements = window.document.querySelectorAll(selector)
+    for (const el of elements) {
+      const hash = encodeTextToUrl(el.textContent)
+      el.innerHTML = `<a class="target-link" name="${hash}" href="${window.location.pathname}#${hash}">${el.innerHTML}</a>`
+    }
   })
 </script>
 
-<div>
+<div class="adapter">
   {@html content}
 </div>
 
@@ -100,6 +116,10 @@
     border-left: 0.2rem solid var(--clr-primary);
     padding-left: 0.5rem;
     margin-left: -0.7rem;
+  }
+
+  div :global(.target-link) {
+    border-bottom: none;
   }
 
   div :global(p.has-background) {
