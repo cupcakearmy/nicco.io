@@ -7,6 +7,11 @@
     {
       href: 'mailto:hi@nicco.io',
       name: 'Say hi@nicco.io',
+      icon: 'mail-outline',
+    },
+    {
+      href: 'https://discord.gg/wS7RpYTYd2',
+      name: 'Chat on Discord',
       icon: 'chatbubbles-outline',
     },
     {
