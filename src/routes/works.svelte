@@ -1,14 +1,21 @@
-<script context="module">
-  export async function preload() {
-    return this.fetch('/api/works.json').then((res) => res.json())
+<script lang="ts" context="module">
+  import type { Load } from '@sveltejs/kit'
+
+  export const load: Load = async ({ fetch }) => {
+    return {
+      props: {
+        data: await fetch('/api/works/*.json').then((r) => r.json()),
+      },
+    }
   }
 </script>
 
-<script>
-  import SimplePage from '../components/SimplePage.svelte'
-  import Work from '../components/Work.svelte'
+<script lang="ts">
+  import type { Work as TWork } from '$lib/api'
+  import SimplePage from '$lib/components/SimplePage.svelte'
+  import Work from '$lib/components/Work.svelte'
 
-  export let data
+  export let data: TWork[]
 </script>
 
 <svelte:head>

@@ -1,15 +1,36 @@
-<script context="module">
-  export async function preload() {
-    return this.fetch('/api/pages/about.json').then((res) => res.json())
+<script lang="ts" context="module">
+  import type { Load } from '@sveltejs/kit'
+
+  export const prerender = true
+  export const load: Load = async ({ fetch }) => {
+    return {
+      props: {
+        data: await fetch('/api/pages/about.json').then((r) => r.json()),
+        image: await fetch('/api/media/about-2.json').then((r) => r.json()),
+      },
+    }
   }
 </script>
 
-<script>
-  import WPAdapter from '../components/WPAdapter.svelte'
-  import SimplePage from '../components/SimplePage.svelte'
+<script lang="ts">
+  import WPAdapter from '$lib/components/WPAdapter.svelte'
+  import SimplePage from '$lib/components/SimplePage.svelte'
+  import type { Page, MediaItem } from '$lib/api'
 
-  export let data
+  export let data: Page
+  export let image: MediaItem
 </script>
+
+<svelte:head>
+  <title>{data.title}</title>
+</svelte:head>
+
+<SimplePage title={data.title} expanded={false}>
+  {#if data.content}
+    <WPAdapter content={data.content} />
+    <img srcset={image.srcSet} alt="decoration" />
+  {/if}
+</SimplePage>
 
 <style>
   img {
@@ -34,13 +55,3 @@
     }
   }
 </style>
-
-<svelte:head>
-  <title>About</title>
-</svelte:head>
-
-<SimplePage title="About" expanded={false}>
-  <WPAdapter content={data.content} />
-  <!-- {@html data.content} -->
-  <img src="/images/about.jpg" alt="decoration" />
-</SimplePage>

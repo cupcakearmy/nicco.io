@@ -1,72 +1,111 @@
-<script>
-  import SpacedLetters from '../components/SpacedLetters.svelte'
+<script lang="ts" context="module">
+  import { Call, gql } from '$lib/api'
+
+  export const prerender = true
+
+  type Data = Record<'signature' | 'home', { srcSet: string }>
+  export const load: Load = async () => {
+    const data = await Call<Data>(gql`
+      query {
+        signature: mediaItem(id: "signature", idType: SLUG) {
+          srcSet
+        }
+
+        home: mediaItem(id: "home", idType: SLUG) {
+          srcSet
+        }
+      }
+    `)
+    return { props: { data } }
+  }
+</script>
+
+<script lang="ts">
+  import SpacedLetters from '$lib/components/SpacedLetters.svelte'
+  import type { Load } from '@sveltejs/kit'
+
+  export let data: Data
 </script>
 
 <svelte:head>
   <title>Niccolo Borgioli</title>
 </svelte:head>
 
-<section class="left" style="z-index: 3;">
-  <h1>
-    <SpacedLetters letters="Niccolò" even />
-    <SpacedLetters letters="Borgioli" even />
-  </h1>
+<div class="wrapper">
+  <div class="left" style="z-index: 3;">
+    <h1>
+      <SpacedLetters letters="Niccolò" even />
+      <SpacedLetters letters="Borgioli" even />
+    </h1>
 
-  <p>Design & Development</p>
-</section>
+    <p>Design & Development</p>
+  </div>
 
-<section class="right" style="z-index: 2;">
-  <picture>
-    <source media="(min-width: 60em)" srcset="/images/home@1500.webp" />
-    <source media="(min-width: 45em)" srcset="/images/home@1000.webp" />
-    <source srcset="/images/home@500.webp" />
-    <img src="/images/decoration.jpg" alt="decoration" />
-  </picture>
-</section>
+  <div class="right" style="z-index: 2;">
+    <img srcset={data.home.srcSet} alt="decoration" class="home" />
+    <img srcset={data.signature.srcSet} alt="signature" class="signature" />
+  </div>
+</div>
 
 <style>
-  p {
-    font-size: 4vw;
-    margin-top: 0;
-  }
-
-  section {
+  .wrapper {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
     height: 100%;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    padding: 1rem;
   }
 
-  section.left {
-    align-items: flex-start;
-    padding-left: 1em;
-    width: initial;
+  .left {
+    flex: 1 0 auto;
+    max-width: 64vw;
   }
 
-  section.right {
-    align-items: flex-end;
+  .right {
+    position: relative;
+    top: 5vh;
   }
 
-  img {
+  p {
+    font-size: 4vw;
+    margin: 0;
+  }
+
+  img.home {
+    width: min(100%, 33vw);
     object-fit: contain;
-    height: 65vh;
-    width: 33vw;
-    transform: translateY(5vh);
+    object-position: left;
+    max-height: 65vh;
+  }
+  img.signature {
+    position: absolute;
+    width: 50%;
+    top: -6%;
+    left: -10%;
+    transform: rotate(-8deg);
   }
 
   @media (max-width: 50em) {
-    img {
-      transform: translateY(15vh);
-      height: 60vh;
-      width: 69vw;
+    .wrapper {
+      flex-direction: column;
     }
 
-    section.left {
-      transform: translateY(-25vh);
+    .left {
+      flex: initial;
+    }
+
+    .right {
+      left: 1rem;
+    }
+
+    img.home {
+      width: auto;
+      height: 100%;
+      max-height: calc(90vh - 35vw - 5vh);
+      max-width: 90%;
     }
   }
 </style>
