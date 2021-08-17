@@ -4,8 +4,13 @@ export const API = axios.create({
   baseURL: import.meta.env.VITE_API_URL as string,
 })
 
-export function gql(s: TemplateStringsArray) {
-  return s.join('')
+export function gql(strings: TemplateStringsArray, ...args: string[]) {
+  let joined = ''
+  for (const part of strings) {
+    const arg = args.shift() ?? ''
+    joined += part + arg
+  }
+  return joined
 }
 
 export async function Call<T>(query: string, variables: Record<string, any> = {}): Promise<T> {
@@ -17,6 +22,9 @@ export async function Call<T>(query: string, variables: Record<string, any> = {}
       variables,
     },
   })
+  if (data.errors?.length > 0) {
+    throw new Error(data.errors[0].message)
+  }
   return data.data as T
 }
 
@@ -28,6 +36,14 @@ export type Page = {
   status: string
 }
 
+export const BaseAttributes = gql`
+    id
+    slug
+    status
+    title
+    content
+`
+
 export interface Work extends Page {
   work: {
     date: string
@@ -37,6 +53,20 @@ export interface Work extends Page {
   }
 }
 
+export const WorkFragment = gql`
+  fragment WorkFragment on Work {
+      ${BaseAttributes}
+    work {
+      date
+      image {
+        ...MediaItemFragment
+      }
+      link
+      role
+    }
+  }
+`
+
 export interface Project extends Page {
   project: {
     date: string
@@ -45,8 +75,27 @@ export interface Project extends Page {
   }
 }
 
+export const ProjectFragment = gql`
+  fragment ProjectFragment on Project {
+    ${BaseAttributes}
+    project {
+      date
+      link
+      description
+    }
+  }
+`
+
 export type MediaItem = {
   srcSet: string
   altText: string
   sourceUrl: string
 }
+
+export const MediaItemFragment = gql`
+  fragment MediaItemFragment on MediaItem {
+    srcSet
+    altText
+    sourceUrl
+  }
+`

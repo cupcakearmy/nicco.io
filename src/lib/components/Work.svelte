@@ -8,12 +8,14 @@
 </script>
 
 <section>
-  <a href={work.work.link} target="_blank" rel="noopener">
+  <a href="/works/{work.slug}">
     <div class="horizontal">
       <div class="title regular">{work.title}</div>
       <div>
-        <Icon icon="link-outline" />
-        <span>{work.work.link.replace(/https?:\/\//, '')}</span>
+        <a href={work.work.link} target="_blank" rel="noopener">
+          <Icon icon="link-outline" />
+          <span>{work.work.link.replace(/https?:\/\//, '')}</span>
+        </a>
       </div>
     </div>
 
