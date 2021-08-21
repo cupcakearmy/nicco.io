@@ -1,8 +1,6 @@
 <script lang="ts" context="module">
   import type { MediaItem } from '$lib/api'
 
-  export const prerender = true
-
   type Data = Record<'signature' | 'home', MediaItem>
   export const load: Load = async ({ fetch }) => {
     const signature: MediaItem = await fetch('/api/media/signature.json').then((r) => r.json())
