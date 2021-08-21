@@ -7,6 +7,8 @@ import {
   MediaItem,
   MediaItemFragment,
   Page,
+  Post,
+  PostFragment,
   Project,
   ProjectFragment,
   WorkFragment,
@@ -22,7 +24,7 @@ export const get: RequestHandler = async (args) => {
       if (all) {
         const data = await Call<{ pages: { nodes: Page[] } }>(gql`
           query {
-            pages {
+            pages(where: {status: PUBLISH}) {
               nodes {
                 ${BaseAttributes}
               }
@@ -50,7 +52,7 @@ export const get: RequestHandler = async (args) => {
           ${MediaItemFragment}
           ${WorkFragment}
           query {
-            works {
+            works(where: { status: PUBLISH }) {
               nodes {
                 ...WorkFragment
               }
@@ -81,7 +83,7 @@ export const get: RequestHandler = async (args) => {
           gql`
             ${ProjectFragment}
             query {
-              projects {
+              projects(where: { status: PUBLISH }) {
                 nodes {
                   ...ProjectFragment
                 }
@@ -120,6 +122,38 @@ export const get: RequestHandler = async (args) => {
       )
       return { body: data.mediaItem }
     }
+
+    case 'posts': {
+      if (all) {
+        const data = await Call<{ posts: { nodes: Post[] } }>(gql`
+          ${PostFragment}
+          ${MediaItemFragment}
+          {
+            posts(where: { status: PUBLISH }, first: 1000000000) {
+              nodes {
+                ...PostFragment
+              }
+            }
+          }
+        `)
+        return { body: data.posts.nodes }
+      } else {
+        const data = await Call<{ post: Post }>(
+          gql`
+            ${PostFragment}
+            ${MediaItemFragment}
+            query ($slug: ID!) {
+              post(id: $slug, idType: SLUG) {
+                ...PostFragment
+              }
+            }
+          `,
+          { slug }
+        )
+        return { body: data.post }
+      }
+    }
+
     default:
       return { status: 404 }
   }

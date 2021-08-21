@@ -5,26 +5,26 @@
   export const load: Load = async ({ fetch }) => {
     return {
       props: {
-        data: await fetch('/api/projects/*.json').then((r) => r.json()),
+        data: await fetch('/api/posts/*.json').then((r) => r.json()),
       },
     }
   }
 </script>
 
 <script lang="ts">
-  import type { Project as TProject } from '$lib/api'
+  import type { Post } from '$lib/api'
   import SimplePage from '$lib/components/SimplePage.svelte'
-  import Project from '$lib/components/Project.svelte'
+  import PostPreview from '$lib/components/PostPreview.svelte'
 
-  export let data: TProject[]
+  export let data: Post[]
 </script>
 
 <svelte:head>
-  <title>Projects</title>
+  <title>Blog</title>
 </svelte:head>
 
-<SimplePage title="Projects">
-  {#each data as project}
-    <Project {project} />
+<SimplePage title="Works">
+  {#each data as post}
+    <PostPreview {post} />
   {/each}
 </SimplePage>

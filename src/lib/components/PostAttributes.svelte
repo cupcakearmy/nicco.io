@@ -1,17 +1,28 @@
-<script>
+<script lang="ts">
   import dj from 'dayjs'
-  import { readingTimeInMinutes } from '../lib/readingTime'
+  import type { Post } from '$lib/api'
+  import { readingTimeInMinutes } from '$lib/utils'
 
-  export let post
+  export let post: Post
   export let full = false
 
-  function format(date) {
+  function format(date: string) {
     return dj(date).format('MMM D, YYYY')
   }
 
   $: created = format(post.date)
   $: modified = format(post.modified)
 </script>
+
+<div class="attributes">
+  <div>
+    {created}
+    {#if full && created !== modified}<br /> <small>Last update: {modified}</small>{/if}
+  </div>
+  {#if post.content}
+    <div>~ {readingTimeInMinutes(post.content)} min</div>
+  {/if}
+</div>
 
 <style>
   .attributes {
@@ -21,11 +32,3 @@
     margin-top: -0.125em;
   }
 </style>
-
-<div class="attributes">
-  <div>
-    {created}
-    {#if full && created !== modified}<br /> <small>Last update: {modified}</small>{/if}
-  </div>
-  <div>~ {readingTimeInMinutes(post.content)} min</div>
-</div>

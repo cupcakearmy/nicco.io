@@ -1,9 +1,21 @@
-<script>
+<script lang="ts">
+  import type { Post } from '$lib/api'
+
   import ImageFrame from '../components/ImageFrame.svelte'
   import PostAttributes from '../components/PostAttributes.svelte'
 
-  export let post
+  export let post: Post
 </script>
+
+<a href={`blog/${post.slug}`} class:without={!post.post.featured}>
+  {#if post.post.featured}
+    <ImageFrame src={post.post.featured.sourceUrl} alt={post.post.featured.altText} />
+  {/if}
+  <PostAttributes {post} />
+  <h2>
+    {@html post.title}
+  </h2>
+</a>
 
 <style>
   a {
@@ -41,13 +53,3 @@
     transform: translateX(-5%);
   }
 </style>
-
-<a href={`blog/${post.slug}`} class:without={!post.featured}>
-  {#if post.featured}
-    <ImageFrame src={post.featured.url} alt={post.featured.description} />
-  {/if}
-  <PostAttributes {post} />
-  <h2>
-    {@html post.title}
-  </h2>
-</a>

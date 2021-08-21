@@ -1,22 +1,13 @@
 <script lang="ts" context="module">
-  import { Call, gql } from '$lib/api'
+  import type { MediaItem } from '$lib/api'
 
   export const prerender = true
 
-  type Data = Record<'signature' | 'home', { srcSet: string }>
-  export const load: Load = async () => {
-    const data = await Call<Data>(gql`
-      query {
-        signature: mediaItem(id: "signature", idType: SLUG) {
-          srcSet
-        }
-
-        home: mediaItem(id: "home", idType: SLUG) {
-          srcSet
-        }
-      }
-    `)
-    return { props: { data } }
+  type Data = Record<'signature' | 'home', MediaItem>
+  export const load: Load = async ({ fetch }) => {
+    const signature: MediaItem = await fetch('/api/media/signature.json').then((r) => r.json())
+    const home: MediaItem = await fetch('/api/media/home.json').then((r) => r.json())
+    return { props: { data: { signature, home } } }
   }
 </script>
 
@@ -28,7 +19,7 @@
 </script>
 
 <svelte:head>
-  <title>Niccolo Borgioli</title>
+  <title>Niccolò Borgioli</title>
 </svelte:head>
 
 <div class="wrapper">

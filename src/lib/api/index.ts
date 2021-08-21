@@ -36,12 +36,33 @@ export type Page = {
   status: string
 }
 
-export const BaseAttributes = gql`
+export const BaseAttributes = `
     id
     slug
     status
     title
     content
+`
+
+export interface Post extends Page {
+  date: string
+  modified: string
+  post: {
+    featured: MediaItem
+  }
+}
+
+export const PostFragment = gql`
+  fragment PostFragment on Post {
+    ${BaseAttributes}
+    date
+    modified
+    post {
+      featured {
+        ...MediaItemFragment
+      }
+    }
+  }
 `
 
 export interface Work extends Page {
