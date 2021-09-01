@@ -11,6 +11,7 @@
     "@sveltejs/adapter-static": "next",
     "@sveltejs/kit": "next",
     "@types/highlight.js": "^10.1.0",
+    "@types/lunr": "^2.3.4",
     "svelte": "^3.34.0",
     "svelte-check": "^2.0.0",
     "svelte-preprocess": "^4.0.0",
@@ -22,6 +23,7 @@
     "axios": "^0.21.1",
     "dayjs": "^1.10.5",
     "highlight.js": "^11.0.0",
+    "lunr": "^2.3.9",
     "svelte-cloudinary": "^0.2.3"
   }
 }

@@ -20,10 +20,10 @@
 </script>
 
 <svelte:head>
-  <title>Works</title>
+  <title>Blog - {data.title}</title>
 </svelte:head>
 
-<SimplePage title={data.title}>
+<SimplePage title={data.title} readable>
   <PostAttributes post={data} full />
   {#if data.content}
     <WpAdapter content={data.content} />

@@ -1,5 +1,12 @@
-<script>
-  export let result
+<script lang="ts" context="module">
+  export type SearchResultItem = {
+    ref: string
+    score: number
+  }
+</script>
+
+<script lang="ts">
+  export let result: SearchResultItem
 
   const [type, slug] = result.ref.split('/')
   let href = '/'
@@ -7,13 +14,15 @@
   $: {
     switch (type) {
       case 'works':
+        href = `${type}/${slug}`
+        break
       case 'projects':
         href = `${type}`
         break
-      case 'post':
+      case 'posts':
         href = `/blog/${slug}`
         break
-      case 'page':
+      case 'pages':
         href = `/${slug}`
         break
     }
