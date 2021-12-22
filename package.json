@@ -6,7 +6,8 @@
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-    "generate": "graphql-codegen"
+    "generate": "graphql-codegen",
+    "ci": "pnpm run generate && pnpm run check && pnpm run build"
   },
   "type": "module",
   "devDependencies": {
@@ -20,7 +21,6 @@
     "graphql": "^15.8.0",
     "graphql-request": "^3.7.0",
     "graphql-tag": "^2.12.6",
-    "rollup-plugin-analyzer": "^4.0.0",
     "svelte": "^3.44.3",
     "svelte-check": "^2.2.11",
     "svelte-preprocess": "^4.10.1",
