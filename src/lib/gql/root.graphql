@@ -125,3 +125,21 @@ query PostsOne($slug: ID!) {
     ...BasePost
   }
 }
+
+query Search {
+  posts(first: 100) {
+    nodes {
+      ...BasePost
+    }
+  }
+  projects(first: 100) {
+    nodes {
+      ...BaseProject
+    }
+  }
+  works(first: 100) {
+    nodes {
+      ...BaseWork
+    }
+  }
+}

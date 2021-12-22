@@ -9219,6 +9219,11 @@ export type GQLPostsOneQueryVariables = Exact<{
 
 export type GQLPostsOneQuery = { readonly __typename?: 'RootQuery', readonly post: { readonly __typename?: 'Post', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly date: string, readonly modified: string, readonly post: { readonly __typename?: 'Post_Post', readonly featured: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } } };
 
+export type GQLSearchQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GQLSearchQuery = { readonly __typename?: 'RootQuery', readonly posts: { readonly __typename?: 'RootQueryToPostConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Post', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly date: string, readonly modified: string, readonly post: { readonly __typename?: 'Post_Post', readonly featured: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } }> }, readonly projects: { readonly __typename?: 'RootQueryToProjectConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Project', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly project: { readonly __typename?: 'Project_Project', readonly date: string, readonly link: string, readonly description: string } }> }, readonly works: { readonly __typename?: 'RootQueryToWorkConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Work', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly work: { readonly __typename?: 'Work_Work', readonly date: string, readonly link: string, readonly role: string, readonly image: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } }> } };
+
 export const BasePageFragmentDoc = gql`
     fragment BasePage on Page {
   id
@@ -9362,6 +9367,27 @@ export const PostsOneDocument = gql`
   }
 }
     ${BasePostFragmentDoc}`;
+export const SearchDocument = gql`
+    query Search {
+  posts(first: 100) {
+    nodes {
+      ...BasePost
+    }
+  }
+  projects(first: 100) {
+    nodes {
+      ...BaseProject
+    }
+  }
+  works(first: 100) {
+    nodes {
+      ...BaseWork
+    }
+  }
+}
+    ${BasePostFragmentDoc}
+${BaseProjectFragmentDoc}
+${BaseWorkFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
 
@@ -9399,6 +9425,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     PostsOne(variables: GQLPostsOneQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLPostsOneQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GQLPostsOneQuery>(PostsOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PostsOne');
+    },
+    Search(variables?: GQLSearchQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLSearchQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLSearchQuery>(SearchDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Search');
     }
   };
 }

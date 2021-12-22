@@ -21,6 +21,7 @@
   export let prebuilt: any
   let needle: string | null = null
   let results: SearchResultItem[] = []
+  let input: HTMLInputElement
 
   const idx = lunr.Index.load(prebuilt)
 
@@ -34,7 +35,7 @@
     }
   }
 
-  $: if (needle) {
+  $: if (needle !== null) {
     if (typeof window !== 'undefined') {
       window.history.replaceState(null, '', `/search?q=${needle ?? ''}`)
     }
@@ -43,19 +44,18 @@
 
   onMount(() => {
     needle = new URLSearchParams(window.location.search).get('q')
+    input.focus()
   })
 </script>
 
 <SimplePage title="Search" expanded={false}>
-  <input bind:value={needle} placeholder="needle" />
+  <input bind:this={input} bind:value={needle} placeholder="needle" />
   {#if needle}
     <ul>
       {#each results as result (result.ref)}
         <SearchResult {result} />
       {/each}
     </ul>
-  {:else}
-    <p>Start typing...</p>
   {/if}
 </SimplePage>
 
