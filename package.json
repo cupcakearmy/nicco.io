@@ -1,30 +1,36 @@
 {
   "private": true,
   "scripts": {
-    "dev": "sapper dev",
-    "export": "sapper export",
-    "start": "serve __sapper__/export"
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "preview": "svelte-kit preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+    "generate": "graphql-codegen",
+    "ci": "pnpm run generate && pnpm run check && pnpm run build"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@graphql-codegen/cli": "^2.3.0",
+    "@graphql-codegen/typescript": "^2.4.1",
+    "@graphql-codegen/typescript-graphql-request": "^4.3.2",
+    "@graphql-codegen/typescript-operations": "^2.2.1",
+    "@sveltejs/adapter-static": "next",
+    "@sveltejs/kit": "next",
+    "@types/lunr": "^2.3.4",
+    "graphql": "^15.8.0",
+    "graphql-request": "^3.7.0",
+    "graphql-tag": "^2.12.6",
+    "svelte": "^3.44.3",
+    "svelte-check": "^2.2.11",
+    "svelte-preprocess": "^4.10.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "compression": "^1.7.1",
-    "dayjs": "^1.9.7",
-    "highlight.js": "^10.4.1",
+    "dayjs": "^1.10.7",
+    "highlight.js": "^11.3.1",
     "lunr": "^2.3.9",
-    "polka": "next",
-    "sirv": "^1.0.9",
-    "svelte-cloudinary": "^0.2"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^14.0.0",
-    "@rollup/plugin-node-resolve": "^8.0.0",
-    "@rollup/plugin-replace": "^2.2.0",
-    "npm-run-all": "^4.1.5",
-    "rollup": "^2.34.2",
-    "rollup-plugin-svelte": "^6.1.1",
-    "rollup-plugin-terser": "^7.0.0",
-    "sapper": "^0.29.0",
-    "sapper-environment": "^1.0.1",
-    "svelte": "^3.35.0"
+    "svelte-cloudinary": "^0.2.4"
   }
 }

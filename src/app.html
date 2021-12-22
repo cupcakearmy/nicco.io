@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Designer & Developer" />
+    <meta name="keywords" content="Web Agency Blog Articles" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+
+    <link rel="icon" type="image/png" href="/images/monogramm.png" />
+
+    %svelte.head%
+  </head>
+  <body>
+    <div id="svelte">%svelte.body%</div>
+
+    <script type="text/javascript">
+      var _paq = (window._paq = window._paq || [])
+      _paq.push(['setDocumentTitle', document.domain + '/' + document.title])
+      _paq.push(['setCookieDomain', '*.nicco.io'])
+      _paq.push(['disableCookies'])
+      _paq.push(['trackPageView'])
+      _paq.push(['enableLinkTracking'])
+      ;(function () {
+        var u = '//stats.nicco.io/'
+        _paq.push(['setTrackerUrl', u + 'rainbow'])
+        _paq.push(['setSiteId', '1'])
+        var d = document,
+          g = d.createElement('script'),
+          s = d.getElementsByTagName('script')[0]
+        g.type = 'text/javascript'
+        g.async = true
+        g.src = u + 'unicorn'
+        s.parentNode.insertBefore(g, s)
+      })()
+    </script>
+    <noscript
+      ><p>
+        <img src="//stats.nicco.io/rainbow?idsite=1&amp;rec=1" style="border: 0" alt="" /></p
+    ></noscript>
+  </body>
+</html>

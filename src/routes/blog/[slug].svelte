@@ -1,20 +1,31 @@
-<script context="module">
-  export async function preload({ params }) {
-    return this.fetch(`/api/posts/${params.slug}.json`).then((res) =>
-      res.json()
-    )
+<script lang="ts" context="module">
+  import type { Load } from '@sveltejs/kit'
+
+  export const load: Load = async ({ fetch, page }) => {
+    return {
+      props: {
+        data: await fetch(`/api/posts/${page.params.slug}.json`).then((r) => r.json()),
+      },
+    }
   }
 </script>
 
-<script>
-  import SimplePage from '../../components/SimplePage.svelte'
-  import WPAdapter from '../../components/WPAdapter.svelte'
-  import PostAttributes from '../../components/PostAttributes.svelte'
+<script lang="ts">
+  import SimplePage from '$lib/components/SimplePage.svelte'
+  import PostAttributes from '$lib/components/PostAttributes.svelte'
+  import WpAdapter from '$lib/components/WPAdapter.svelte'
+  import type { GQLBasePostFragment } from '$lib/gql/gen'
 
-  export let data
+  export let data: GQLBasePostFragment
 </script>
 
-<SimplePage title={data.title} expanded={false} readable>
+<svelte:head>
+  <title>Blog - {data.title}</title>
+</svelte:head>
+
+<SimplePage title={data.title} readable>
   <PostAttributes post={data} full />
-  <WPAdapter content={data.content} />
+  {#if data.content}
+    <WpAdapter content={data.content} />
+  {/if}
 </SimplePage>

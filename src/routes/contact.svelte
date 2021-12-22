@@ -1,7 +1,6 @@
-<script>
-  import IconList from '../components/IconList.svelte'
-
-  import SimplePage from '../components/SimplePage.svelte'
+<script lang="ts">
+  import IconList from '$lib/components/IconList.svelte'
+  import SimplePage from '$lib/components/SimplePage.svelte'
 
   const links = [
     {

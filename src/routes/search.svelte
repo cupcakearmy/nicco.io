@@ -1,24 +1,31 @@
-<script context="module">
-  export async function preload({ query }) {
-    const prebuilt = await this.fetch(`/search.json`).then((res) => res.json())
-    return { prebuilt }
+<script lang="ts" context="module">
+  import type { Load } from '@sveltejs/kit'
+
+  export const load: Load = async ({ fetch }) => {
+    return {
+      props: {
+        prebuilt: await fetch('/api/search.json').then((r) => r.json()),
+      },
+    }
   }
 </script>
 
-<script>
+<script lang="ts">
   import lunr from 'lunr'
   import { onMount } from 'svelte'
 
-  import SearchResult from '../components/SearchResult.svelte'
-  import SimplePage from '../components/SimplePage.svelte'
+  import type { SearchResultItem } from '$lib/components/SearchResult.svelte'
+  import SearchResult from '$lib/components/SearchResult.svelte'
+  import SimplePage from '$lib/components/SimplePage.svelte'
 
-  export let prebuilt
-  let needle
-  let results = []
+  export let prebuilt: any
+  let needle: string | null = null
+  let results: SearchResultItem[] = []
+  let input: HTMLInputElement
 
   const idx = lunr.Index.load(prebuilt)
 
-  async function search(needle) {
+  async function search(needle: string) {
     if (!needle || !idx) {
       results = []
     } else {
@@ -28,25 +35,28 @@
     }
   }
 
-  $: if (needle) {
+  $: if (needle !== null) {
     if (typeof window !== 'undefined') {
-      window.history.replaceState(null, null, `/search?q=${needle || ''}`)
+      window.history.replaceState(null, '', `/search?q=${needle ?? ''}`)
     }
     search(needle)
   }
 
   onMount(() => {
     needle = new URLSearchParams(window.location.search).get('q')
+    input.focus()
   })
 </script>
 
 <SimplePage title="Search" expanded={false}>
-  <input bind:value={needle} placeholder="needle" />
-  <ul>
-    {#each results as result (result.ref)}
-      <SearchResult {result} />
-    {/each}
-  </ul>
+  <input bind:this={input} bind:value={needle} placeholder="needle" />
+  {#if needle}
+    <ul>
+      {#each results as result (result.ref)}
+        <SearchResult {result} />
+      {/each}
+    </ul>
+  {/if}
 </SimplePage>
 
 <style>
