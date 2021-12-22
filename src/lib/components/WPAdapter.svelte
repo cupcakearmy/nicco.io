@@ -1,5 +1,4 @@
 <script lang="ts">
-  import 'highlight.js/styles/github.css'
   import hljs from 'highlight.js/lib/core'
   import javascript from 'highlight.js/lib/languages/javascript'
   import python from 'highlight.js/lib/languages/python'
@@ -32,9 +31,10 @@
       .replace(' ', '-')
   }
 
-  onMount(() => {
+  onMount(async () => {
     hljs.highlightAll()
 
+    // Add anchor links to headers
     const selector = [1, 2, 3, 4, 5, 6].map((i) => `div.adapter h${i}`).join(', ')
     const elements = window.document.querySelectorAll(selector)
     elements.forEach((el) => {
@@ -43,6 +43,14 @@
         el.innerHTML = `<a class="target-link" name="${hash}" href="${window.location.pathname}#${hash}">${el.innerHTML}</a>`
       }
     })
+
+    async function update(isDark: boolean) {
+      isDark ? await import('highlight.js/styles/github-dark.css') : await import('highlight.js/styles/github.css')
+    }
+
+    const match = window.matchMedia('(prefers-color-scheme: dark)')
+    match.addEventListener('change', (e) => update(e.matches))
+    update(match.matches)
   })
 </script>
 
@@ -89,12 +97,12 @@
 
   div :global(pre) {
     padding: 1em;
-    background: #0000000d;
+    background: var(--clr-transparent-0);
     overflow: auto;
   }
 
   div :global(code) {
-    background: #00000012;
+    background: var(--clr-transparent-0);
     padding: 0.25em;
     font-size: 0.8em;
   }

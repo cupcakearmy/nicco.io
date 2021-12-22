@@ -15,7 +15,17 @@
   --clr-primary: hsl(219, 90%, 80%);
   --clr-secondary: hsl(64, 93%, 51%);
   --clr-error: hsl(0, 73.9%, 65.5%);
+  --clr-transparent-0: hsla(0, 0%, 0%, 0.1);
   --animation: all 250ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-light: #010101;
+    --clr-dark: #ffffff;
+    --clr-primary: hsl(219, 90%, 30%);
+    --clr-transparent-0: hsla(0, 0%, 100%, 0.1);
+  }
 }
 
 body {
