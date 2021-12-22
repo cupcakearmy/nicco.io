@@ -12,7 +12,6 @@
 <script lang="ts">
   import SpacedLetters from '$lib/components/SpacedLetters.svelte'
   import type { Load } from '@sveltejs/kit'
-  import { cdn } from '$lib/actions/cloudinary'
 
   export let data: Data
 </script>
