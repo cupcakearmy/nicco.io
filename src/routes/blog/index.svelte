@@ -12,11 +12,11 @@
 </script>
 
 <script lang="ts">
-  import type { Post } from '$lib/api'
   import SimplePage from '$lib/components/SimplePage.svelte'
   import PostPreview from '$lib/components/PostPreview.svelte'
+  import type { GQLBasePostFragment } from '$lib/gql/gen'
 
-  export let data: Post[]
+  export let data: GQLBasePostFragment[]
 </script>
 
 <svelte:head>

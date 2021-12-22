@@ -1,10 +1,10 @@
 <script lang="ts" context="module">
-  import type { MediaItem } from '$lib/api'
+  import type { GQLBaseMediaItemFragment } from '$lib/gql/gen'
 
-  type Data = Record<'signature' | 'home', MediaItem>
+  type Data = Record<'signature' | 'home', GQLBaseMediaItemFragment>
   export const load: Load = async ({ fetch }) => {
-    const signature: MediaItem = await fetch('/api/media/signature.json').then((r) => r.json())
-    const home: MediaItem = await fetch('/api/media/home.json').then((r) => r.json())
+    const signature: GQLBaseMediaItemFragment = await fetch('/api/media/signature.json').then((r) => r.json())
+    const home: GQLBaseMediaItemFragment = await fetch('/api/media/home.json').then((r) => r.json())
     return { props: { data: { signature, home } } }
   }
 </script>
@@ -12,6 +12,7 @@
 <script lang="ts">
   import SpacedLetters from '$lib/components/SpacedLetters.svelte'
   import type { Load } from '@sveltejs/kit'
+  import { cdn } from '$lib/actions/cloudinary'
 
   export let data: Data
 </script>

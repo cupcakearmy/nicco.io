@@ -3,6 +3,7 @@
   import { page } from '$app/stores'
 
   import '../app.css'
+  import '$lib/actions/cloudinary'
 
   import dayjs from 'dayjs'
   import customParseFormat from 'dayjs/plugin/customParseFormat.js'
@@ -13,7 +14,7 @@
   import Progress from '$lib/components/Progress.svelte'
 
   let wrapper: HTMLDivElement
-  let main: HTMLDivElement
+  let main: HTMLElement
 
   function resize() {
     wrapper.style.height = `${window.innerHeight}px`

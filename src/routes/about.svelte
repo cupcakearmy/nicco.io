@@ -14,10 +14,11 @@
 <script lang="ts">
   import WPAdapter from '$lib/components/WPAdapter.svelte'
   import SimplePage from '$lib/components/SimplePage.svelte'
-  import type { Page, MediaItem } from '$lib/api'
+  import type { GQLBaseMediaItemFragment, GQLBasePageFragment } from '$lib/gql/gen'
+  import { cdn } from '$lib/actions/cloudinary'
 
-  export let data: Page
-  export let image: MediaItem
+  export let data: GQLBasePageFragment
+  export let image: GQLBaseMediaItemFragment
 </script>
 
 <svelte:head>
@@ -27,7 +28,7 @@
 <SimplePage title={data.title} expanded={false}>
   {#if data.content}
     <WPAdapter content={data.content} />
-    <img srcset={image.srcSet} alt="decoration" />
+    <img use:cdn={image.sourceUrl} alt="decoration" />
   {/if}
 </SimplePage>
 

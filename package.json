@@ -5,25 +5,33 @@
     "build": "svelte-kit build",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
-  },
-  "devDependencies": {
-    "@sveltejs/adapter-static": "next",
-    "@sveltejs/kit": "next",
-    "@types/highlight.js": "^10.1.0",
-    "@types/lunr": "^2.3.4",
-    "svelte": "^3.34.0",
-    "svelte-check": "^2.0.0",
-    "svelte-preprocess": "^4.0.0",
-    "tslib": "^2.0.0",
-    "typescript": "^4.0.0"
+    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+    "generate": "graphql-codegen"
   },
   "type": "module",
+  "devDependencies": {
+    "@graphql-codegen/cli": "^2.3.0",
+    "@graphql-codegen/typescript": "^2.4.1",
+    "@graphql-codegen/typescript-graphql-request": "^4.3.2",
+    "@graphql-codegen/typescript-operations": "^2.2.1",
+    "@sveltejs/adapter-static": "next",
+    "@sveltejs/kit": "next",
+    "@types/lunr": "^2.3.4",
+    "graphql": "^15.8.0",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "svelte": "^3.44.3",
+    "svelte-check": "^2.2.11",
+    "svelte-preprocess": "^4.10.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4"
+  },
   "dependencies": {
-    "axios": "^0.21.1",
-    "dayjs": "^1.10.5",
-    "highlight.js": "^11.0.0",
+    "axios": "^0.24.0",
+    "dayjs": "^1.10.7",
+    "graphql-request": "^3.7.0",
+    "graphql-tag": "^2.12.6",
+    "highlight.js": "^11.3.1",
     "lunr": "^2.3.9",
-    "svelte-cloudinary": "^0.2.3"
+    "svelte-cloudinary": "^0.2.4"
   }
 }

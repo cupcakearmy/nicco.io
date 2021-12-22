@@ -1,22 +1,12 @@
-<script lang="ts" context="module">
-  import { initialize } from 'svelte-cloudinary'
-
-  initialize({ cloud_name: 'cupcakearmy' })
-</script>
-
 <script lang="ts">
-  import { image } from 'svelte-cloudinary'
+  import { cdn } from '$lib/actions/cloudinary'
 
   export let src: string
-  // export let srcset: string
   export let alt: string
-
-  $: cleaned = src.replace('https://api.nicco.io', '/nicco')
 </script>
 
-<img use:image={{ src: cleaned, bind: { width: true }, lazy: true }} {alt} />
+<img use:cdn={src} {alt} />
 
-<!-- <img {srcset} {alt} /> -->
 <style>
   img {
     width: calc(100% - 0.25em);

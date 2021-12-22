@@ -1,9 +1,9 @@
 <script lang="ts">
+  import type { GQLBaseProjectFragment } from '$lib/gql/gen'
   import dayjs from 'dayjs'
-
   import Icon from './Icon.svelte'
 
-  export let project: import('$lib/api').Project
+  export let project: GQLBaseProjectFragment
 </script>
 
 <section>

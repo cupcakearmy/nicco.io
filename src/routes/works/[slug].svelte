@@ -11,11 +11,11 @@
 </script>
 
 <script lang="ts">
-  import type { Work as TWork } from '$lib/api'
   import SimplePage from '$lib/components/SimplePage.svelte'
   import Work from '$lib/components/Work.svelte'
+  import type { GQLBaseWorkFragment } from '$lib/gql/gen'
 
-  export let data: TWork
+  export let data: GQLBaseWorkFragment
 </script>
 
 <svelte:head>

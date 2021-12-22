@@ -13,9 +13,9 @@
 <script lang="ts">
   import WPAdapter from '$lib/components/WPAdapter.svelte'
   import SimplePage from '$lib/components/SimplePage.svelte'
-  import type { Page } from '$lib/api'
+  import type { GQLBasePageFragment } from '$lib/gql/gen'
 
-  export let data: Page
+  export let data: GQLBasePageFragment
 </script>
 
 <svelte:head>

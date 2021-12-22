@@ -1,9 +1,9 @@
 <script lang="ts">
   import { spring } from 'svelte/motion'
-
   import { scroll } from '$lib/stores'
 
-  let el
+  let el: SVGElement
+
   const springed = spring(
     { scroll: 0 },
     {
@@ -12,7 +12,7 @@
     }
   )
 
-  function updateState(value) {
+  function updateState(value: number) {
     const max = 359.99999
     const R = 50
     let alpha = (360 / 1) * value

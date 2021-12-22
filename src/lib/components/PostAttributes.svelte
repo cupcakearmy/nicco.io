@@ -1,9 +1,9 @@
 <script lang="ts">
-  import dj from 'dayjs'
-  import type { Post } from '$lib/api'
+  import type { GQLBasePostFragment } from '$lib/gql/gen'
   import { readingTimeInMinutes } from '$lib/utils'
+  import dj from 'dayjs'
 
-  export let post: Post
+  export let post: GQLBasePostFragment
   export let full = false
 
   function format(date: string) {

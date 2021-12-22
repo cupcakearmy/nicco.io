@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { Post } from '$lib/api'
+  import type { GQLBasePostFragment } from '$lib/gql/gen'
 
   import ImageFrame from '../components/ImageFrame.svelte'
   import PostAttributes from '../components/PostAttributes.svelte'
 
-  export let post: Post
+  export let post: GQLBasePostFragment
 </script>
 
 <a href={`blog/${post.slug}`} class:without={!post.post.featured}>

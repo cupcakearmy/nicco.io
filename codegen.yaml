@@ -1,0 +1,14 @@
+schema: https://api.nicco.io/graphql
+documents: "src/**/*.graphql"
+generates:
+  ./src/lib/gql/gen.ts:
+    plugins:
+      - "@graphql-codegen/typescript"
+      - "@graphql-codegen/typescript-operations"
+      - "@graphql-codegen/typescript-graphql-request"
+    config:
+      maybeValue: "T"
+      typesPrefix: GQL
+      immutableTypes: true
+      useTypeImports: true
+      avoidOptionals: true

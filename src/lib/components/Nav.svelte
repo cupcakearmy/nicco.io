@@ -10,11 +10,9 @@
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ]
-
-  let nav: HTMLDivElement
 </script>
 
-<nav bind:this={nav}>
+<nav>
   <a href="/">
     <h1 class:active={$page.path === '/'}>NB</h1>
   </a>

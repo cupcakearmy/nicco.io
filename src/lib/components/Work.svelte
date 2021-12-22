@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { Work } from '$lib/api'
-  import dayjs from 'dayjs'
-  import ImageFrame from '$lib/components/ImageFrame.svelte'
   import Icon from '$lib/components/Icon.svelte'
+  import ImageFrame from '$lib/components/ImageFrame.svelte'
+  import type { GQLBaseWorkFragment } from '$lib/gql/gen'
+  import dayjs from 'dayjs'
 
-  export let work: Work
+  export let work: GQLBaseWorkFragment
 </script>
 
 <section>
@@ -19,8 +19,6 @@
       </div>
     </div>
 
-    <!-- <ImageFrame src={work.work.image.sizes.medium_large} alt={work.image.description} /> -->
-    <!-- <ImageFrame srcset={work.work.image.srcSet} alt={work.work.image.altText} /> -->
     <ImageFrame src={work.work.image.sourceUrl} alt={work.work.image.altText} />
   </a>
   <div class="horizontal regular">

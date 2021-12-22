@@ -11,11 +11,11 @@
 </script>
 
 <script lang="ts">
-  import type { Project as TProject } from '$lib/api'
   import SimplePage from '$lib/components/SimplePage.svelte'
   import Project from '$lib/components/Project.svelte'
+  import type { GQLBaseProjectFragment } from '$lib/gql/gen'
 
-  export let data: TProject[]
+  export let data: GQLBaseProjectFragment[]
 </script>
 
 <svelte:head>
