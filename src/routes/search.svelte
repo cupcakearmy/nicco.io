@@ -64,12 +64,15 @@
     appearance: none;
     -webkit-appearance: none;
     margin: 0;
-    padding: 0.5rem;
-    font-size: 1em;
+    padding: 0.75rem;
+    font-size: inherit;
     width: 100%;
     outline: none;
-    border: 2px solid var(--clr-primary);
+    border: 0.15rem solid var(--clr-primary);
+    border-bottom-width: 0.5rem;
     border-radius: 0;
+    background: inherit;
+    color: inherit;
   }
 
   ul {

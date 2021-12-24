@@ -1,17 +1,17 @@
 <script lang="ts" context="module">
   import type { GQLBaseMediaItemFragment } from '$lib/gql/gen'
 
-  type Data = Record<'signature' | 'home', GQLBaseMediaItemFragment>
+  type Data = Record<'home', GQLBaseMediaItemFragment>
   export const load: Load = async ({ fetch }) => {
-    const signature: GQLBaseMediaItemFragment = await fetch('/api/media/signature.json').then((r) => r.json())
     const home: GQLBaseMediaItemFragment = await fetch('/api/media/home.json').then((r) => r.json())
-    return { props: { data: { signature, home } } }
+    return { props: { data: { home } } }
   }
 </script>
 
 <script lang="ts">
-  import SpacedLetters from '$lib/components/SpacedLetters.svelte'
   import type { Load } from '@sveltejs/kit'
+  import SpacedLetters from '$lib/components/SpacedLetters.svelte'
+  import Signature from '$lib/svgs/Signature.svelte'
 
   export let data: Data
 </script>
@@ -32,7 +32,7 @@
 
   <div class="right" style="z-index: 2;">
     <img srcset={data.home.srcSet} alt="decoration" class="home" />
-    <img srcset={data.signature.srcSet} alt="signature" class="signature" />
+    <Signature class="signature" />
   </div>
 </div>
 
@@ -69,12 +69,12 @@
     object-position: left;
     max-height: 65vh;
   }
-  img.signature {
+  .right :global(.signature) {
     position: absolute;
     width: 50%;
-    top: -6%;
-    left: -10%;
-    transform: rotate(-8deg);
+    top: 0%;
+    left: -8.5%;
+    transform: rotate(-25deg);
   }
 
   @media (max-width: 50em) {

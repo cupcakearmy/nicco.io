@@ -107,3 +107,8 @@ ul {
   left: 0;
   z-index: 0;
 }
+
+svg {
+  fill: currentColor;
+  height: auto;
+}
