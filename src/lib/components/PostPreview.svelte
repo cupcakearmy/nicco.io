@@ -3,11 +3,12 @@
 
   import ImageFrame from '../components/ImageFrame.svelte'
   import PostAttributes from '../components/PostAttributes.svelte'
+  import Tags from './Tags.svelte'
 
   export let post: GQLBasePostFragment
 </script>
 
-<a href={`blog/${post.slug}`} class:without={!post.post.featured}>
+<a href={`/blog/${post.slug}`} class:without={!post.post.featured}>
   {#if post.post.featured}
     <ImageFrame src={post.post.featured.sourceUrl} alt={post.post.featured.altText} />
   {/if}
@@ -15,6 +16,7 @@
   <h2>
     {@html post.title}
   </h2>
+  <Tags tags={post.tags.nodes} />
 </a>
 
 <style>
@@ -33,9 +35,13 @@
     transition: var(--animation);
     background-color: var(--clr-light);
   }
-  a:hover h2 {
-    top: -1em;
-    transform: scale(0.95);
+  a :global(img) {
+    transition: var(--animation);
+    position: relative;
+    top: 0;
+  }
+  a:hover :global(img) {
+    top: 2.5rem;
   }
 
   a > :global(div) {

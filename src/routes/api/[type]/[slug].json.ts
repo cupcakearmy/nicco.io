@@ -54,6 +54,19 @@ export async function get(args: ServerRequest) {
       }
     }
 
+    case 'tags': {
+      if (all) {
+        const data = await SDK.TagsMany()
+        const sorted = [...data.tags.nodes].filter((t) => t.count).sort((a, b) => b.count - a.count)
+        return { body: sorted }
+      }
+    }
+
+    case 'postsByTags': {
+      const data = await SDK.PostsManyByTag({ tag: slug })
+      return { body: data.posts.nodes }
+    }
+
     default:
       return { status: 404 }
   }

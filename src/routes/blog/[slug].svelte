@@ -15,6 +15,7 @@
   import PostAttributes from '$lib/components/PostAttributes.svelte'
   import WpAdapter from '$lib/components/WPAdapter.svelte'
   import type { GQLBasePostFragment } from '$lib/gql/gen'
+  import Tags from '$lib/components/Tags.svelte'
 
   export let data: GQLBasePostFragment
 </script>
@@ -28,4 +29,5 @@
   {#if data.content}
     <WpAdapter content={data.content} />
   {/if}
+  <Tags tags={data.tags.nodes} />
 </SimplePage>

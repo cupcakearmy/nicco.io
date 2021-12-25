@@ -105,6 +105,11 @@ fragment BasePost on Post {
   status
   date
   modified
+  tags {
+    nodes {
+      ...BaseTag
+    }
+  }
   post {
     featured {
       ...BaseMediaItem
@@ -126,6 +131,14 @@ query PostsOne($slug: ID!) {
   }
 }
 
+query PostsManyByTag($tag: String!) {
+  posts(first: 100, where: { status: PUBLISH, tag: $tag }) {
+    nodes {
+      ...BasePost
+    }
+  }
+}
+
 query Search {
   posts(first: 100) {
     nodes {
@@ -140,6 +153,21 @@ query Search {
   works(first: 100) {
     nodes {
       ...BaseWork
+    }
+  }
+}
+
+fragment BaseTag on Tag {
+  id
+  slug
+  name
+  count
+}
+
+query TagsMany {
+  tags(first: 100) {
+    nodes {
+      ...BaseTag
     }
   }
 }

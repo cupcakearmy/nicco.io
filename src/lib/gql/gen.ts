@@ -9205,24 +9205,38 @@ export type GQLProjectsOneQueryVariables = Exact<{
 
 export type GQLProjectsOneQuery = { readonly __typename?: 'RootQuery', readonly project: { readonly __typename?: 'Project', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly project: { readonly __typename?: 'Project_Project', readonly date: string, readonly link: string, readonly description: string } } };
 
-export type GQLBasePostFragment = { readonly __typename?: 'Post', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly date: string, readonly modified: string, readonly post: { readonly __typename?: 'Post_Post', readonly featured: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } };
+export type GQLBasePostFragment = { readonly __typename?: 'Post', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly date: string, readonly modified: string, readonly tags: { readonly __typename?: 'PostToTagConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Tag', readonly id: string, readonly slug: string, readonly name: string, readonly count: number }> }, readonly post: { readonly __typename?: 'Post_Post', readonly featured: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } };
 
 export type GQLPostsManyQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GQLPostsManyQuery = { readonly __typename?: 'RootQuery', readonly posts: { readonly __typename?: 'RootQueryToPostConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Post', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly date: string, readonly modified: string, readonly post: { readonly __typename?: 'Post_Post', readonly featured: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } }> } };
+export type GQLPostsManyQuery = { readonly __typename?: 'RootQuery', readonly posts: { readonly __typename?: 'RootQueryToPostConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Post', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly date: string, readonly modified: string, readonly tags: { readonly __typename?: 'PostToTagConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Tag', readonly id: string, readonly slug: string, readonly name: string, readonly count: number }> }, readonly post: { readonly __typename?: 'Post_Post', readonly featured: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } }> } };
 
 export type GQLPostsOneQueryVariables = Exact<{
   slug: Scalars['ID'];
 }>;
 
 
-export type GQLPostsOneQuery = { readonly __typename?: 'RootQuery', readonly post: { readonly __typename?: 'Post', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly date: string, readonly modified: string, readonly post: { readonly __typename?: 'Post_Post', readonly featured: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } } };
+export type GQLPostsOneQuery = { readonly __typename?: 'RootQuery', readonly post: { readonly __typename?: 'Post', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly date: string, readonly modified: string, readonly tags: { readonly __typename?: 'PostToTagConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Tag', readonly id: string, readonly slug: string, readonly name: string, readonly count: number }> }, readonly post: { readonly __typename?: 'Post_Post', readonly featured: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } } };
+
+export type GQLPostsManyByTagQueryVariables = Exact<{
+  tag: Scalars['String'];
+}>;
+
+
+export type GQLPostsManyByTagQuery = { readonly __typename?: 'RootQuery', readonly posts: { readonly __typename?: 'RootQueryToPostConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Post', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly date: string, readonly modified: string, readonly tags: { readonly __typename?: 'PostToTagConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Tag', readonly id: string, readonly slug: string, readonly name: string, readonly count: number }> }, readonly post: { readonly __typename?: 'Post_Post', readonly featured: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } }> } };
 
 export type GQLSearchQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GQLSearchQuery = { readonly __typename?: 'RootQuery', readonly posts: { readonly __typename?: 'RootQueryToPostConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Post', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly date: string, readonly modified: string, readonly post: { readonly __typename?: 'Post_Post', readonly featured: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } }> }, readonly projects: { readonly __typename?: 'RootQueryToProjectConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Project', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly project: { readonly __typename?: 'Project_Project', readonly date: string, readonly link: string, readonly description: string } }> }, readonly works: { readonly __typename?: 'RootQueryToWorkConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Work', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly work: { readonly __typename?: 'Work_Work', readonly date: string, readonly link: string, readonly role: string, readonly image: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } }> } };
+export type GQLSearchQuery = { readonly __typename?: 'RootQuery', readonly posts: { readonly __typename?: 'RootQueryToPostConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Post', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly date: string, readonly modified: string, readonly tags: { readonly __typename?: 'PostToTagConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Tag', readonly id: string, readonly slug: string, readonly name: string, readonly count: number }> }, readonly post: { readonly __typename?: 'Post_Post', readonly featured: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } }> }, readonly projects: { readonly __typename?: 'RootQueryToProjectConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Project', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly project: { readonly __typename?: 'Project_Project', readonly date: string, readonly link: string, readonly description: string } }> }, readonly works: { readonly __typename?: 'RootQueryToWorkConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Work', readonly id: string, readonly slug: string, readonly title: string, readonly content: string, readonly status: string, readonly work: { readonly __typename?: 'Work_Work', readonly date: string, readonly link: string, readonly role: string, readonly image: { readonly __typename?: 'MediaItem', readonly srcSet: string, readonly altText: string, readonly sourceUrl: string } } }> } };
+
+export type GQLBaseTagFragment = { readonly __typename?: 'Tag', readonly id: string, readonly slug: string, readonly name: string, readonly count: number };
+
+export type GQLTagsManyQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GQLTagsManyQuery = { readonly __typename?: 'RootQuery', readonly tags: { readonly __typename?: 'RootQueryToTagConnection', readonly nodes: ReadonlyArray<{ readonly __typename?: 'Tag', readonly id: string, readonly slug: string, readonly name: string, readonly count: number }> } };
 
 export const BasePageFragmentDoc = gql`
     fragment BasePage on Page {
@@ -9271,6 +9285,14 @@ export const BaseProjectFragmentDoc = gql`
   }
 }
     `;
+export const BaseTagFragmentDoc = gql`
+    fragment BaseTag on Tag {
+  id
+  slug
+  name
+  count
+}
+    `;
 export const BasePostFragmentDoc = gql`
     fragment BasePost on Post {
   id
@@ -9280,13 +9302,19 @@ export const BasePostFragmentDoc = gql`
   status
   date
   modified
+  tags {
+    nodes {
+      ...BaseTag
+    }
+  }
   post {
     featured {
       ...BaseMediaItem
     }
   }
 }
-    ${BaseMediaItemFragmentDoc}`;
+    ${BaseTagFragmentDoc}
+${BaseMediaItemFragmentDoc}`;
 export const MediaItemsManyDocument = gql`
     query MediaItemsMany {
   mediaItems(first: 100, where: {status: PUBLISH}) {
@@ -9367,6 +9395,15 @@ export const PostsOneDocument = gql`
   }
 }
     ${BasePostFragmentDoc}`;
+export const PostsManyByTagDocument = gql`
+    query PostsManyByTag($tag: String!) {
+  posts(first: 100, where: {status: PUBLISH, tag: $tag}) {
+    nodes {
+      ...BasePost
+    }
+  }
+}
+    ${BasePostFragmentDoc}`;
 export const SearchDocument = gql`
     query Search {
   posts(first: 100) {
@@ -9388,6 +9425,15 @@ export const SearchDocument = gql`
     ${BasePostFragmentDoc}
 ${BaseProjectFragmentDoc}
 ${BaseWorkFragmentDoc}`;
+export const TagsManyDocument = gql`
+    query TagsMany {
+  tags(first: 100) {
+    nodes {
+      ...BaseTag
+    }
+  }
+}
+    ${BaseTagFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
 
@@ -9426,8 +9472,14 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     PostsOne(variables: GQLPostsOneQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLPostsOneQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GQLPostsOneQuery>(PostsOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PostsOne');
     },
+    PostsManyByTag(variables: GQLPostsManyByTagQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLPostsManyByTagQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLPostsManyByTagQuery>(PostsManyByTagDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PostsManyByTag');
+    },
     Search(variables?: GQLSearchQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLSearchQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GQLSearchQuery>(SearchDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Search');
+    },
+    TagsMany(variables?: GQLTagsManyQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLTagsManyQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLTagsManyQuery>(TagsManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'TagsMany');
     }
   };
 }
