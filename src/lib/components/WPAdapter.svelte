@@ -1,14 +1,16 @@
 <script lang="ts">
   import hljs from 'highlight.js/lib/core'
-  import javascript from 'highlight.js/lib/languages/javascript'
-  import python from 'highlight.js/lib/languages/python'
-  import yaml from 'highlight.js/lib/languages/yaml'
-  import json from 'highlight.js/lib/languages/json'
   import bash from 'highlight.js/lib/languages/bash'
-  import docker from 'highlight.js/lib/languages/dockerfile'
-  import rust from 'highlight.js/lib/languages/rust'
   import css from 'highlight.js/lib/languages/css'
+  import docker from 'highlight.js/lib/languages/dockerfile'
+  import javascript from 'highlight.js/lib/languages/javascript'
+  import json from 'highlight.js/lib/languages/json'
+  import python from 'highlight.js/lib/languages/python'
+  import rust from 'highlight.js/lib/languages/rust'
   import typescript from 'highlight.js/lib/languages/typescript'
+  import yaml from 'highlight.js/lib/languages/yaml'
+  import { onMount } from 'svelte'
+  import ArticleOverview, { ArticleHeading } from './ArticleOverview.svelte'
 
   hljs.registerLanguage('javascript', javascript)
   hljs.registerLanguage('python', python)
@@ -20,15 +22,18 @@
   hljs.registerLanguage('css', css)
   hljs.registerLanguage('typescript', typescript)
 
-  import { onMount } from 'svelte'
-
   export let content: string
+  let headings: ArticleHeading[] | null = null
 
   function encodeTextToUrl(text: string): string {
     return text
-      .replace(/[^A-Za-z ]/, '')
-      .replace('/ +/', ' ')
-      .replace(' ', '-')
+      .toLowerCase()
+      .replace(/[^A-Za-z ]/g, '')
+      .replace(/ +/g, '-')
+  }
+
+  async function update(isDark: boolean) {
+    isDark ? await import('highlight.js/styles/github-dark.css') : await import('highlight.js/styles/github.css')
   }
 
   onMount(async () => {
@@ -37,16 +42,15 @@
     // Add anchor links to headers
     const selector = [1, 2, 3, 4, 5, 6].map((i) => `div.adapter h${i}`).join(', ')
     const elements = window.document.querySelectorAll(selector)
-    elements.forEach((el) => {
-      if (el.textContent) {
-        const hash = encodeTextToUrl(el.textContent)
-        el.innerHTML = `<a class="target-link" name="${hash}" href="${window.location.pathname}#${hash}">${el.innerHTML}</a>`
-      }
-    })
+    headings = Array.from(elements).map((element) => {
+      const text = element.textContent || ''
+      const hash = encodeTextToUrl(text)
+      const href = `${window.location.pathname}#${hash}`
+      const level = parseInt(element.tagName.slice(1))
 
-    async function update(isDark: boolean) {
-      isDark ? await import('highlight.js/styles/github-dark.css') : await import('highlight.js/styles/github.css')
-    }
+      element.innerHTML = `<a class="target-link" id="${hash}" href="${href}">${text}</a>`
+      return { text, hash, level, href }
+    })
 
     const match = window.matchMedia('(prefers-color-scheme: dark)')
     match.addEventListener('change', (e) => update(e.matches))
@@ -55,10 +59,16 @@
 </script>
 
 <div class="adapter">
+  {#if headings}
+    <ArticleOverview {headings} />
+  {/if}
   {@html content}
 </div>
 
 <style>
+  .adapter {
+    position: relative;
+  }
   div :global(.alignfull) {
     width: calc(100vw - 6em);
     margin-left: -2em;
