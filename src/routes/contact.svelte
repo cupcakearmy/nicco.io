@@ -18,6 +18,7 @@
       name: 'Github',
       icon: 'logo-github',
     },
+    { href: 'https://spectare.nicco.io/share/Xklie3UU/Nicco', name: 'Website Statistics', icon: 'analytics' },
     { href: '/privacy', name: 'Privacy Policy', icon: 'finger-print-outline' },
     { href: '/support', name: 'Support', icon: 'heart-sharp' },
   ]
