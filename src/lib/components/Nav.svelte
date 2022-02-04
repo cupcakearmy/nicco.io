@@ -14,7 +14,7 @@
 
 <nav>
   <a href="/">
-    <h1 class:active={$page.path === '/'}>NB</h1>
+    <h1 class:active={$page.url.pathname === '/'}>NB</h1>
   </a>
   <ul>
     <li>
@@ -26,7 +26,7 @@
       <li>
         <a {href}>
           <span>{name}</span>
-          <div class:active={$page.path.startsWith(href)} />
+          <div class:active={$page.url.pathname.startsWith(href)} />
         </a>
       </li>
     {/each}

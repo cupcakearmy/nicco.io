@@ -50,6 +50,9 @@
 
 <SimplePage title="Search" expanded={false}>
   <input bind:this={input} bind:value={needle} placeholder="needle" />
+  {#if needle && needle.indexOf('haystack') !== -1}
+    <p>⛳️✨ Here is a flag for you. ✨⛳</p>
+  {/if}
   {#if needle}
     <ul>
       {#each results as result (result.ref)}

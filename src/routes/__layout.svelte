@@ -22,8 +22,8 @@
 
   let last = ''
   $: {
-    const { host, path } = $page
-    const full = host + path
+    const { host, pathname } = $page.url
+    const full = host + pathname
     if (last !== full) {
       last = full
       if (main) setTimeout(() => (main.scrollTop = 0), 150)
@@ -52,7 +52,7 @@
   <main bind:this={main}>
     <slot />
   </main>
-  {#if $page.path !== '/'}
+  {#if $page.url.pathname !== '/'}
     <Progress />
   {/if}
 </div>

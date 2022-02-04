@@ -1,10 +1,10 @@
 <script lang="ts" context="module">
   import type { Load } from '@sveltejs/kit'
 
-  export const load: Load = async ({ fetch, page }) => {
+  export const load: Load = async ({ fetch, params }) => {
     return {
       props: {
-        data: await fetch(`/api/posts/${page.params.slug}.json`).then((r) => r.json()),
+        data: await fetch(`/api/posts/${params.slug}.json`).then((r) => r.json()),
       },
     }
   }
@@ -27,7 +27,7 @@
 <SimplePage title={data.title} readable>
   <PostAttributes post={data} full />
   {#if data.content}
-    <WpAdapter content={data.content} />
+    <WpAdapter content={data.content} legend />
   {/if}
   <Tags tags={data.tags.nodes} />
 </SimplePage>

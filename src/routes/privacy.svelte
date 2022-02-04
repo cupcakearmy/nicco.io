@@ -24,6 +24,6 @@
 
 <SimplePage title={data.title} expanded={false}>
   {#if data.content}
-    <WPAdapter content={data.content} />
+    <WPAdapter content={data.content} legend />
   {/if}
 </SimplePage>

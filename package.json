@@ -11,26 +11,26 @@
   },
   "type": "module",
   "devDependencies": {
-    "@graphql-codegen/cli": "^2.3.0",
-    "@graphql-codegen/typescript": "^2.4.1",
-    "@graphql-codegen/typescript-graphql-request": "^4.3.2",
-    "@graphql-codegen/typescript-operations": "^2.2.1",
+    "@graphql-codegen/cli": "^2.5.0",
+    "@graphql-codegen/typescript": "^2.4.3",
+    "@graphql-codegen/typescript-graphql-request": "^4.3.4",
+    "@graphql-codegen/typescript-operations": "^2.2.4",
     "@sveltejs/adapter-static": "next",
     "@sveltejs/kit": "next",
     "@types/lunr": "^2.3.4",
     "graphql": "^15.8.0",
     "graphql-request": "^3.7.0",
     "graphql-tag": "^2.12.6",
-    "svelte": "^3.44.3",
-    "svelte-check": "^2.2.11",
-    "svelte-preprocess": "^4.10.1",
+    "svelte": "^3.46.4",
+    "svelte-check": "^2.4.2",
+    "svelte-preprocess": "^4.10.2",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "dayjs": "^1.10.7",
-    "highlight.js": "^11.3.1",
+    "highlight.js": "^11.4.0",
     "lunr": "^2.3.9",
-    "svelte-cloudinary": "^0.2.4"
+    "svelte-cloudinary": "^0.2.5"
   }
 }

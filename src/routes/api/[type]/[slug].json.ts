@@ -1,7 +1,7 @@
 import { SDK } from '$lib/gql'
-import type { ServerRequest } from '@sveltejs/kit/types/hooks'
+import type { RequestHandler } from '@sveltejs/kit'
 
-export async function get(args: ServerRequest) {
+export const get: RequestHandler<any> = async (args) => {
   const { type, slug } = args.params
   const all = slug === '*'
 

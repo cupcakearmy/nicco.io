@@ -1,11 +1,11 @@
 <script lang="ts" context="module">
   import type { Load } from '@sveltejs/kit'
 
-  export const load: Load = async ({ fetch, page }) => {
+  export const load: Load = async ({ fetch, params }) => {
     return {
       props: {
-        slug: page.params.slug,
-        data: await fetch(`/api/postsByTags/${page.params.slug}.json`).then((r) => r.json()),
+        slug: params.slug,
+        data: await fetch(`/api/postsByTags/${params.slug}.json`).then((r) => r.json()),
       },
     }
   }

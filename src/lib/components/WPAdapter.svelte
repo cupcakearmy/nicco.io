@@ -22,6 +22,7 @@
   hljs.registerLanguage('css', css)
   hljs.registerLanguage('typescript', typescript)
 
+  export let legend = false
   export let content: string
   let headings: ArticleHeading[] | null = null
 
@@ -59,7 +60,7 @@
 </script>
 
 <div class="adapter">
-  {#if headings}
+  {#if legend && headings}
     <ArticleOverview {headings} />
   {/if}
   {@html content}
