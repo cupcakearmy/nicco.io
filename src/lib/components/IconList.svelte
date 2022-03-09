@@ -55,7 +55,7 @@
 
   a :global(.icon) {
     transform: translateY(0.3em);
-    font-size: 2em;
+    font-size: 1.5em;
     margin-right: 0.5rem;
   }
 </style>
