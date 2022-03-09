@@ -1,11 +1,14 @@
-<script lang="ts">
-  import Icon from './Icon.svelte'
-
-  type Link = {
+<script lang="ts" context="module">
+  import type { IconType } from './Icon.svelte'
+  export type Link = {
     href: string
     name: string
-    icon: string
+    icon: IconType
   }
+</script>
+
+<script lang="ts">
+  import Icon from './Icon.svelte'
 
   export let links: Link[] = []
 

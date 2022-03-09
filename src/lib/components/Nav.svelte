@@ -5,7 +5,7 @@
 
   const routes = [
     { name: 'About', href: '/about' },
-    { name: 'Works', href: '/works' },
+    // { name: 'Works', href: '/works' },
     { name: 'Projects', href: '/projects' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },

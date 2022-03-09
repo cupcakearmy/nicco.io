@@ -1,8 +1,9 @@
 <script lang="ts">
+  import type { Link } from '$lib/components/IconList.svelte'
   import IconList from '$lib/components/IconList.svelte'
   import SimplePage from '$lib/components/SimplePage.svelte'
 
-  const links = [
+  const links: Link[] = [
     {
       href: 'mailto:hi@nicco.io',
       name: 'Say hi@nicco.io',
@@ -21,6 +22,7 @@
     { href: 'https://spectare.nicco.io/share/Xklie3UU/Nicco', name: 'Website Statistics', icon: 'analytics' },
     { href: '/privacy', name: 'Privacy Policy', icon: 'finger-print-outline' },
     { href: '/support', name: 'Support', icon: 'heart-sharp' },
+    { href: 'https://status.nicco.io', name: 'Status Monitor', icon: 'caret-up-circle' },
   ]
 </script>
 

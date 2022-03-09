@@ -1,8 +1,9 @@
 <script lang="ts">
+  import type { Link } from '$lib/components/IconList.svelte'
   import IconList from '$lib/components/IconList.svelte'
   import SimplePage from '$lib/components/SimplePage.svelte'
 
-  const links = [
+  const links: Link[] = [
     {
       href: 'https://www.buymeacoffee.com/cupcakearmy',
       name: 'Buy Me A Coffee',
