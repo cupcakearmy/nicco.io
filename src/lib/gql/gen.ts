@@ -502,6 +502,8 @@ export type GQLCommentRepliesArgs = {
 /** A Comment Author object */
 export type GQLCommentAuthor = GQLCommenter & GQLNode & {
   readonly __typename?: 'CommentAuthor';
+  /** Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument. */
+  readonly avatar: Maybe<GQLAvatar>;
   /** Identifies the primary key from the database. */
   readonly databaseId: Scalars['Int'];
   /** The email for the comment author */
@@ -514,6 +516,14 @@ export type GQLCommentAuthor = GQLCommenter & GQLNode & {
   readonly name: Maybe<Scalars['String']>;
   /** The url the comment author. */
   readonly url: Maybe<Scalars['String']>;
+};
+
+
+/** A Comment Author object */
+export type GQLCommentAuthorAvatarArgs = {
+  forceDefault: InputMaybe<Scalars['Boolean']>;
+  rating: InputMaybe<GQLAvatarRatingEnum>;
+  size?: InputMaybe<Scalars['Int']>;
 };
 
 /** Connection between the Comment type and the Comment type */
@@ -683,6 +693,8 @@ export type GQLCommentToParentCommentConnectionWhereArgs = {
 
 /** The author of a comment */
 export type GQLCommenter = {
+  /** Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument. */
+  readonly avatar: Maybe<GQLAvatar>;
   /** Identifies the primary key from the database. */
   readonly databaseId: Scalars['Int'];
   /** The email address of the author of a comment. */
@@ -737,6 +749,8 @@ export enum GQLCommentsConnectionOrderbyEnum {
 export type GQLContentNode = {
   /** Connection between the ContentNode type and the ContentType type */
   readonly contentType: Maybe<GQLContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  readonly contentTypeName: Scalars['String'];
   /** The ID of the node in the database. */
   readonly databaseId: Scalars['Int'];
   /** Post publishing date. */
@@ -2041,6 +2055,8 @@ export type GQLMediaItem = GQLContentNode & GQLDatabaseIdentifier & GQLHierarchi
   readonly comments: Maybe<GQLMediaItemToCommentConnection>;
   /** Connection between the ContentNode type and the ContentType type */
   readonly contentType: Maybe<GQLContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  readonly contentTypeName: Scalars['String'];
   /** The unique identifier stored in the database */
   readonly databaseId: Scalars['Int'];
   /** Post publishing date. */
@@ -2853,6 +2869,8 @@ export type GQLNodeWithExcerptExcerptArgs = {
 export type GQLNodeWithFeaturedImage = {
   /** Connection between the ContentNode type and the ContentType type */
   readonly contentType: Maybe<GQLContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  readonly contentTypeName: Scalars['String'];
   /** The unique identifier stored in the database */
   readonly databaseId: Scalars['Int'];
   /** Post publishing date. */
@@ -3014,6 +3032,8 @@ export type GQLPage = GQLContentNode & GQLDatabaseIdentifier & GQLHierarchicalCo
   readonly content: Maybe<Scalars['String']>;
   /** Connection between the ContentNode type and the ContentType type */
   readonly contentType: Maybe<GQLContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  readonly contentTypeName: Scalars['String'];
   /** The unique resource identifier path */
   readonly databaseId: Scalars['Int'];
   /** Post publishing date. */
@@ -3378,6 +3398,8 @@ export type GQLPost = GQLContentNode & GQLDatabaseIdentifier & GQLMenuItemLinkab
   readonly content: Maybe<Scalars['String']>;
   /** Connection between the ContentNode type and the ContentType type */
   readonly contentType: Maybe<GQLContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  readonly contentTypeName: Scalars['String'];
   /** The unique resource identifier path */
   readonly databaseId: Scalars['Int'];
   /** Post publishing date. */
@@ -4469,6 +4491,8 @@ export type GQLProject = GQLContentNode & GQLDatabaseIdentifier & GQLMenuItemLin
   readonly content: Maybe<Scalars['String']>;
   /** Connection between the ContentNode type and the ContentType type */
   readonly contentType: Maybe<GQLContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  readonly contentTypeName: Scalars['String'];
   /** The unique resource identifier path */
   readonly databaseId: Scalars['Int'];
   /** Post publishing date. */
@@ -8013,13 +8037,13 @@ export type GQLUpdateSettingsPayload = {
   readonly allSettings: Maybe<GQLSettings>;
   /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   readonly clientMutationId: Maybe<Scalars['String']>;
-  /** Update the discussion setting. */
+  /** Update the DiscussionSettings setting. */
   readonly discussionSettings: Maybe<GQLDiscussionSettings>;
-  /** Update the general setting. */
+  /** Update the GeneralSettings setting. */
   readonly generalSettings: Maybe<GQLGeneralSettings>;
-  /** Update the reading setting. */
+  /** Update the ReadingSettings setting. */
   readonly readingSettings: Maybe<GQLReadingSettings>;
-  /** Update the writing setting. */
+  /** Update the WritingSettings setting. */
   readonly writingSettings: Maybe<GQLWritingSettings>;
 };
 
@@ -8837,6 +8861,8 @@ export type GQLWork = GQLContentNode & GQLDatabaseIdentifier & GQLMenuItemLinkab
   readonly content: Maybe<Scalars['String']>;
   /** Connection between the ContentNode type and the ContentType type */
   readonly contentType: Maybe<GQLContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  readonly contentTypeName: Scalars['String'];
   /** The unique resource identifier path */
   readonly databaseId: Scalars['Int'];
   /** Post publishing date. */
@@ -9435,51 +9461,51 @@ export const TagsManyDocument = gql`
 }
     ${BaseTagFragmentDoc}`;
 
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
 
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     MediaItemsMany(variables?: GQLMediaItemsManyQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLMediaItemsManyQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLMediaItemsManyQuery>(MediaItemsManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'MediaItemsMany');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLMediaItemsManyQuery>(MediaItemsManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'MediaItemsMany', 'query');
     },
     MediaItemsOne(variables: GQLMediaItemsOneQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLMediaItemsOneQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLMediaItemsOneQuery>(MediaItemsOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'MediaItemsOne');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLMediaItemsOneQuery>(MediaItemsOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'MediaItemsOne', 'query');
     },
     PagesMany(variables?: GQLPagesManyQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLPagesManyQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLPagesManyQuery>(PagesManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PagesMany');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLPagesManyQuery>(PagesManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PagesMany', 'query');
     },
     PagesOne(variables: GQLPagesOneQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLPagesOneQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLPagesOneQuery>(PagesOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PagesOne');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLPagesOneQuery>(PagesOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PagesOne', 'query');
     },
     WorksMany(variables?: GQLWorksManyQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLWorksManyQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLWorksManyQuery>(WorksManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'WorksMany');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLWorksManyQuery>(WorksManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'WorksMany', 'query');
     },
     WorksOne(variables: GQLWorksOneQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLWorksOneQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLWorksOneQuery>(WorksOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'WorksOne');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLWorksOneQuery>(WorksOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'WorksOne', 'query');
     },
     ProjectsMany(variables?: GQLProjectsManyQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLProjectsManyQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLProjectsManyQuery>(ProjectsManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ProjectsMany');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLProjectsManyQuery>(ProjectsManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ProjectsMany', 'query');
     },
     ProjectsOne(variables: GQLProjectsOneQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLProjectsOneQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLProjectsOneQuery>(ProjectsOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ProjectsOne');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLProjectsOneQuery>(ProjectsOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ProjectsOne', 'query');
     },
     PostsMany(variables?: GQLPostsManyQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLPostsManyQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLPostsManyQuery>(PostsManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PostsMany');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLPostsManyQuery>(PostsManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PostsMany', 'query');
     },
     PostsOne(variables: GQLPostsOneQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLPostsOneQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLPostsOneQuery>(PostsOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PostsOne');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLPostsOneQuery>(PostsOneDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PostsOne', 'query');
     },
     PostsManyByTag(variables: GQLPostsManyByTagQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLPostsManyByTagQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLPostsManyByTagQuery>(PostsManyByTagDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PostsManyByTag');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLPostsManyByTagQuery>(PostsManyByTagDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PostsManyByTag', 'query');
     },
     Search(variables?: GQLSearchQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLSearchQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLSearchQuery>(SearchDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Search');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLSearchQuery>(SearchDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Search', 'query');
     },
     TagsMany(variables?: GQLTagsManyQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GQLTagsManyQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GQLTagsManyQuery>(TagsManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'TagsMany');
+      return withWrapper((wrappedRequestHeaders) => client.request<GQLTagsManyQuery>(TagsManyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'TagsMany', 'query');
     }
   };
 }

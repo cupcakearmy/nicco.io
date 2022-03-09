@@ -5,6 +5,7 @@ import adapter from '@sveltejs/adapter-static'
 const config = {
   preprocess: preprocess(),
   kit: {
+    prerender: { default: true },
     adapter: adapter(),
   },
 }

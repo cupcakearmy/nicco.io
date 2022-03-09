@@ -45,7 +45,7 @@
 </script>
 
 {#if component}
-  <span>
+  <span {...$$restProps}>
     <svelte:component this={component} />
   </span>
 {/if}
