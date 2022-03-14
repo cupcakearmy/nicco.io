@@ -7,13 +7,14 @@
     {
       href: 'https://www.buymeacoffee.com/cupcakearmy',
       name: 'Buy Me A Coffee',
-      icon: 'cafe-outline',
+      icon: 'cafe',
     },
     {
       href: 'https://github.com/sponsors/cupcakearmy',
       name: 'Github Sponsor',
       icon: 'logo-github',
     },
+    { href: 'https://www.paypal.com/paypalme/cupcakearmy', name: 'Paypal', icon: 'paypal' },
   ]
 </script>
 

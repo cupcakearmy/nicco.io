@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
   import IconAnalytics from '$lib/icons/IconAnalytics.svelte'
-  import IconCafeOutline from '$lib/icons/IconCafeOutline.svelte'
+  import IconCafe from '$lib/icons/IconCafe.svelte'
   import IconCaretUpCircle from '$lib/icons/IconCaretUpCircle.svelte'
   import IconChatbubblesOutline from '$lib/icons/IconChatbubblesOutline.svelte'
   import IconFingerPrintOutline from '$lib/icons/IconFingerPrintOutline.svelte'
@@ -8,13 +8,13 @@
   import IconLinkOutline from '$lib/icons/IconLinkOutline.svelte'
   import IconLogoGithub from '$lib/icons/IconLogoGithub.svelte'
   import IconMailOutline from '$lib/icons/IconMailOutline.svelte'
-
+  import IconPaypal from '$lib/icons/IconPaypal.svelte'
   import IconSearchOutline from '$lib/icons/IconSearchOutline.svelte'
 
   export type IconType =
     | 'search-outline'
     | 'link-outline'
-    | 'cafe-outline'
+    | 'cafe'
     | 'logo-github'
     | 'mail-outline'
     | 'chatbubbles-outline'
@@ -23,11 +23,12 @@
     | 'finger-print-outline'
     | 'heart-sharp'
     | 'caret-up-circle'
+    | 'paypal'
 
   const mapping: Record<IconType, any> = {
     'search-outline': IconSearchOutline,
     'link-outline': IconLinkOutline,
-    'cafe-outline': IconCafeOutline,
+    cafe: IconCafe,
     'logo-github': IconLogoGithub,
     'mail-outline': IconMailOutline,
     'chatbubbles-outline': IconChatbubblesOutline,
@@ -35,6 +36,7 @@
     'finger-print-outline': IconFingerPrintOutline,
     'heart-sharp': IconHeartSharp,
     'caret-up-circle': IconCaretUpCircle,
+    paypal: IconPaypal,
   }
 </script>
 

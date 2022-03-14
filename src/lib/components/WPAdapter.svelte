@@ -144,4 +144,16 @@
   div :global(p.has-background) {
     padding: 0.5em;
   }
+
+  div :global(table) {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0.1rem solid var(--clr-primary);
+  }
+
+  div :global(table th),
+  div :global(table td) {
+    padding: 0.25rem;
+    border: 0.1rem solid var(--clr-primary);
+  }
 </style>
