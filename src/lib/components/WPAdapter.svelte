@@ -89,6 +89,7 @@
     }
   }
 
+  div :global(figure video),
   div :global(figure img) {
     width: 100%;
     height: 100%;
