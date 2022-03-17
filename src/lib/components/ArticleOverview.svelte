@@ -34,7 +34,7 @@
       position: absolute;
       top: 0;
       left: 40rem;
-      width: max-content;
+      width: calc(100vw - 51rem);
     }
   }
 
@@ -47,7 +47,7 @@
   a {
     height: 1.4em;
     display: inline-block;
-    max-width: 20rem;
+    max-width: calc(100% - 1.5rem);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
