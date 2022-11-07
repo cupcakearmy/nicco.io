@@ -11,11 +11,12 @@
 </script>
 
 <script lang="ts">
-  import SimplePage from '$lib/components/SimplePage.svelte'
   import PostAttributes from '$lib/components/PostAttributes.svelte'
-  import WpAdapter from '$lib/components/WPAdapter.svelte'
-  import type { GQLBasePostFragment } from '$lib/gql/gen'
+  import SimplePage from '$lib/components/SimplePage.svelte'
   import Tags from '$lib/components/Tags.svelte'
+  import WpAdapter from '$lib/components/WPAdapter.svelte'
+  import Discussion from '$lib/components/Discussion.svelte'
+  import type { GQLBasePostFragment } from '$lib/gql/gen'
 
   export let data: GQLBasePostFragment
 </script>
@@ -31,3 +32,5 @@
   {/if}
   <Tags tags={data.tags.nodes} />
 </SimplePage>
+
+<Discussion />
