@@ -19,7 +19,7 @@
       name: 'Github',
       icon: 'logo-github',
     },
-    { href: 'https://spectare.nicco.io/share/Xklie3UU/Nicco', name: 'Website Statistics', icon: 'analytics' },
+    { href: 'https://spectare.nicco.io/share/q80YU8C2/nicco.io', name: 'Website Statistics', icon: 'analytics' },
     { href: '/privacy', name: 'Privacy Policy', icon: 'finger-print-outline' },
     { href: '/support', name: 'Support', icon: 'heart-sharp' },
     { href: 'https://status.nicco.io', name: 'Status Monitor', icon: 'caret-up-circle' },
