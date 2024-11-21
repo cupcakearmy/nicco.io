@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets'
+import aboutImage from '../content/images/about.webp'
+---
+
+<Image src={aboutImage} alt={'tiny me'} />
+
+<style>
+  img {
+    position: absolute;
+    z-index: -1;
+    object-fit: contain;
+    width: 24vw;
+    height: 30vw;
+    left: 40em;
+    top: 12em;
+    max-width: 25em;
+  }
+
+  @media (max-width: 60em) {
+    img {
+      position: initial;
+      width: 100%;
+      height: 100%;
+      object-position: right;
+      max-height: 20em;
+      margin-top: 4em;
+    }
+  }
+</style>

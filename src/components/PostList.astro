@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import PostPreview from './PostPreview.astro'
+
+export type Props = {
+  posts: CollectionEntry<'blog'>[]
+}
+
+const { posts } = Astro.props
+---
+
+<section>
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`}>
+            <PostPreview {post} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  section {
+    padding: 3rem;
+  }
+
+  ul {
+    max-width: 40rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+</style>

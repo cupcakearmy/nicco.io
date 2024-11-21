@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content'
+import PostList from '../../components/PostList.astro'
+import Root from '../../layouts/Root.astro'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+  const tags = posts.reduce((set, cur) => {
+    for (const tag of cur.data.tags) {
+      set.add(tag)
+    }
+    return set
+  }, new Set<string>())
+
+  return [...tags].map((tag) => ({
+    params: { tag },
+    props: { posts: posts.filter((post) => post.data.tags.includes(tag)) },
+  }))
+}
+
+const params = Astro.params
+const { posts } = Astro.props
+---
+
+<Root>
+  <h1>{params.tag}</h1>
+  <PostList posts={posts} />
+</Root>

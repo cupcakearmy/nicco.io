@@ -1,0 +1,76 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import Tags from './Tags.astro'
+import PostAttributes from './PostAttributes.astro'
+import { Image } from 'astro:assets'
+
+export type Props = {
+  post: CollectionEntry<'blog'>
+}
+
+const { post } = Astro.props
+---
+
+<section class:list={{ without: !post.data.coverImage }}>
+  {post.data.coverImage && <Image src={post.data.coverImage} alt={'foo'} />}
+  <PostAttributes {post} />
+  <h2>
+    {post.data.title}
+  </h2>
+  <Tags tags={post.data.tags.map((tag) => ({ count: 1, name: tag, href: `/tag/${tag}` }))} />
+</section>
+
+<style>
+  section {
+    display: block;
+  }
+  section > :global(img) {
+    height: 12em;
+  }
+
+  h2 {
+    margin-top: 0.25em;
+    position: relative;
+    top: 0;
+    transition: var(--animation);
+    background-color: var(--clr-light);
+  }
+  section :global(img) {
+    transition: var(--animation);
+    position: relative;
+    top: 0;
+  }
+  section:hover :global(img) {
+    top: 2.5rem;
+  }
+
+  section > :global(div) {
+    opacity: 1;
+    transition: var(--animation);
+  }
+  section:hover > :global(div) {
+    opacity: 0;
+  }
+
+  section.without {
+    border: 2px solid var(--clr-primary);
+    padding: 5%;
+    width: calc(100% + 10%);
+    transform: translateX(-5%);
+  }
+
+  img {
+    width: calc(100% - 0.25em);
+    object-fit: cover;
+    object-position: center;
+    border: 0.125em solid var(--clr-primary);
+    transition: var(--animation);
+    transform: scale(1);
+    margin: 0;
+  }
+
+  img {
+    transform: scale(1.1);
+    margin: 1em 0;
+  }
+</style>

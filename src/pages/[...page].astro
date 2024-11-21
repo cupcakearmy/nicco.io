@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content'
+import PageWithTitle from '../layouts/PageWithTitle.astro'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('page')
+  return posts.map((post) => ({
+    params: { page: post.slug },
+    props: post,
+  }))
+}
+
+const post = Astro.props
+const { Content } = await post.render()
+---
+
+<PageWithTitle title={post.data.title}>
+  <Content />
+</PageWithTitle>

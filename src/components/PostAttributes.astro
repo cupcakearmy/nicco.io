@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import FormattedDate from './FormattedDate.astro'
+
+export type Props = {
+  post: CollectionEntry<'blog'>
+  full?: boolean
+}
+
+const { post, full = false } = Astro.props
+
+const { remarkPluginFrontmatter } = await post.render()
+---
+
+<div class="attributes">
+  <div>
+    <FormattedDate date={post.data.date} />
+    {
+      full && post.data.updatedDate && post.data.date !== post.data.updatedDate && (
+        <>
+          <br />
+          <small>
+            Last update: <FormattedDate date={post.data.updatedDate} />
+          </small>
+        </>
+      )
+    }
+  </div>
+  <div>~ {remarkPluginFrontmatter.readingTime.minutes.toFixed(0)} min</div>
+</div>
+
+<style>
+  .attributes {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 400;
+    margin-top: -0.125em;
+  }
+</style>
