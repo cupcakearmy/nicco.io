@@ -1,8 +1,7 @@
 ---
 import BaseHead from '../components/BaseHead.astro'
-// import Footer from '../components/Footer.astro'
-// import Header from '../components/Header.astro'
 import Nav from '../components/Nav.astro'
+import Progress from '../components/Progress.svelte'
 ---
 
 <!doctype html>
@@ -11,12 +10,11 @@ import Nav from '../components/Nav.astro'
     <BaseHead />
   </head>
   <body>
-    <!-- <Header /> -->
     <Nav />
     <main>
       <slot />
     </main>
-    <!-- <Footer /> -->
+    <Progress client:only="svelte" />
   </body>
 </html>
 
