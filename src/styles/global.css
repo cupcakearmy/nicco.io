@@ -72,14 +72,6 @@ a {
   text-decoration: none;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-  padding-left: 0px;
-  padding-left: 1em;
-  list-style: square;
-}
-
 svg {
   fill: currentColor;
   height: auto;

@@ -9,29 +9,24 @@ export type Props = {
 const { posts } = Astro.props
 ---
 
-<section>
-  <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <a href={`/blog/${post.slug}`}>
-            <PostPreview {post} />
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-</section>
+<ul>
+  {
+    posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.slug}`}>
+          <PostPreview {post} />
+        </a>
+      </li>
+    ))
+  }
+</ul>
 
 <style>
-  section {
-    padding: 3rem;
-  }
-
   ul {
     max-width: 40rem;
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 6rem;
+    list-style: none;
   }
 </style>

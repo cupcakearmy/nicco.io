@@ -1,6 +1,9 @@
 ---
-title: "Monitor your self hosted services for free"
-date: "2022-07-07"
+title: 'Monitor your self hosted services for free'
+date: '2022-07-07'
+tags:
+  - self-host
+  - monitoring
 ---
 
 Monitoring services requires external resources, as monitoring your server(s) from the server itself does not make sense. Renting a whole server for monitoring is a bit of a resources (and money) waste.
