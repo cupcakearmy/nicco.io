@@ -1,0 +1,3 @@
+- Search
+- Tag count
+- Link in contact to status monitor

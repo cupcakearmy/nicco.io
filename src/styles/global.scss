@@ -58,6 +58,13 @@ h6 {
   line-height: 1.2;
 }
 
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+
 p {
   text-align: justify;
   line-height: 1.5;
@@ -72,7 +79,18 @@ a {
   text-decoration: none;
 }
 
+p a,
+.toc a {
+  border-bottom: 0.125em solid var(--clr-primary);
+}
+
 svg {
   fill: currentColor;
   height: auto;
+}
+
+pre {
+  padding: 1rem;
+  margin: 1rem 0;
+  display: block;
 }

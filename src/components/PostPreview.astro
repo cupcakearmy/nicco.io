@@ -9,15 +9,20 @@ export type Props = {
 }
 
 const { post } = Astro.props
+const { remarkPluginFrontmatter } = await post.render()
 ---
 
 <section class:list={{ without: !post.data.coverImage }}>
   {post.data.coverImage && <Picture src={post.data.coverImage} alt={'foo'} />}
-  <PostAttributes {post} />
+  <PostAttributes
+    date={post.data.date}
+    updatedDate={post.data.updatedDate}
+    readingTime={remarkPluginFrontmatter.readingTime}
+  />
   <h2>
     {post.data.title}
   </h2>
-  <Tags tags={post.data.tags.map((tag) => ({ count: 1, name: tag, href: `/tag/${tag}` }))} />
+  <Tags tags={post.data.tags.map((tag) => ({ name: tag, href: `/tag/${tag}` }))} />
 </section>
 
 <style lang="scss">

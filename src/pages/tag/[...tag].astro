@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 import PostList from '../../components/PostList.astro'
-import Root from '../../layouts/Root.astro'
+import PageWithTitle from '../../layouts/PageWithTitle.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -22,7 +22,6 @@ const params = Astro.params
 const { posts } = Astro.props
 ---
 
-<Root>
-  <h1>{params.tag}</h1>
+<PageWithTitle title={params.tag}>
   <PostList posts={posts} />
-</Root>
+</PageWithTitle>

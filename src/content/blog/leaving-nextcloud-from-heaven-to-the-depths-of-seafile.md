@@ -1,6 +1,7 @@
 ---
 title: 'Leaving Nextcloud: From heaven to the depths of Seafile'
 date: '2021-03-23'
+updatedDate: '2021-03-27'
 categories:
   - 'general'
 tags:

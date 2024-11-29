@@ -1,8 +1,8 @@
 ---
-title: "Why I love JS but sometimes I feel we shoot ourself in the foot."
-date: "2020-05-29"
-categories: 
-  - "general"
+title: 'Why I love JS but sometimes I feel we shoot ourself in the foot.'
+date: '2020-05-29'
+categories:
+  - 'general'
 ---
 
 Let's start by saying this: I absolutely love JS & Typescript, they are my favourite languages and I would not want to live without them.
@@ -19,7 +19,7 @@ So an economist might think: "Why is this bad? Competition is always good as it 
 
 What is the consequence of this? Many abandoned, half-finished packages that need to be rewritten every now and then only to be left unmaintained again. Let the cycle repeat itself...
 
-## Bundle work! Not disperse it
+## Bundle work! Don't disperse it
 
 What if instead of reinventing the wheel over and over again we tune the wheel we have so that it becomes the best, most versatile wheel for everyone. Fragmentation is always a huge amount of work and leads to half-backed projects that always have some downsides. From that downside a new project is born and again, the cycle continues.
 

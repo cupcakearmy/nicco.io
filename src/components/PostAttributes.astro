@@ -1,32 +1,28 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import type { ReadTimeResults } from 'reading-time'
 import FormattedDate from './FormattedDate.astro'
+import ReadingTime from './ReadingTime.astro'
 
-export type Props = {
-  post: CollectionEntry<'blog'>
-  full?: boolean
-}
+type Props = {
+  readingTime: ReadTimeResults
+} & Pick<CollectionEntry<'blog'>['data'], 'date' | 'updatedDate'>
 
-const { post, full = false } = Astro.props
-
-const { remarkPluginFrontmatter } = await post.render()
+const { updatedDate, date, readingTime } = Astro.props
 ---
 
 <div class="attributes">
-  <div>
-    <FormattedDate date={post.data.date} />
+  <div class="estimation">
+    <FormattedDate date={date} />
     {
-      full && post.data.updatedDate && post.data.date !== post.data.updatedDate && (
-        <>
-          <br />
-          <small>
-            Last update: <FormattedDate date={post.data.updatedDate} />
-          </small>
-        </>
+      updatedDate && date !== updatedDate && (
+        <div class="updated">
+          Updated: <FormattedDate date={updatedDate} />
+        </div>
       )
     }
   </div>
-  <div>~ {remarkPluginFrontmatter.readingTime.minutes.toFixed(0)} min</div>
+  <ReadingTime readingTime={readingTime} />
 </div>
 
 <style>
@@ -35,5 +31,14 @@ const { remarkPluginFrontmatter } = await post.render()
     justify-content: space-between;
     font-weight: 400;
     margin-top: -0.125em;
+  }
+  .estimation {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+  }
+  .updated {
+    font-size: 0.75em;
+    font-style: italic;
   }
 </style>

@@ -16,18 +16,6 @@ Lets dive deeper 🤿.
 I created a tiny [companion repository](https://github.com/cupcakearmy/blog-typescript-graphql) if you want to check out the code and try it out.  
 Or check out the [finished demo](https://blog-typescript-graphql.vercel.app/).
 
-<figure>
-
-![](images/clayton-robbins-Ru09fQONJWo-unsplash-1024x683.jpg)
-
-<figcaption>
-
-Photo by [Clayton Robbins](https://unsplash.com/@claytonrobbins?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@claytonrobbins?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 ## Intro
 
 First we need to decide on what do we want (and probably need)
@@ -50,7 +38,7 @@ The setup will be be for VSCode. For that we first install the [GraphQL extensio
 
 We need to add a `.graphqlrc.yml` file at the root with the following content:
 
-```
+```yaml
 schema: https://api.spacex.land/graphql/
 ```
 
@@ -68,7 +56,7 @@ We want to take our endpoint, generate types and queries from it that can then b
 
 There is this amazing project called `@graphql-codegen` which is a collection of tools for helping you generating various things from GraphQL. Let's install:
 
-```
+```bash
 # Generators
 pnpm i -D @graphql-codegen/cli @graphql-codegen/typescript @graphql-codegen/typescript-operations @graphql-codegen/typescript-graphql-request
 # For the SDK
@@ -79,17 +67,17 @@ I will assume my GraphQL stuff will live under `./src/lib/gql`
 
 We will create a top level configuration file to handle all of our generation step called `codegen.yaml`. Ignore the `config` option for now, I will explain that later
 
-```
+```yaml
 schema: https://api.spacex.land/graphql/
-documents: "src/**/*.graphql"
+documents: 'src/**/*.graphql'
 generates:
   ./src/lib/gql/gen.ts:
     plugins:
-      - "@graphql-codegen/typescript"
-      - "@graphql-codegen/typescript-operations"
-      - "@graphql-codegen/typescript-graphql-request"
+      - '@graphql-codegen/typescript'
+      - '@graphql-codegen/typescript-operations'
+      - '@graphql-codegen/typescript-graphql-request'
     config:
-      maybeValue: "T"
+      maybeValue: 'T'
       typesPrefix: GQL
       immutableTypes: true
       useTypeImports: true
@@ -104,7 +92,7 @@ The property `schema` does not need an explanation.
 
 Now let's create a `src/lib/gql/root.graphql` file and write some queries, all autocompleted of course!
 
-```
+```gql
 query LaunchpadsMany {
   launchpads(limit: 10) {
     id
@@ -131,7 +119,7 @@ query LaunchByYear($year: String!) {
 
 ### Let magic do it's thing
 
-```
+```bash
 pnpm exec graphql-codegen
 ```
 
@@ -139,7 +127,7 @@ This will look at all our custom queries and mutations and generate us a ready t
 
 ### Leverage the new SDK
 
-```
+```ts
 // src/lib/gql/index.ts
 
 import { GraphQLClient } from 'graphql-request'
@@ -149,7 +137,7 @@ const client = new GraphQLClient('https://api.spacex.land/graphql/')
 export const SDK = getSdk(client)
 ```
 
-```
+```ts
 import { SDK } from '$lib/gql'
 
 const data = await SDK.LaunchByYear({ year: '2021' })
@@ -157,7 +145,7 @@ const data = await SDK.LaunchByYear({ year: '2021' })
 
 You can also use the generated types to explicitly set them
 
-```
+```ts
 import { SDK } from '$lib/gql'
 import type { GQLLaunchByYearQuery } from '$lib/gql/gen'
 
@@ -170,7 +158,7 @@ Every thing is typed now, I can't pass a number to the `year` variable or use re
 
 I promised I would come back to it at some point.
 
-```
+```yaml
 schema: ...
 generates:
     ...
