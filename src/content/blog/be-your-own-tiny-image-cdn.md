@@ -8,18 +8,6 @@ Today, I want to share how to create and host your own image transformation serv
 
 The building blocks will be [imgproxy](https://github.com/imgproxy/imgproxy) and [nginx](https://nginx.org/). The former is a battle tested and fast image server with support for most image operations, while nginx should not need an introduction.
 
-<figure>
-
-![](images/meagan-carsience-QGnm_F_nd1E-unsplash1.jpg)
-
-<figcaption>
-
-Photo by [Meagan Carsience](https://unsplash.com/@mcarsience_photography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/QGnm_F_nd1E?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 While imgproxy is the core of this operation, it does not support caching. This is intentional, as it's intended to be run behind a proxy. For that, nginx is the tool of choice, as it enables us to easily setup caching rules to avoid generating the same image twice in a given cache interval. Everything will be done in docker containers, but the concept, of course, extends to bare metal too.
 
 ## Setup
@@ -30,7 +18,7 @@ It's generally advised to use signed URLs if possible. In my case, there was no 
 
 Below is docker file used. Required is only the `IMGPROXY_BIND` as otherwise nginx cannot connect to our image container. The other options are up to you and are just here for a quick setup.
 
-```
+```yaml
 # docker-compose.yaml
 version: '3.8'
 
@@ -65,7 +53,7 @@ services:
 
 The more interesting part is the nginx configuration file below. In this case, we target 30 days as a cache TTL. This could be easily increased if we are only talking about static images.
 
-```
+```nginx
 # Set cache to 30 days, 1GB.
 # Only use the uri as the cache key, as it's the only input for imageproxy.
 proxy_cache_path /tmp levels=1:2 keys_zone=images:8m max_size=1g inactive=30d;

@@ -12,18 +12,6 @@ So you ever wondered why your docker build takes so long to startup when all you
 
 Fear no more! `.dockerignore` to the rescue ⚓️.
 
-<figure>
-
-![](images/thomas-kelley-t20pc32VbrU-unsplash-scaled-1.jpg)
-
-<figcaption>
-
-Photo by [Thomas Kelley](https://unsplash.com/@thkelley?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/whale?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 Whenever you build a docker image the first thing you will always see is the following:
 
 ```bash

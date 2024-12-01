@@ -22,18 +22,6 @@ Overview
 4. [lists / arrays](#lists)
 5. [complex data types handling](#complex)
 
-<figure>
-
-![](images/jonathan-chng-HgoKvtKpyHA-unsplash-scaled-1.jpg)
-
-<figcaption>
-
-Photo by [Jonathan Chng](https://unsplash.com/@jon_chng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/run?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 Lets assume we want to run the following python code in rust.
 
 ```
@@ -54,19 +42,19 @@ Lets see the steps we need to take to achieve this:
 
 First lets create a new rust project by running:
 
-```
+```bash
 cargo new rust_in_python
 ```
 
 Then lets rename `src/main.rs` to `src/lib.rs` as we want a library and not standalone program.
 
-```
+```bash
 mv src/main.rs src/lib.rs
 ```
 
 Now we simply write a hello world function in rust
 
-```
+```rust
 #[no_mangle]
 fn hello() {
     println!("Hello from rust 👋");
@@ -77,20 +65,20 @@ For every function that need to be available to other languages (in our case Pyt
 
 The last step is to tell rust to compile to a dynamic library. To do so simply add the following to your `Cargo.toml` config file.
 
-```
+```toml
 [lib]
 crate-type = ["dylib"]
 ```
 
 Now we are ready to build 🚀
 
-```
+```bash
 cargo build --release
 ```
 
 Now just create a `main.py` file and we can import and run our function.
 
-```
+```py
 from ctypes import CDLL
 
 lib = CDLL("target/release/librust_in_python.dylib")
@@ -99,7 +87,7 @@ lib.hello()
 
 And if you run it you will be greeted from rust. No need to install, the `ctypes` package is included the standard python library.
 
-```
+```bash
 python main.py
 ```
 
@@ -111,7 +99,7 @@ Before we start I would like to remind you that python is untyped whereas rust o
 
 First lets write the simple add function in rust
 
-```
+```rust
 #[no_mangle]
 fn add(a: f64, b: f64) -> f64 {
     return a + b;
@@ -120,13 +108,13 @@ fn add(a: f64, b: f64) -> f64 {
 
 Don't forget to build again 😉
 
-```
+```bash
 cargo build --release
 ```
 
 Now to the python part
 
-```
+```py
 from ctypes import CDLL, c_double
 
 lib = CDLL("target/release/librust_in_python.dylib")
@@ -158,7 +146,7 @@ So what about lists? Unfortunately I have not found a way to use Vectors for dyn
 
 ###### Rust
 
-```
+```rust
 #[no_mangle]
 fn sum(arr: [i32; 5]) -> i32 {
     let mut total: i32 = 0;
@@ -171,7 +159,7 @@ fn sum(arr: [i32; 5]) -> i32 {
 
 ###### Python
 
-```
+```python
 from ctypes import CDLL, c_int
 
 lib = CDLL("target/release/librust_in_python.dylib")
@@ -191,7 +179,7 @@ Often it can be very useful to send and/or receive data in a structured, compact
 
 ###### Rust
 
-```
+```rust
 #[repr(C)]
 pub struct Point {
     pub x: f64,
@@ -206,7 +194,7 @@ fn greet_point(p: Point) {
 
 ###### Python
 
-```
+```python
 from ctypes import CDLL, Structure, c_double
 
 lib = CDLL("target/release/librust_in_python.dylib")

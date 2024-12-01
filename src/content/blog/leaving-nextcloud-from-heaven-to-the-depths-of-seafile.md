@@ -20,18 +20,6 @@ There are numerous of plug-ins that can accomplish anything from contacts syncin
 
 Trying to be everything at the same time comes at a cost. And that is generally an experience that at least in my experience never feels polished or finished. While the Nextcloud Plug-Ins are incredibly versatile and powerful they also leave room for segmentation and you will notice it.
 
-<figure>
-
-![](images/pawel-nolbert-xe-ss5Tg2mo-unsplash.jpg)
-
-<figcaption>
-
-Cloud and Ocean
-
-</figcaption>
-
-</figure>
-
 ### The permanent alpha
 
 That's what using Nextcloud feels like 75% of the time. I have no insight into the company behind the project but it feels like they are chasing a release cycle for the sake of paper launching unfinished features that compromise in terms of stability and polish. The thing that bothers me the most is that they are constantly marketed as "production ready" when they clearly had not nearly enough QA.
@@ -78,7 +66,7 @@ Seafile on the other hand just had the release of it's 8th version (still in bet
 I had to migrate 2 things: Cal/CardDav for Calendar and Contacts and the files drive itself.  
 Spinning up a Seafile instance was a breeze as I host every single service with docker.
 
-```
+```bash
 # .env
 MYSQL_ROOT_PASSWORD=random
 DB_HOST=db
@@ -88,8 +76,8 @@ SEAFILE_ADMIN_EMAIL=me@example.com
 SEAFILE_ADMIN_PASSWORD=a_very_secret_password
 ```
 
-```
-version: "2.0"
+```yaml
+version: '2.0'
 
 services:
   db:
@@ -129,13 +117,13 @@ Since Seafile focuses only on the "Drive" component I had to migrate my contacts
 
 You can find my [Radicale docker image here](https://github.com/cupcakearmy/docker-radicale), maybe you find it useful. It supports bcrypt passwords and can be deployed with just the env variables for `USER` and `PASSWORD`. It has been tested with the iOS and macOS native clients.
 
-```
+```bash
 # .env
 USER=foo
 PASSWORD=secret
 ```
 
-```
+```yaml
 # docker-compose.yml
 version: '3.7'
 

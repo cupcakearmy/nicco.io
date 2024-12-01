@@ -3,6 +3,8 @@ title: 'Why I love JS but sometimes I feel we shoot ourself in the foot.'
 date: '2020-05-29'
 categories:
   - 'general'
+tags:
+  - rant
 ---
 
 Let's start by saying this: I absolutely love JS & Typescript, they are my favourite languages and I would not want to live without them.

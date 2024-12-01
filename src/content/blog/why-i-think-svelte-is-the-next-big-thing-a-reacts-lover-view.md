@@ -17,18 +17,6 @@ So maybe one of you is thinking the same thing. Why [Svelte](https://svelte.dev/
 
 This is not a tutorial, for that check the amazing [official tutorial](https://svelte.dev/tutorial/basics) which teaches you everything from the basics to more advanced stuff.
 
-<figure>
-
-![](images/alessandra-caretto-cAY9X4rPG3g-unsplash.jpg)
-
-<figcaption>
-
-Photo by [Alessandra Caretto](https://unsplash.com/@alessandracaretto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/wheel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 Why is there a wheel? Well quite simply: Svelte IS reinventing the wheel.  
 You see: what are most of the frameworks doing nowadays? They provide a way to code user interfaces with a component approach. This makes a lot of sense because we can reuse them, they are boxed items that stand for them self. Modularizing and splitting up concerns make big apps easier to write and afterwards maintain.
 

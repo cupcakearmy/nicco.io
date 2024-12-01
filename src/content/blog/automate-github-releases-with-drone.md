@@ -16,18 +16,6 @@ For this article I will take my own [project](https://github.com/cupcakearmy/aut
 Also I will base this guide on [Drone](https://drone.io/). But I'm sure there is the same workflow for jenkins/circle/whatever CI/CD system you are using.  
 This means I'm assuming you have a repository already running with Drone.
 
-<figure>
-
-![](images/franck-v-U3sOwViXhkY-unsplash-scaled-1.jpg)
-
-<figcaption>
-
-Photo by [Franck V.](https://unsplash.com/@franckinjapan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/robot?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 The first thing we will need is an access token for the Github API.  
 You can get them here [https://github.com/settings/tokens](https://github.com/settings/tokens). I called my `Drone` and you need to check the permissions for the repos as follows.
 
@@ -69,39 +57,37 @@ Now it's time to edit our drone file and make everything automatic. The flow at 
 
 Simple right? Lets see how!
 
-```
+```yaml
 # .drone.yml
 ---
 kind: pipeline
 name: default
 
 steps:
-- name: build
-  image: node
-  pull: always
-  commands:
-    - yarn
-    - yarn run bin
-  when:
-    event: tag
+  - name: build
+    image: node
+    pull: always
+    commands:
+      - yarn
+      - yarn run bin
+    when:
+      event: tag
 
-- name: publish
-  image: plugins/github-release
-  pull: always
-  settings:
-    api_key:
-      from_secret: github
-    files: bin/*
-    checksum:
-      - sha512
-    note: CHANGELOG.md
-  when:
-    event: tag
+  - name: publish
+    image: plugins/github-release
+    pull: always
+    settings:
+      api_key:
+        from_secret: github
+      files: bin/*
+      checksum:
+        - sha512
+      note: CHANGELOG.md
+    when:
+      event: tag
 ---
 kind: signature
 hmac: 3b1f235f6a6f0ee1aa3f572d0833c4f0eec931dbe0378f31b9efa336a7462912
-
-...
 ```
 
 Lets understand what is happening here:
@@ -124,13 +110,13 @@ The `checksum` setting is also amazing because as the name suggests the plugin a
 
 Simple! First tag your code with the following command
 
-```
+```bash
 git tag 1.2.3
 ```
 
 Now push the tag and drone will be on its way
 
-```
+```bash
 git push --tags
 ```
 

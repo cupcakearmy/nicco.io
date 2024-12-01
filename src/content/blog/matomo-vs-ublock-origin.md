@@ -27,19 +27,24 @@ Then I quickly copied the JS tracker code in my main html template and thought t
 So turns out that Matomo, being widely used is of course included in many Ad-Blocker lists and therefore my stats did not work. Lets see why:  
 Basically all ad blockers work with lists. Those lists include pattern that if matched will be filtered out. Let's take a look at the default Matomo tracking code:
 
-```
+```html
 <script type="text/javascript">
-  var _paq = window._paq = window._paq || [];
+  var _paq = (window._paq = window._paq || [])
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//stats.nicco.io/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
+  _paq.push(['trackPageView'])
+  _paq.push(['enableLinkTracking'])
+  ;(function () {
+    var u = '//stats.nicco.io/'
+    _paq.push(['setTrackerUrl', u + 'matomo.php'])
+    _paq.push(['setSiteId', '1'])
+    var d = document,
+      g = d.createElement('script'),
+      s = d.getElementsByTagName('script')[0]
+    g.type = 'text/javascript'
+    g.async = true
+    g.src = u + 'matomo.js'
+    s.parentNode.insertBefore(g, s)
+  })()
 </script>
 ```
 
@@ -79,7 +84,7 @@ Luckily Apache has the famous Rewrite module, which will solve all our problems.
 
 We can create a `.htaccess` file in the root of our Matomo installation folder, to cloak our requests.
 
-```
+```apache
 # .htaccess
 RewriteEngine On
 RewriteRule ^unicorn matomo.js
@@ -88,11 +93,11 @@ RewriteRule ^rainbow matomo.php
 
 Now if we request `https://stats.nicco.io/unicorn` we actually get the response for `https://stats.nicco.io/matomo.js` and the same for `rainbow` and `matomo.php`.
 
-```
+```js
 // Replace in the client
 
-_paq.push(['setTrackerUrl', u+'matomo.php']); // Before
-_paq.push(['setTrackerUrl', u+'rainbow']); // After
+_paq.push(['setTrackerUrl', u + 'matomo.php']) // Before
+_paq.push(['setTrackerUrl', u + 'rainbow']) // After
 
 g.src = u + 'matomo.js' // Before
 g.src = u + 'unicorn' // After
@@ -102,7 +107,7 @@ g.src = u + 'unicorn' // After
 
 I had to create a minuscule `Dockerfile` as the `Rewrite` module is not enabled per default in the standard Matomo docker image.
 
-```
+```Dockerfile
 # Dockerfile
 FROM matomo
 RUN a2enmod rewrite
@@ -118,9 +123,9 @@ Now as you can see it's incredibly easy to mask tracking stuff, and I bet there 
 
 The `Dockerfile` and the `.htaccess` files are shown above.
 
-```
+```yaml
 # docker-compose.yml
-version: "3.7"
+version: '3.7'
 
 networks:
   traefik:
@@ -149,13 +154,13 @@ services:
       - traefik.docker.network=traefik
       - traefik.port=80
       - traefik.backend=matomo
-      - "traefik.frontend.rule=Host:stats.nicco.io;"
+      - 'traefik.frontend.rule=Host:stats.nicco.io;'
     networks:
       - traefik
       - default
 ```
 
-```
+```bash
 # .env
 MYSQL_DATABASE=matomo
 MYSQL_USER=matomo

@@ -1,6 +1,7 @@
 ---
 title: 'How to search in the JAM'
 date: '2020-12-06'
+coverImage: './images/uriel-soberanes-gCeH4z9m7bg-unsplash.jpg'
 categories:
   - 'coding'
 tags:
@@ -20,18 +21,6 @@ We will look at the following:
 1. How to implement the search
 2. Search Accuracy & Precision
 3. Performance & Size
-
-<figure>
-
-![Telescope](images/uriel-soberanes-gCeH4z9m7bg-unsplash.jpg)
-
-<figcaption>
-
-Photo by [Uriel Soberanes](https://unsplash.com/@soberanes?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/telescope?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
 
 We can't rely on a backend as discussed above, so the magic will happen at build time, like everything in the JAM-verse.
 
@@ -60,7 +49,7 @@ So I'm using [Sapper](https://sapper.svelte.dev/) for this blog so the examples 
 
 First we need to aggregate all our data. In my case this means all the single pages, blog entries, projects and works. So I created a `/src/routes/search.json.js` file and got to work.
 
-```
+```ts
 import lunr from 'lunr'
 
 import { getAll } from '../lib/wp'
@@ -109,7 +98,7 @@ Now I have the "search model" ready. You can have a look: [nicco.io/search.json]
 
 It's time to integrate the search into the actual website 🚀
 
-```
+```html
 <script context="module">
   export async function preload() {
     const prebuilt = await this.fetch(`/search.json`).then((res) => res.json())
@@ -141,29 +130,29 @@ It's time to integrate the search into the actual website 🚀
   $: search(needle)
 </script>
 
-<input bind:value={needle} placeholder="needle" />
+<input bind:value="{needle}" placeholder="needle" />
 <ul>
   {#each results as result (result.ref)}
-    <SearchResult {result} />
+  <SearchResult {result} />
   {/each}
 </ul>
 ```
 
 The first thing we do is load our preloaded `/search.json` and loading into an instance of `lunr`. This only need to happen once, once the index is loaded we ready to go.
 
-```
+```ts
 const idx = lunr.Index.load(prebuilt)
 ```
 
 For the searching itself `lunr` has quite a [few options](https://lunrjs.com/guides/searching.html). The most relevant for me where the wildcard and fuzzy search. While wildcard is good for when we don't have completed a word yet, fuzzy helps us with typos.
 
-```
+```ts
 const fuzzy = idx.search(needle + '~1') // foo~1
 ```
 
 While not explicitly said in the docs I'm guessing they use the [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance), which means `~1` will replace at most 1 char.
 
-```
+```ts
 const wildcard = idx.search(needle + '*') // fo*
 ```
 

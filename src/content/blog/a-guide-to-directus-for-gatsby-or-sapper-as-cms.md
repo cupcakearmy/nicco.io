@@ -25,29 +25,16 @@ The article will focus on Sapper, but the parts related to Directus are identica
 3. [Create a super small frontend](#3)
 4. [Write a custom hook for Directus that automatically triggers the build whenever content changes in the DB.](#4)
 
-<figure>
-
-![](images/noah-silliman-doBrZnp_wqA-unsplash.jpg)
-
-<figcaption>
-
-Photo by [Noah Silliman](https://unsplash.com/@noahsilliman?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/rabbit?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 ## Installing Directus
 
 This should be straight forward. These instructions are adopted from the [official docker guide](https://docs.directus.io/installation/docker.html). I will use Docker for this.
 
-```
+```yaml
 # docker-compose.yml
 
-version: "3.7"
+version: '3.7'
 
 services:
-
   mysql:
     image: mysql:5.7
     volumes:
@@ -57,7 +44,7 @@ services:
   directus:
     image: directus/directus:v8-apache
     ports:
-      - "8000:80"
+      - '8000:80'
     env_file: .env
     volumes:
       - ./data/config:/var/directus/config
@@ -66,7 +53,7 @@ services:
 
 The we run `docker-compose up -d`. After a few seconds we need to initialise Directus.
 
-```
+```bash
 docker-compose run directus install --email some@email.com --password 1337
 ```
 
@@ -114,7 +101,7 @@ Give permissions to the public user
 
 I will not explain how [Sapper](https://sapper.svelte.dev/) works as this is not the focus today. If you don't know Sapper: It's very similar to Nuxt or Next.js with the additional option to even export as static html, so the end result is similar to a Gatsby website. Very powerful and easy to use and code.
 
-```
+```bash
 # Setup
 npx degit "sveltejs/sapper-template#rollup" my-blog
 cd my-blog
@@ -127,52 +114,54 @@ yarn run dev
 
 Directus has a [JS SDK](https://docs.directus.io/guides/js-sdk.html) and since we have made data public we don't even need a token or authentication. Awesome 🚀
 
-```
+```bash
 yarn add @directus/sdk-js
 ```
 
 First we are going to initialise the SDK. The default project name is simply `directus`
 
-```
+```ts
 // ./src/lib/api.js
 
 import DirectusSDK from '@directus/sdk-js'
 
 export const client = new DirectusSDK({
   url: 'http://localhost:8000',
-  project: 'directus'
+  project: 'directus',
 })
 ```
 
 Then lets make a server side json loader so that the exported site will not even contact the server afterwards. Completely static html.
 
-```
+```ts
 // ./src/routes/posts.json.js
 
 import { client } from '../lib/api'
 
-export async function get (req, res, next) {
+export async function get(req, res, next) {
   try {
     const { data } = await client.getItems('posts')
 
     res.writeHead(200, {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     })
     res.end(JSON.stringify(data))
   } catch (e) {
     res.writeHead(404, {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     })
-    res.end(JSON.stringify({
-      message: 'Not found'
-    }))
+    res.end(
+      JSON.stringify({
+        message: 'Not found',
+      })
+    )
   }
 }
 ```
 
 Finally the svelte component.
 
-```
+```svelte
 // ./src/routes/index.svelte
 
 <script context="module">
@@ -205,7 +194,7 @@ I will illustrate the case for [Drone](https://drone.io/), but the approach can 
 
 For that we create a new php file and give it a name. In my case: `drone-hook.php`
 
-```
+```php
 # ./hooks/drone-hook.php
 
 <?php
@@ -236,7 +225,7 @@ return [
 
 I've also put the token inside of the `.env` file so that I can safely check my code into a repo and not having to worry about having a token lying around in the codebase.
 
-```
+```bash
 # .env
 
 ...
@@ -247,7 +236,7 @@ DRONE_TOKEN=my-drone-token
 
 The last thing to do is actually load the code into Directus. You can simply mount the `./hooks` folder we just created into the container and reload.
 
-```
+```yaml
 # docker-compose.yml
 
 version: "3.7"

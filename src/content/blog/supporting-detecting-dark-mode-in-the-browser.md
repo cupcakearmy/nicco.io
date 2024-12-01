@@ -18,18 +18,6 @@ We will look at a few ways how to detect and handle dark modes in 2020:
 2. [JS](#js)
 3. [React](#react)
 
-<figure>
-
-![](images/davisco-5E5N49RWtbA-unsplash-scaled-1.jpg)
-
-<figcaption>
-
-Photo by [davisco](https://unsplash.com/@codytdavis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/contrast?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 ## Pure CSS
 
 First lets have a look how we can do this using only CSS. There is a new css media query that is supported by [almost any browser](https://caniuse.com/#feat=prefers-color-scheme) right now.  

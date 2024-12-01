@@ -25,7 +25,7 @@ For monitoring we will use [Uptime Kuma](https://github.com/louislam/uptime-kuma
 
 First we need to [instal docker](https://docs.docker.com/engine/install/debian/#install-using-the-repository)
 
-```
+```bash
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
 echo \
@@ -38,7 +38,7 @@ apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 Also we want some basic firewall
 
-```
+```bash
 apt install ufw
 ufw allow 80
 ufw allow 443
@@ -65,7 +65,7 @@ We only need a `docker-compose.yaml` file now and we should be up and running. I
 
 Lets start with Traefik. It will handle all our routing and TLS certificates. Remember to change the acme email down in the `traefik.yaml`
 
-```
+```yaml
 version: '3.8'
 
 networks:
@@ -78,36 +78,36 @@ services:
     image: traefik:2.8
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
+      - '443:443'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yaml:/etc/traefik/traefik.yaml:ro
       - ./data:/data
     labels:
-      - "traefik.enable=true"
+      - 'traefik.enable=true'
 
       # HTTP to HTTPS redirection
-      - "traefik.http.routers.http_catchall.rule=HostRegexp(`{any:.+}`)"
-      - "traefik.http.routers.http_catchall.entrypoints=insecure"
-      - "traefik.http.routers.http_catchall.middlewares=https_redirect"
-      - "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.https_redirect.redirectscheme.permanent=true"
+      - 'traefik.http.routers.http_catchall.rule=HostRegexp(`{any:.+}`)'
+      - 'traefik.http.routers.http_catchall.entrypoints=insecure'
+      - 'traefik.http.routers.http_catchall.middlewares=https_redirect'
+      - 'traefik.http.middlewares.https_redirect.redirectscheme.scheme=https'
+      - 'traefik.http.middlewares.https_redirect.redirectscheme.permanent=true'
 ```
 
-```
-#Define HTTP and HTTPS entrypoints
+```yaml
+# Define HTTP and HTTPS entrypoints
 entryPoints:
   insecure:
-    address: ":80"
+    address: ':80'
   secure:
-    address: ":443"
+    address: ':443'
 
 #Dynamic configuration will come from docker labels
 providers:
   docker:
-    endpoint: "unix:///var/run/docker.sock"
-    network: "proxy"
+    endpoint: 'unix:///var/run/docker.sock'
+    network: 'proxy'
     exposedByDefault: false
 
 #Enable acme with http file challenge
@@ -123,7 +123,7 @@ certificatesResolvers:
 
 To get traefik running we just need to type the following
 
-```
+```bash
 docker network create proxy
 docker compose up -d
 ```
@@ -132,7 +132,7 @@ docker compose up -d
 
 The compose file for Kuma is compact. Don't forget to change the domain to yours.
 
-```
+```yaml
 version: '3.8'
 
 networks:
@@ -147,10 +147,10 @@ services:
     volumes:
       - ./data:/app/data
     labels:
-    - traefik.enable=true
-    - traefik.http.routers.kuma.rule=Host(`status.example.org`)
-    - traefik.http.routers.kuma.entrypoints=secure
-    - traefik.http.routers.kuma.tls.certresolver=le
+      - traefik.enable=true
+      - traefik.http.routers.kuma.rule=Host(`status.example.org`)
+      - traefik.http.routers.kuma.entrypoints=secure
+      - traefik.http.routers.kuma.tls.certresolver=le
 ```
 
 Now you can navigate to your new monitoring website and create and admin account and setup monitors, alert systems and so on.
