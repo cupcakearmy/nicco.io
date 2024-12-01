@@ -1,6 +1,7 @@
 ---
-title: "Be your own (tiny) image CDN"
-date: "2023-04-28"
+title: 'Be your own (tiny) image CDN'
+date: '2023-04-28'
+coverImage: './images/meagan-carsience-QGnm_F_nd1E-unsplash1.jpg'
 ---
 
 Today, I want to share how to create and host your own image transformation service, much like the known [Imgix](https://imgix.com/) and [Cloudinary](https://cloudinary.com/). The aim is to have a powerful transformation server for images that caches, so images only need to be computed once.
@@ -9,7 +10,7 @@ The building blocks will be [imgproxy](https://github.com/imgproxy/imgproxy) and
 
 <figure>
 
-![](images/meagan-carsience-QGnm_F_nd1E-unsplash1-1024x683.jpg)
+![](images/meagan-carsience-QGnm_F_nd1E-unsplash1.jpg)
 
 <figcaption>
 
@@ -52,7 +53,7 @@ services:
       IMGPROXY_ENFORCE_AVIF: true
       IMGPROXY_ONLY_PRESETS: true
       IMGPROXY_PRESETS: default=resizing_type:fit,sm=size:250:250,md=size:500:500,lg=size:1000:1000
-  
+
   proxy:
     image: nginx
     ports:

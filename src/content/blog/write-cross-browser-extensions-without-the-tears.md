@@ -15,18 +15,6 @@ This guide and the examples will be based on [Ora](https://github.com/cupcakearm
 
 We will not touch on the [controversial](https://www.eff.org/deeplinks/2021/12/chrome-users-beware-manifest-v3-deceitful-and-threatening) manifest version 3. We'll stick to version 2.
 
-<figure>
-
-![](images/markus-spiske-8CWoXxaqGrs-unsplash-1024x683.jpg)
-
-<figcaption>
-
-Photo by [Markus Spiske](https://unsplash.com/@markusspiske?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/lego?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 ## The Basics
 
 Let's dive right in! A browser extensions is basically a series of small "websites". Logic is written in Javascript, styled in CSS, etc. This also means that we can use Vanilla JS, React, Svelte, whatever you prefer.

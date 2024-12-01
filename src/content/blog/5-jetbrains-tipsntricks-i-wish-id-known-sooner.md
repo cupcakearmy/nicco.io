@@ -17,18 +17,6 @@ Here are some small features that may not be apparent to the newer devs that lev
 4. Syncing settings
 5. Reformatting
 
-<figure>
-
-![](images/cards-1024x567.jpg)
-
-<figcaption>
-
-Photo by [Matt Flores](https://unsplash.com/@matdflo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 ## Double Shift
 
 For many including myself this is the primary way to navigate code and files. Simply press shift two times, type in the file, class or function you are searching for and press enter. This is by far the quickest and most accurate way to navigate code in any Editor or IDE I've tried so far.  

@@ -15,18 +15,6 @@ Recently I've been taking my tin foil hat a bit more seriously and since I mostl
 
 TLDR: I wrote this [cleaning script](https://gist.github.com/CupCakeArmy/51070b311e6fd0a3f2d793bee3350ede) (tested only on macOS) to remove all duplicates from the [Google Takeout](https://takeout.google.com/) folders.
 
-<figure>
-
-![](images/rayan-almuslem-1302778-unsplash-1024x683.jpg)
-
-<figcaption>
-
-Photo by [Rayan Almuslem](https://unsplash.com/photos/_aPYcEKtDQ0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/camera?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 The process seemed easy at first. Google offers an awesome tools for exporting data out of their servers. It's called [Takeout](https://takeout.google.com/). So basically you select the Google Photos service and let them create the archives. Then after a few hours you can download them.
 
 Now at the time I had ~40gb worth of pictures and videos saved in Googles cloud, however the archives I downloaded where about ~90gb. I started looking into it and a lot of photos where duplicates and edited versions that google was keeping. In addition the folders where full of JSON metadata.

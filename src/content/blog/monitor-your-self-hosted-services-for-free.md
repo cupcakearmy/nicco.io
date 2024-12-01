@@ -1,24 +1,13 @@
 ---
 title: 'Monitor your self hosted services for free'
 date: '2022-07-07'
+coverImage: './images/daniele-franchi-g2fJ7d7eKSM-unsplash.jpg'
 tags:
   - self-host
   - monitoring
 ---
 
 Monitoring services requires external resources, as monitoring your server(s) from the server itself does not make sense. Renting a whole server for monitoring is a bit of a resources (and money) waste.
-
-<figure>
-
-![](images/daniele-franchi-g2fJ7d7eKSM-unsplash.jpg)
-
-<figcaption>
-
-Photo by [Daniele Franchi](https://unsplash.com/@daniele_franchi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/radar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
 
 ## Getting a free VM
 

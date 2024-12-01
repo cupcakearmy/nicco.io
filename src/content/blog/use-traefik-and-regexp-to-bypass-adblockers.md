@@ -1,6 +1,7 @@
 ---
 title: 'Use Traefik and RegExp to bypass AdBlockers'
 date: '2022-01-10'
+coverImage: './images/hyeryi-sVk8nrCQ06g-unsplash-scaled.jpg'
 categories:
   - 'general'
   - 'security'
@@ -18,18 +19,6 @@ I was using Matomo for collecting traffic metrics on different websites, however
 The problem was that my AdBlocker was not letting request through and since most of the people visiting this site will probably devs they surely have some AdBlocker installed.
 
 **FYI**: All the data collected on this site are accessible and visible to anyone [here](https://spectare.nicco.io/share/Xklie3UU/Nicco).
-
-<figure>
-
-![](images/hyeryi-sVk8nrCQ06g-unsplash-1024x683.jpg)
-
-<figcaption>
-
-Photo by [逸 韩](https://unsplash.com/@hyeryi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/intersection?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
 
 ## The issue
 

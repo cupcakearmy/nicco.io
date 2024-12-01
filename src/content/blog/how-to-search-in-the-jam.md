@@ -1,13 +1,13 @@
 ---
-title: "How to search in the JAM"
-date: "2020-12-06"
-categories: 
-  - "coding"
-tags: 
-  - "jam-stack"
-  - "lunr"
-  - "search"
-  - "svelte"
+title: 'How to search in the JAM'
+date: '2020-12-06'
+categories:
+  - 'coding'
+tags:
+  - 'jam-stack'
+  - 'lunr'
+  - 'search'
+  - 'svelte'
 ---
 
 So a lot (me included) now are building JAM stack landing pages, shops, full-stack apps, etc. and while you can have a backend of course not all of them have. For those who don't: **How do we search?**
@@ -23,7 +23,7 @@ We will look at the following:
 
 <figure>
 
-![Telescope](images/uriel-soberanes-gCeH4z9m7bg-unsplash-991x1024.jpg)
+![Telescope](images/uriel-soberanes-gCeH4z9m7bg-unsplash.jpg)
 
 <figcaption>
 

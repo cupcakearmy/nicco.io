@@ -14,18 +14,6 @@ Since [React](https://reactjs.org/) 16.8 was published in February Hooks are now
 
 All the code shown can be found here: [https://git.nicco.io/cupcakearmy/guide-react-hooks](https://git.nicco.io/cupcakearmy/guide-react-hooks)
 
-<figure>
-
-![](images/matt-artz-353210-unsplash-1024x780.jpg)
-
-<figcaption>
-
-wrenches - new tools
-
-</figcaption>
-
-</figure>
-
 #### What we will look at today
 
 1. Class Components vs Functional Components

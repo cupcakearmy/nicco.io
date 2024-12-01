@@ -21,18 +21,6 @@ The languages that came to mind were Rust, Go, Kotlin and Swift and I wanted to 
 
 What follows are the experiences I made as a mostly TS/JS/Python developer going into Go and learning as I went along. I did not have prior Go experience except some hello world examples here and there.
 
-<figure>
-
-![](images/mark-autumns-Ssr26I0QWVY-unsplash-1024x683.jpg)
-
-<figcaption>
-
-Bridge
-
-</figcaption>
-
-</figure>
-
 ## Setup
 
 I code on macOS so setup was easy: just run `brew install go` and be done with it. Or so I thought so. The whole `GOPATH` and `GOROOT` is not as straight forward. To this day I have not completely comprehended what they do so I will not even try explain it. I set mine to the following and everything worked after that.

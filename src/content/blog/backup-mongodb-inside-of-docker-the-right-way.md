@@ -11,18 +11,6 @@ coverImage: './images/tobias-fischer-PkbZahEG2Ng-unsplash-scaled.jpg'
 
 Backing up a mongo instance is more confusing than it should be. Maybe you have run into a `the input device is not a TTY` or you simply don't know how to do it? Here are two 1-Liner to backup and restore a running mongo instance.
 
-<figure>
-
-![](images/tobias-fischer-PkbZahEG2Ng-unsplash-1024x497.jpg)
-
-<figcaption>
-
-Photo by [Tobias Fischer](https://unsplash.com/@tofi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/database?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 ## Setup
 
 First we define our mongo instance like below. Notice that instead of mapping the data directory onto our filesystem we have a native volume.

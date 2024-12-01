@@ -21,18 +21,6 @@ Today we will have a look at how telegram bots are written and show some base co
 2. A bot that has **persistence** and will save a list of items we can add.
 3. (bonus round) Dockerize the bot for running it everywhere.
 
-<figure>
-
-![](images/arseny-togulev-1513013-unsplash-1024x576.jpg)
-
-<figcaption>
-
-Photo by [Arseny Togulev](https://unsplash.com/@tetrakiss?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/robot?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 #### Here we go 🤖
 
 The first thing we need is a bot. To register one you need to talk to the [@BotFather](https://telegram.me/BotFather) (with your normal telegram account). Then simply enter the `[/newbot](tg://bot_command?command=newbot)` command. You will be asked the name and the @handle for your bot. The handle need to end in `bot`.  
@@ -54,7 +42,7 @@ Response after successful bot registration
 
 <figure>
 
-![](images/IMG_0160-1024x436.jpeg)
+![](images/IMG_0160.jpeg)
 
 <figcaption>
 
@@ -277,7 +265,7 @@ def main():
     //...
 ```
 
-![](images/IMG_1711-653x1024.jpeg)
+![](images/IMG_1711.jpeg)
 
 I believe telegram bots can be a great alternative if a full fledged app is an overkill. There are a lot of featured that where not mentioned here, especially custom keyboards.
 

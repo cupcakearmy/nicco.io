@@ -22,7 +22,7 @@ Trying to be everything at the same time comes at a cost. And that is generally 
 
 <figure>
 
-![](images/pawel-nolbert-xe-ss5Tg2mo-unsplash-1024x740.jpg)
+![](images/pawel-nolbert-xe-ss5Tg2mo-unsplash.jpg)
 
 <figcaption>
 
@@ -44,7 +44,7 @@ A few weeks ago [Nextcloud 21](https://nextcloud.com/blog/nextcloud-hub-21-out-w
 
 <figure>
 
-![](images/Screenshot-2021-03-23-at-10.58.31-1-1024x325.png)
+![](images/Screenshot-2021-03-23-at-10.58.31.png)
 
 <figcaption>
 

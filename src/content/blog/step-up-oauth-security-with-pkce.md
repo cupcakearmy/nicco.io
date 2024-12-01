@@ -14,18 +14,6 @@ We all have used OAuth at some point. Whether with SSOs or a simple authorizatio
 
 I am going to assume some basic OAuth knowledge. [Here](https://medium.com/@darutk/the-simplest-guide-to-oauth-2-0-8c71bd9a15bb) is a basic explanation. [This](https://aaronparecki.com/oauth-2-simplified/) is a quick more in depth article.
 
-<figure>
-
-![](images/jielin-chen-pKQIpxzq0ZQ-unsplash-e1562783699383-1024x484.jpg)
-
-<figcaption>
-
-Photo by [Jielin Chen](https://unsplash.com/@jerrychan0328?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/fence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 #### Quick refresher on implicit vs code flows
 
 As mentioned above there are [multiple flows](https://oauth.net/2/) in the [OAuth2 spec](https://tools.ietf.org/html/rfc6749), but in reality only the **_code_** and **_implicit_** are really used. The big difference between the two ist that in the **_code_** flow the there is a pre-shared password. This requires a backend, so the code flow cannot be used in SPAs.
@@ -66,7 +54,7 @@ Below is a diagram by [Auth0](https://auth0.com/) which helped me understand the
 
 <figure>
 
-![](images/auth-sequence-auth-code-pkce-1024x833.png)
+![](images/auth-sequence-auth-code-pkce.png)
 
 <figcaption>
 

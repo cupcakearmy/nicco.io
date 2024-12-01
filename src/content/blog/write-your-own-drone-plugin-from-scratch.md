@@ -16,18 +16,6 @@ Recently Drone released it 1.0 version update. It came with a cleaner and more u
 
 **TL;DR** Get the code: [https://github.com/CupCakeArmy/drone-deploy](https://github.com/CupCakeArmy/drone-deploy)
 
-<figure>
-
-![](images/asoggetti-418839-unsplash-1024x684.jpg)
-
-<figcaption>
-
-Photo by [asoggetti](https://unsplash.com/photos/rSFxBGpnluw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/drone?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 This should be a starting point to guide you in the right direction towards writing your first drone plugin. **It's easier than it might seems**. Let's go 🚀
 
 #### What do we want to achieve?

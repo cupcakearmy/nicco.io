@@ -115,6 +115,6 @@ const App = () => <div>
 
 There is a little codesanbox below with all the code if you wanna try for yourself (you should! 😉)
 
-<iframe src="https://codesandbox.io/embed/code-splitting-1x3s3?autoresize=1&amp;fontsize=14&amp;module=%2Fsrc%2FApp.jsx" title="Code Splitting" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe src="https://codesandbox.io/embed/code-splittings3?autoresize=1&amp;fontsize=14&amp;module=%2Fsrc%2FApp.jsx" title="Code Splitting" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 This concludes todays look at how to reduce the bundle size and use code splitting in react. Note that this does not work with server side rendering.

@@ -17,18 +17,6 @@ I don't want to spy on people, nor set cookies and annoy people with consent ban
 This is important to mention as the next steps could sound a bit nefarious otherwise.  
 Data collected on this site is 100% anonymous and [GDPR](https://gdpr.eu/) compliant.
 
-<figure>
-
-![](images/luke-chesser-JKUTrJ4vK00-unsplash-1024x683.jpg)
-
-<figcaption>
-
-Photo by [Luke Chesser](https://unsplash.com/@lukechesser?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/data?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 Since Matomo is the de facto way to go, I spun up the Matomo server with my trusted docker-traefik setup and was up and running in no time.  
 ( I'll share the config files if anyone is interested at the bottom. )
 

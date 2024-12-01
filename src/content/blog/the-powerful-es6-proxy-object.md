@@ -16,18 +16,6 @@ Today: yet another ES6 feature that I think most people don't know about.
 >
 > [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 
-<figure>
-
-![](images/alina-grubnyak-1254785-unsplash-1024x683.jpg)
-
-<figcaption>
-
-Photo by [Alina Grubnyak](https://unsplash.com/@alinnnaaaa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
-
 Let's dive right in! 🏄‍♂️
 
 #### Basic example:

@@ -9,7 +9,7 @@ tags:
   - 'npm'
   - 'pnpm'
   - 'yarn'
-coverImage: './images/ruchindra-gunasekara-GK8x_XCcDZg-unsplash-scaled.jpg'
+coverImage: './images/ruchindra-gunasekara-GK8x_XCcDZg-unsplash.jpg'
 ---
 
 If you are a JS developer you probably use NPM multiple times a day without thinking about it. It's the default package manager which ships with node.
@@ -23,18 +23,6 @@ As [this user](https://www.reddit.com/r/javascript/comments/cw64xt/going_beyond_
 If you are having troubles with pnpm try using `pnpm i shamefully-flatten`. Thanks to [this reddit user](https://www.reddit.com/r/node/comments/cw64qq/going_beyond_npm_meet_yarn_pnpm/ey9aa1v?utm_source=share&utm_medium=web2x).
 
 For the lazy readers: [Jump to the conclusion here](#conclusion).
-
-<figure>
-
-![](images/ruchindra-gunasekara-GK8x_XCcDZg-unsplash.jpg)
-
-<figcaption>
-
-Photo by [Ruchindra Gunasekara](https://unsplash.com/@ruchindra?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-</figcaption>
-
-</figure>
 
 You might wonder now: why? _Why should I bother reading this when NPM works perfectly_? Is this just another run to the latest framework? Don't worry: there are actual reasons you might want to switch.
 
