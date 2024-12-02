@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content'
+import PageSearch from '../components/PageSearch.svelte'
+import PageWithTitle from '../layouts/PageWithTitle.astro'
+
+type Entry = { url: string; type: 'post' | 'page'; title: string; text: string; extra?: any }
+
+const entries: Entry[] = []
+
+const posts = await getCollection('blog')
+for (const post of posts) {
+  const rendered = await post.render()
+  const text = rendered.remarkPluginFrontmatter.text
+  entries.push({
+    url: `/blog/${post.slug}`,
+    type: 'post',
+    title: post.data.title,
+    text,
+    extra: post.data,
+  })
+}
+
+const pages = await getCollection('page')
+for (const page of pages) {
+  const rendered = await page.render()
+  const text = rendered.remarkPluginFrontmatter.text
+  entries.push({
+    url: `/${page.slug}`,
+    type: 'page',
+    title: page.data.title,
+    text,
+    extra: page.data,
+  })
+}
+---
+
+<PageWithTitle title="Search">
+  <PageSearch entries={entries} client:only="svelte" />
+</PageWithTitle>

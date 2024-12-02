@@ -1,3 +1,3 @@
-- Search
 - Tag count
-- Link in contact to status monitor
+- title for pages
+- check header meta info
