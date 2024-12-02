@@ -277,7 +277,7 @@ I believe telegram bots can be a great alternative if a full fledged app is an o
 python-telegram-bot==12.0.0b1
 ```
 
-```Dockerfile
+```docker
 # Dockerfile
 
 FROM python:3.7-slim

@@ -107,7 +107,7 @@ g.src = u + 'unicorn' // After
 
 I had to create a minuscule `Dockerfile` as the `Rewrite` module is not enabled per default in the standard Matomo docker image.
 
-```Dockerfile
+```docker
 # Dockerfile
 FROM matomo
 RUN a2enmod rewrite
