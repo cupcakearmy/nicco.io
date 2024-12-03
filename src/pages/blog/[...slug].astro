@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content'
+import BlogPost from '../../layouts/BlogPost.astro'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }))
+}
+
+const post = Astro.props
+const { Content, headings, remarkPluginFrontmatter } = await post.render()
+---
+
+<BlogPost {...post.data} {headings} readingTime={remarkPluginFrontmatter.readingTime}>
+  <Content />
+</BlogPost>
+
+<style>
+  :global(p) {
+    margin: 1rem 0;
+  }
+
+  :global(h2, h3, h4, h5, h6) {
+    --width: 0.125rem;
+    --offset: 0.25rem;
+    margin: 2rem 0 1rem;
+    margin: 3em 0 0;
+    border-left: var(--width) solid var(--clr-primary);
+    padding-left: var(--offset);
+    margin-left: calc((var(--width) + var(--offset)) * -1);
+  }
+</style>

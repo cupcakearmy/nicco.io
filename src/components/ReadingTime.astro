@@ -1,0 +1,9 @@
+---
+import type { ReadTimeResults } from 'reading-time'
+
+type Props = { readingTime: ReadTimeResults }
+
+const { readingTime } = Astro.props
+---
+
+<span>~ {readingTime.minutes.toFixed(0)} min</span>

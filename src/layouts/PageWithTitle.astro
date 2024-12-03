@@ -1,0 +1,52 @@
+---
+import SpacedLetters from '../components/SpacedLetters.astro'
+import Root from './Root.astro'
+
+export type Props = {
+  title: string
+  readable?: boolean
+  expanded?: boolean
+}
+
+const { title, readable = false, expanded = true } = Astro.props
+---
+
+<Root>
+  <div>
+    <h1>
+      <SpacedLetters letters={title} {readable} />
+    </h1>
+    <section class:list={{ expanded }}>
+      <slot />
+    </section>
+  </div>
+</Root>
+
+<style>
+  div {
+    padding: 4rem;
+  }
+
+  @media screen and (max-width: 30rem) {
+    div {
+      padding: 1rem;
+    }
+  }
+
+  section {
+    max-width: 30em;
+    margin-bottom: 4em;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  section.expanded {
+    margin-top: 5em;
+  }
+
+  h1 {
+    margin-top: calc(28vh - 3em);
+    margin-bottom: 3em;
+  }
+</style>

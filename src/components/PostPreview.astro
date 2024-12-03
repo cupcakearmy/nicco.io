@@ -1,0 +1,77 @@
+---
+import { Picture } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import PostAttributes from './PostAttributes.astro'
+import Tags from './Tags.astro'
+
+export type Props = {
+  post: CollectionEntry<'blog'>
+}
+
+const { post } = Astro.props
+const { remarkPluginFrontmatter } = await post.render()
+---
+
+<section class:list={{ without: !post.data.coverImage }}>
+  {post.data.coverImage && <Picture src={post.data.coverImage} alt={'foo'} />}
+  <PostAttributes
+    date={post.data.date}
+    updatedDate={post.data.updatedDate}
+    readingTime={remarkPluginFrontmatter.readingTime}
+  />
+  <h2>
+    {post.data.title}
+  </h2>
+  <Tags tags={post.data.tags.map((tag) => ({ name: tag, href: `/tag/${tag}` }))} />
+</section>
+
+<style lang="scss">
+  section {
+    display: block;
+    transition: var(--animation);
+
+    // &.without {
+    //   border: 2px solid var(--clr-primary);
+    //   padding: 5%;
+    //   width: calc(100% + 10%);
+    //   transform: translateX(-5%);
+    // }
+
+    &:hover {
+      transform: scale(1.05);
+      & :global(img) {
+      }
+      // & > :global(div) {
+      //   opacity: 0;
+      // }
+    }
+  }
+
+  h2 {
+    margin-top: 0.25rem;
+    position: relative;
+    top: 0;
+    transition: var(--animation);
+    font-size: 2rem;
+  }
+
+  section > :global(div) {
+    opacity: 1;
+    transition: var(--animation);
+  }
+
+  img {
+    width: calc(100% - 0.25em);
+    height: 12rem;
+    object-fit: cover;
+    object-position: center;
+    border: 0.125rem solid var(--clr-primary);
+    transition: var(--animation);
+    transform: scale(1);
+    margin: 0;
+    margin-bottom: 0.5rem;
+
+    top: 0;
+    position: relative;
+  }
+</style>

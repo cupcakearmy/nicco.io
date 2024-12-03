@@ -1,0 +1,37 @@
+---
+export type Props = {
+  letters: string
+  even?: boolean
+  readable?: boolean
+}
+
+const { letters, readable = false, even = false } = Astro.props
+---
+
+<div class:list={{ even, readable }}>
+  {even ? [...letters].map((letter) => <span>{letter}</span>) : letters}
+</div>
+
+<style>
+  span {
+    width: 1em;
+    text-align: center;
+    display: inline-block;
+  }
+
+  div {
+    font-size: min(8vw, 5em);
+    text-transform: uppercase;
+    user-select: none;
+    letter-spacing: 0.35em;
+  }
+
+  div.even {
+    font-size: 8vw;
+  }
+
+  div.readable {
+    letter-spacing: initial;
+    text-transform: initial;
+  }
+</style>

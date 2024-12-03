@@ -1,0 +1,30 @@
+---
+import type { MarkdownHeading } from 'astro'
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import type { ReadTimeResults } from 'reading-time'
+import PostAttributes from '../components/PostAttributes.astro'
+import Tags from '../components/Tags.astro'
+import Toc from '../components/Toc.astro'
+import PageWithTitle from './PageWithTitle.astro'
+
+type Props = CollectionEntry<'blog'>['data'] & { headings: MarkdownHeading[]; readingTime: ReadTimeResults }
+
+const { title, updatedDate, date, tags, coverImage, headings, readingTime } = Astro.props
+---
+
+<PageWithTitle title={title} readable>
+  <article>
+    <Toc {headings} />
+    <PostAttributes {date} {updatedDate} {readingTime} />
+    {coverImage && <Image width={1020} height={510} src={coverImage} alt="" />}
+    <Tags tags={tags.map((t) => ({ name: t, href: `/tag/${t}` }))} />
+    <slot />
+  </article>
+</PageWithTitle>
+
+<style>
+  img {
+    margin: 1rem 0;
+  }
+</style>

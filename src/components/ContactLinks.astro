@@ -1,0 +1,53 @@
+---
+import FingerPrint from '~icons/ion/finger-print'
+import ChatBubbles from '~icons/ion/chatbubbles-outline'
+import Mail from '~icons/ion/mail-outline'
+import Heart from '~icons/ion/heart'
+import Github from '~icons/ion/logo-github'
+import Trending from '~icons/ion/trending-up'
+
+const links: { label: string; url: string; icon: astroHTML.JSX.Element }[] = [
+  { label: 'Say hi@nicco.io', url: 'mailto:hi@nicco.io', icon: Mail },
+  { label: 'Chat on discord', url: 'https://discord.gg/wS7RpYTYd2', icon: ChatBubbles },
+  { label: 'GitHub', url: 'https://github.com/cupcakearmy', icon: Github },
+  { label: 'Support my work', url: 'https://github.com/sponsors/cupcakearmy', icon: Heart },
+  { label: 'Traffic', url: 'https://spectare.nicco.io/share/HYgOcrlfHxGB9RAR/nicco.io', icon: Trending },
+  { label: 'Privacy', url: '/privacy', icon: FingerPrint },
+]
+---
+
+<ul>
+  {
+    links.map(({ label, url, icon: Icon }) => {
+      return (
+        <li>
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            {Icon && <Icon />}
+            {label}
+          </a>
+        </li>
+      )
+    })
+  }
+</ul>
+
+<style lang="scss">
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+  }
+
+  a {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    transition: var(--animation);
+
+    &:hover {
+      transform: translateX(5%) scale(1.1);
+    }
+  }
+</style>

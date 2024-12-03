@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import type { ReadTimeResults } from 'reading-time'
+import FormattedDate from './FormattedDate.astro'
+import ReadingTime from './ReadingTime.astro'
+
+type Props = {
+  readingTime: ReadTimeResults
+} & Pick<CollectionEntry<'blog'>['data'], 'date' | 'updatedDate'>
+
+const { updatedDate, date, readingTime } = Astro.props
+---
+
+<div class="attributes">
+  <div class="estimation">
+    <FormattedDate date={date} />
+    {
+      updatedDate && date !== updatedDate && (
+        <div class="updated">
+          Updated: <FormattedDate date={updatedDate} />
+        </div>
+      )
+    }
+  </div>
+  <ReadingTime readingTime={readingTime} />
+</div>
+
+<style>
+  .attributes {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 400;
+    margin-top: -0.125em;
+  }
+  .estimation {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+  }
+  .updated {
+    font-size: 0.75em;
+    font-style: italic;
+  }
+</style>

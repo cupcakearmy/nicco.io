@@ -1,0 +1,39 @@
+---
+export type Props = {
+  progress: number
+  title: string
+}
+
+const { progress, title } = Astro.props
+---
+
+<div class="progress">
+  <span>{title}</span>
+  <div style={`width: ${progress * 100}%`}></div>
+</div>
+
+<style>
+  .progress {
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    background: var(--clr-light);
+    margin: 0.5em 0;
+    padding: 0.1em 0.5em;
+    border: 1px solid var(--clr-dark);
+  }
+
+  .progress span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .progress div {
+    height: 100%;
+    background: var(--clr-primary);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+</style>

@@ -1,0 +1,11 @@
+---
+import { getCollection } from 'astro:content'
+import PostList from '../../components/PostList.astro'
+import PageWithTitle from '../../layouts/PageWithTitle.astro'
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+---
+
+<PageWithTitle title="Blog">
+  <PostList posts={posts} />
+</PageWithTitle>

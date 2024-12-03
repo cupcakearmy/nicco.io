@@ -1,0 +1,32 @@
+---
+import BaseHead from '../components/BaseHead.astro'
+import Nav from '../components/Nav.astro'
+import Progress from '../components/Progress.svelte'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead />
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Progress client:only="svelte" />
+  </body>
+</html>
+
+<style>
+  main {
+    padding-left: 3.5rem;
+    margin: o auto;
+  }
+
+  @media screen and (max-width: 30rem) {
+    main {
+      padding-left: 2.5rem;
+    }
+  }
+</style>

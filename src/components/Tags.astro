@@ -1,0 +1,36 @@
+---
+import type { ComponentProps } from 'astro/types'
+import Tag from './Tag.astro'
+
+export type Props = {
+  tags: ComponentProps<typeof Tag>[]
+  rows?: number
+}
+
+const { tags, rows = 1 } = Astro.props
+
+const height = rows * 2
+---
+
+<div style={`height: ${height}em;`}>
+  {tags.map((tag) => <Tag {...tag} />)}
+</div>
+
+<style>
+  div {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 -0.25rem;
+  }
+
+  div::-webkit-scrollbar {
+    display: none;
+  }
+  div {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

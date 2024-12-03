@@ -1,0 +1,47 @@
+---
+import type { MarkdownHeading } from 'astro'
+
+type Props = { headings: MarkdownHeading[] }
+
+const { headings } = Astro.props
+---
+
+<div class="toc">
+  <b>Outline</b>
+  {
+    headings.map(({ slug, text, depth }) => (
+      <div style={`margin-left: ${depth - 2}rem;`}>
+        <span>▶</span>
+        <a href={`#${slug}`}>{text}</a>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .toc {
+    margin: 2rem 0;
+
+    @media (min-width: 70rem) {
+      margin: 0;
+      position: absolute;
+      left: 45rem;
+      width: calc(100vw - 50rem);
+    }
+  }
+
+  span {
+    font-size: 0.5em;
+    transform: translateY(-0.8em);
+    display: inline-block;
+  }
+
+  a {
+    height: 1.4em;
+    display: inline-block;
+    max-width: calc(100% - 1.5rem);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+</style>
