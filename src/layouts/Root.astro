@@ -2,12 +2,17 @@
 import BaseHead from '../components/BaseHead.astro'
 import Nav from '../components/Nav.astro'
 import Progress from '../components/Progress.svelte'
+
+interface Props {
+  title?: string
+  image?: string
+}
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead />
+    <BaseHead {...Astro.props} />
   </head>
   <body>
     <Nav />
