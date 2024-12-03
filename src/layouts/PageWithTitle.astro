@@ -5,18 +5,17 @@ import Root from './Root.astro'
 export type Props = {
   title: string
   readable?: boolean
-  expanded?: boolean
 }
 
-const { title, readable = false, expanded = true } = Astro.props
+const { title, readable = false } = Astro.props
 ---
 
-<Root>
+<Root {title}>
   <div>
     <h1>
       <SpacedLetters letters={title} {readable} />
     </h1>
-    <section class:list={{ expanded }}>
+    <section>
       <slot />
     </section>
   </div>
@@ -39,9 +38,6 @@ const { title, readable = false, expanded = true } = Astro.props
     display: flex;
     flex-direction: column;
     gap: 1rem;
-  }
-
-  section.expanded {
     margin-top: 5em;
   }
 

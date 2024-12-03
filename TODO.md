@@ -1,3 +1,1 @@
 - Tag count
-- title for pages
-- check header meta info
