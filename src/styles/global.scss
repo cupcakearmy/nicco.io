@@ -5,8 +5,8 @@
 }
 
 :root {
-  --ff: 'Jost Variable', sans-serif;
-  --ff-alt: 'Playfair Display Variable', serif;
+  --ff: "Jost Variable", sans-serif;
+  --ff-alt: "Playfair Display Variable", serif;
   --clr-light: #ffffff;
   --clr-dark: #010101;
   --clr-primary: hsl(219, 90%, 80%);
@@ -87,6 +87,10 @@ p a,
 svg {
   fill: currentColor;
   height: auto;
+}
+
+code {
+  font-size: 0.75em;
 }
 
 pre {
