@@ -1,6 +1,6 @@
 ---
 import { Picture } from 'astro:assets'
-import type { CollectionEntry } from 'astro:content'
+import { type CollectionEntry, render as renderEntry } from 'astro:content'
 import PostAttributes from './PostAttributes.astro'
 import Tags from './Tags.astro'
 
@@ -9,7 +9,7 @@ export type Props = {
 }
 
 const { post } = Astro.props
-const { remarkPluginFrontmatter } = await post.render()
+const { remarkPluginFrontmatter } = await renderEntry(post)
 ---
 
 <section class:list={{ without: !post.data.coverImage }}>

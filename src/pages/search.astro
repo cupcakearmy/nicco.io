@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content'
+import { getCollection, render as renderEntry } from 'astro:content'
 import PageSearch from '../components/PageSearch.svelte'
 import PageWithTitle from '../layouts/PageWithTitle.astro'
 
@@ -9,10 +9,10 @@ const entries: Entry[] = []
 
 const posts = await getCollection('blog')
 for (const post of posts) {
-  const rendered = await post.render()
+  const rendered = await renderEntry(post)
   const text = rendered.remarkPluginFrontmatter.text
   entries.push({
-    url: `/blog/${post.slug}`,
+    url: `/blog/${post.id}`,
     type: 'post',
     title: post.data.title,
     text,
@@ -22,10 +22,10 @@ for (const post of posts) {
 
 const pages = await getCollection('page')
 for (const page of pages) {
-  const rendered = await page.render()
+  const rendered = await renderEntry(page)
   const text = rendered.remarkPluginFrontmatter.text
   entries.push({
-    url: `/${page.slug}`,
+    url: `/${page.id}`,
     type: 'page',
     title: page.data.title,
     text,

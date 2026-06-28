@@ -13,7 +13,7 @@ const { posts } = Astro.props
   {
     posts.map((post) => (
       <li>
-        <a href={`/blog/${post.slug}`}>
+        <a href={`/blog/${post.id}`}>
           <PostPreview {post} />
         </a>
       </li>
