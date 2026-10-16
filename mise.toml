@@ -1,5 +1,9 @@
 [tools]
+"github:railwayapp/railpack" = "latest"
 node = "22"
 
 [settings]
 idiomatic_version_file_enable_tools = ["pnpm"]
+
+[env]
+BUILDKIT_HOST = "docker-container://buildkit"
